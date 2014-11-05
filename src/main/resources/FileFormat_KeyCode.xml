@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Campaign Keycode Management Thailand2014 - Copy.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="Key Code">
+		<DataSheet sheetName="2014">
+			<DataRecord listSourceName="keyCodeList" beginRow="5" endRow="99999">
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" autoTrim="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="keyCode" autoTrim="TRUE" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="callCenter" autoTrim="TRUE" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="listSource" autoTrim="TRUE" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="insurer" autoTrim="TRUE" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="campaignName" autoTrim="TRUE" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="productName" autoTrim="TRUE" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="productCode" autoTrim="TRUE" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="scriptId" autoTrim="TRUE" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="listLotName" autoTrim="TRUE" />
+				<DataCell row="1" column="O" dataType="DATE" fieldName="launchDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="P" dataType="DATE" fieldName="endDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="Q" dataType="DATE" fieldName="lotEffectiveDate" dataFormat="dd/MM/yyyy" />
+
+				<EndRecordCondition column="C" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>

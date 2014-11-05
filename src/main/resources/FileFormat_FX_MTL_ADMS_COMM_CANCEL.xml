@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="ADMS_COMM_CANCEL_yyyyMMdd_Revised.xls" fileType="EXCEL" locale="US">
+	<DataSet description="MTL ADMS Comm Cancel">
+		<DataSheet sheetName="ADMS">
+			<DataRecord listSourceName="cancelRecords" beginRow="5" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="policyNo" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="applicationNo" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="policyStatus" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="insuredName" autoTrim="TRUE" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="premiumYear" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="premiumMonth" />
+				<DataCell row="1" column="G" dataType="DATE" fieldName="issueDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="H" dataType="DATE" fieldName="cancelEffectiveDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="cancelPremium" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="agentNo" />
+				<DataCell row="1" column="K" dataType="DATE" fieldName="cancelEffectiveDate" dataFormat="yyyyMMdd" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="annualPremium" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="paidPremium" />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="clawbackPremium" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+		<DataSheet sheetName="Broker license">
+			<DataRecord listSourceName="cancelRecords" beginRow="4" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="policyNo" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="applicationNo" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="policyStatus" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="insuredName" autoTrim="TRUE" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="premiumYear" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="premiumMonth" />
+				<DataCell row="1" column="G" dataType="DATE" fieldName="issueDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="H" dataType="DATE" fieldName="cancelEffectiveDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="cancelPremium" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="agentNo" />
+				<DataCell row="1" column="K" dataType="DATE" fieldName="cancelEffectiveDate" dataFormat="yyyyMMdd" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="annualPremium" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="paidPremium" />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="clawbackPremium" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>

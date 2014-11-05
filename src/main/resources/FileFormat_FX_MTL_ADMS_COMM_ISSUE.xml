@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="ADMS_COMM_ISSUE_YYYYDDMM_Revised.xls" fileType="EXCEL" locale="US">
+	<DataSet description="MTL ADMS Comm Issue">
+		<DataSheet sheetName="ADMS">
+			<DataRecord listSourceName="issueRecords" beginRow="5" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="applicationNo" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="policyNo" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="insuredName" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="issueDate" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="paidToDate" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="maturityDate" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="modeOfPremium" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="policyStatus" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="underwriting" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="effectiveDate" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="installmentYear" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="installmentMonth" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+		<DataSheet sheetName="Broker license">
+			<DataRecord listSourceName="issueRecords" beginRow="4" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="applicationNo" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="policyNo" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="insuredName" />
+				<DataCell row="1" column="D" dataType="DATE" fieldName="issueDate" dataFormat="yyyyMMdd" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="paidToDate" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="maturityDate" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="modeOfPremium" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="policyStatus" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="underwriting" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="effectiveDate" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="installmentYear" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="installmentMonth" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>

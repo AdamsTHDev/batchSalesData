@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Update New Staff by month for comm_MMMMM YY_no_pw.xlsx" fileType="EXCEL" locale="en-US">
+	<DataSet description="TSR_Update">
+		<DataSheet sheetIndex="0">
+			<DataRecord listSourceName="tsrList" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="NUMBER" fieldName="no" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="tsrCode" autoTrim="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="site" autoTrim="TRUE" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="employeeCode" autoTrim="TRUE" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="firstName" autoTrim="TRUE" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="lastName" autoTrim="TRUE" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="positionName" autoTrim="TRUE" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="campaign" autoTrim="TRUE" />
+				<DataCell row="1" column="I" dataType="DATE" fieldName="effectiveDate" dataFormat="d-MMM-yy" />
+				<DataCell row="1" column="J" dataType="DATE" fieldName="resignDate" dataFormat="d-MMM-yy" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="tatalSales" autoTrim="TRUE" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="status" autoTrim="TRUE" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="remark" autoTrim="TRUE" />
+
+				<EndRecordCondition column="B" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>

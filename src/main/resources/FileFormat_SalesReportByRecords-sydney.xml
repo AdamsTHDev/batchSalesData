@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Sales_Report_By_Records.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="Sales_Report_By_Records">
+		<DataSheet sheetIndex="0" />
+		<DataSheet sheetIndex="1">
+			<DataRecord listSourceName="salesRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="listLotName" />
+				<DataCell row="1" column="D" dataType="DATE" fieldName="approveDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="xRefference" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="itemNo" dataFormat="0" /><!--  -->
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="product" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="annualPremium" />
+				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="protectAmount" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentChannel" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="qaStatus" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="qaReason" />
+				<DataCell row="1" column="P" dataType="DATE" fieldName="saleDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="Q" dataType="TEXT" fieldName="tsrCode" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="supCode" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="qaReasonDetail" />
+
+				<EndRecordCondition column="E" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+		<DataSheet sheetIndex="2" skipWhenNull="TRUE">
+			<DataRecord listSourceName="salesRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="listLotName" />
+				<DataCell row="1" column="D" dataType="DATE" fieldName="approveDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="xRefference" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="itemNo" dataFormat="0" /><!--  -->
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="product" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="annualPremium" />
+				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="protectAmount" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentChannel" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="qaStatus" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="qaReason" />
+				<DataCell row="1" column="P" dataType="DATE" fieldName="saleDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="Q" dataType="TEXT" fieldName="tsrCode" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="supCode" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="qaReasonDetail" />
+
+				<EndRecordCondition column="E" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>

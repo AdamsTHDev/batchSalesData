@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="ADAMS - TVD Daily Report DD MMM YY.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="Sales_Report_By_Records">
+		<DataSheet sheetIndex="0">
+			<DataCell row="1" column="A" dataType="TEXT" fieldName="reportDescription" />
+			<DataRecord listSourceName="productionRecords" beginRow="3" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="transactionDateYear" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="transactionDateMonth" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="transactionDateDay" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="applicationDateYear" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="applicationDateMonth" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="applicationDateDay" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="policyNo" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="plan" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="modalPremium" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="ape" />
+				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="uncollectedApe" />
+				<DataCell row="1" column="L" dataType="NUMBER" dataFormat="#,##0.00" fieldName="sumInsured" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentMode" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="insuredName" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="unitCode" />
+				<DataCell row="1" column="P" dataType="TEXT" fieldName="policyStatus" />
+				<DataCell row="1" column="Q" dataType="TEXT" fieldName="channel" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="agentCode" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="tsrName" />
+				<DataCell row="1" column="T" dataType="TEXT" fieldName="Y/P" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="bankCode" />
+				<DataCell row="1" column="V" dataType="TEXT" fieldName="bankType" />
+				<DataCell row="1" column="W" dataType="TEXT" fieldName="agent" />
+				<DataCell row="1" column="X" dataType="TEXT" fieldName="pendingReason" />
+				<EndRecordCondition column="G" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>
