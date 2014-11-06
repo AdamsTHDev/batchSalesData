@@ -35,6 +35,12 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 
 	private int totalMonth;
 
+	public ReportIncentiveSydney(boolean enableLog)
+			throws Exception
+	{
+		super(enableLog);
+	}
+
 	private void sortData(Map<String, ProductionByTsr> allTsrMap)
 	{
 		List<ProductionByTsr> productionByTsrList = new ArrayList<ReportIncentiveSydney.ProductionByTsr>();
@@ -931,8 +937,7 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		ReportIncentiveSydney batch = new ReportIncentiveSydney();
-		batch.setEnableLog(false);
+		ReportIncentiveSydney batch = new ReportIncentiveSydney(false);
 		batch.totalMonth = 4;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}

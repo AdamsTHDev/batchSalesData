@@ -58,10 +58,12 @@
 				<value>com.adms.batch.sales.domain.QcReconfirmCount</value>
 				<value>com.adms.batch.sales.domain.ReconfirmStatus</value>
 				<value>com.adms.batch.sales.domain.Sales</value>
+				<value>com.adms.batch.sales.domain.SalesProcess</value>
 				<value>com.adms.batch.sales.domain.Tsr</value>
 				<value>com.adms.batch.sales.domain.TsrLevel</value>
 				<value>com.adms.batch.sales.domain.TsrPosition</value>
 				<value>com.adms.batch.sales.domain.TsrStatus</value>
+				<value>com.adms.batch.sales.domain.UwStatus</value>
 			</list>
 		</property>
 

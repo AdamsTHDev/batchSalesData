@@ -41,10 +41,6 @@ public class Sales extends BaseAuditDomain {
 	@Column(name = "X_REFERENCE")
 	private String xReference;
 
-//	@ManyToOne
-//	@JoinColumn(name = "CAMPAIGN_CODE", referencedColumnName = "CAMPAIGN_CODE")
-//	private Campaign campaign;
-
 	@ManyToOne
 	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "LIST_LOT_CODE", referencedColumnName = "LIST_LOT_CODE")
@@ -145,16 +141,6 @@ public class Sales extends BaseAuditDomain {
 	{
 		this.xReference = xReference;
 	}
-
-	/*public Campaign getCampaign()
-	{
-		return campaign;
-	}
-
-	public void setCampaign(Campaign campaign)
-	{
-		this.campaign = campaign;
-	}*/
 
 	public ListLot getListLot()
 	{

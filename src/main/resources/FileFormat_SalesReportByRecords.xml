@@ -6,13 +6,15 @@
 			<DataCell row="3" column="B" dataType="TEXT" fieldName="listLot" />
 			<DataCell row="4" column="B" dataType="TEXT" fieldName="period" />
 			<DataCell row="5" column="B" dataType="DATE" fieldName="printDate" dataFormat="dd/MM/yyyy H:mm:ss a" />
+
 			<DataRecord listSourceName="salesRecord" beginRow="2" endRow="99999">
+				<BeginRecordCondition column="E" comparator="EQ" checkValue="X-Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="listLotName" />
 				<DataCell row="1" column="D" dataType="DATE" fieldName="approveDate" dataFormat="yyyy-MM-dd" />
 				<DataCell row="1" column="E" dataType="TEXT" fieldName="xRefference" />
-				<DataCell row="1" column="F" dataType="NUMBER" fieldName="itemNo" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="itemNo" dataFormat="0" /><!--  -->
 				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="product" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
@@ -26,9 +28,9 @@
 				<DataCell row="1" column="Q" dataType="TEXT" fieldName="tsrCode" />
 				<DataCell row="1" column="S" dataType="TEXT" fieldName="supCode" />
 				<DataCell row="1" column="U" dataType="TEXT" fieldName="qaReasonDetail" />
-
 				<EndRecordCondition column="E" comparator="BLANK" />
 			</DataRecord>
+
 		</DataSheet>
 	</DataSet>
 </FileFormat>

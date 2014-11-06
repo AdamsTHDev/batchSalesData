@@ -16,6 +16,12 @@ import com.adms.imex.excelformat.ExcelFormat;
 
 public class TestQcReconfirmMain extends AbstractImportSalesJob {
 
+	public TestQcReconfirmMain(boolean enableLog)
+			throws Exception
+	{
+		super(enableLog);
+	}
+
 	private QcReconfirm extractQcRecord(DataHolder qcDataHolder, QcReconfirm qcReconfirm)
 			throws Exception
 	{
@@ -157,61 +163,61 @@ public class TestQcReconfirmMain extends AbstractImportSalesJob {
 
 		fileInput = "QA_Reconfirm_MSIG UOB Super Care_31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTI DDOP PA CASH BACK_31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTI Kbank DDOP Safety Care 31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTI POM PA CASH BACK_31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTL KBANK DDOP Health Return Cash_31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTLife Kbank DDOP HIP_31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTLife Kbank POM Cash Back_31 July 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		// Aug
 		pathInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Reconfirm/QA Reconfirm/QA Reconfirm_Aug 14/";
 		fileInput = "QA_Reconfirm_MSIG UOB Super Care_30 Aug 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTI DDOP PA CASH BACK_29 August 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTI Kbank DDOP Safety Care 29 August 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTI POM PA CASH BACK_30 August 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTL KBANK DDOP Health Return Cash_29 August 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTLife Kbank DDOP HIP_29 August 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 		fileInput = "QA_Reconfirm_MTLife Kbank POM Cash Back_29 August 2014_test.xlsx";
 		sheetName = "QC_Reconfirm";
-		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
+		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 //		pathInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Reconfirm/QA Reconfirm/";
 //		fileInput = "test.xlsx";

@@ -19,6 +19,7 @@ import com.adms.batch.sales.service.PaymentFrequencyService;
 import com.adms.batch.sales.service.PaymentMethodService;
 import com.adms.batch.sales.service.QcReconfirmService;
 import com.adms.batch.sales.service.ReconfirmStatusService;
+import com.adms.batch.sales.service.SalesProcessService;
 import com.adms.batch.sales.service.SalesService;
 import com.adms.batch.sales.service.TsrPositionService;
 import com.adms.batch.sales.service.TsrService;
@@ -27,25 +28,47 @@ import com.adms.batch.sales.service.TsrStatusService;
 public class AbstractImportSalesJob {
 
 	private ApplicationContext applicationContext;
-	private DateFormat logDf;
+	private Date processDate;
 	private boolean enableLog = false;
 	public static final String BATCH_ID = "BATCH_ID";
+	
+	public static final String PROCESS_DATE_FORMAT = "yyyyMMdd";
+	public static final Locale PROCESS_DATE_LOCALE = Locale.US;
+	protected DateFormat processDateDf = new SimpleDateFormat(PROCESS_DATE_FORMAT, PROCESS_DATE_LOCALE);
+	
 	public static final String LOG_TIME_FORMAT = "yyyyMMdd HH:mm:ss:sss";
 	public static final Locale LOG_TIME_LOCALE = Locale.US;
+	private DateFormat logDf = new SimpleDateFormat(LOG_TIME_FORMAT, LOG_TIME_LOCALE);
 
-	public void setEnableLog(boolean enableLog)
+	public AbstractImportSalesJob(boolean enableLog)
+			throws Exception
+	{
+		this.setEnableLog(enableLog);
+	}
+
+	private void setEnableLog(boolean enableLog)
 	{
 		this.enableLog = enableLog;
+	}
+
+	public Date getProcessDate()
+	{
+		return processDate;
+	}
+
+	public void setProcessDate(Date processDate)
+	{
+		this.processDate = processDate;
 	}
 
 	protected void log(String message)
 	{
 		if (this.enableLog)
 		{
-			if (logDf == null)
-			{
-				this.logDf = new SimpleDateFormat(LOG_TIME_FORMAT, LOG_TIME_LOCALE);
-			}
+//			if (logDf == null)
+//			{
+//				this.logDf = new SimpleDateFormat(LOG_TIME_FORMAT, LOG_TIME_LOCALE);
+//			}
 
 			System.out.println(this.logDf.format(new Date()) + " " + message);
 		}
@@ -79,6 +102,11 @@ public class AbstractImportSalesJob {
 	protected SalesService getSalesService()
 	{
 		return (SalesService) getBean("salesService");
+	}
+
+	protected SalesProcessService getSalesProcessService()
+	{
+		return (SalesProcessService) getBean("salesProcessService");
 	}
 
 	protected CallCenterService getCallCenterService()

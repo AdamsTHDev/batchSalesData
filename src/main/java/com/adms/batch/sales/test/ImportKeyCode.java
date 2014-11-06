@@ -32,6 +32,13 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 	public static final String SCRIPT_ID = "scriptId";
 	public static final String LOT_EFFECTIVE_DATE = "lotEffectiveDate";
 
+	public ImportKeyCode(boolean enableLog)
+			throws Exception
+	{
+		super(enableLog);
+		// TODO Auto-generated constructor stub
+	}
+
 	private Campaign extractCampaignRecord(DataHolder keyCodeDataHolder, Campaign campaign)
 			throws Exception
 	{
@@ -169,8 +176,7 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 		String fileInput = "D:/Work/ADAMS/Report/Key Code Campaign Code Setup/Campaign Keycode Management Thailand2014 - Copy.xls";
 		String sheetName = "2014";
 
-		ImportKeyCode ikc = new ImportKeyCode();
-		ikc.setEnableLog(true);
+		ImportKeyCode ikc = new ImportKeyCode(true);
 		ikc.importFile(new File(fileFormat), new File(fileInput), sheetName);
 	}
 
