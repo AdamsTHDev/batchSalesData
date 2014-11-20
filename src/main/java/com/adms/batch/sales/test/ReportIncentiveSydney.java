@@ -938,7 +938,7 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 			throws Exception
 	{
 		ReportIncentiveSydney batch = new ReportIncentiveSydney(false);
-		batch.totalMonth = 4;
+		batch.totalMonth = 3;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}
 

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Daily_Performance_Tracking_ByLot.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily Performance Tracking">
+
+		<DataSheet sheetIndex="0" outputSheetName="DailyPerformanceTracking">
+			<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Date" />
+			<DataCell row="1" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="TSR No" />
+			<DataCell row="1" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="New Lead Used / TSR" />
+			<DataCell row="1" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="New Lead Used" />
+			<DataCell row="1" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="Callback / Nocontact / Follow Used" />
+			<DataCell row="1" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="Total Lead Used" />
+			<DataCell row="1" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Callback/ Nocontact (Remaining)" />
+			<DataCell row="1" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Follow up (Remaining)" />
+			<DataCell row="1" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="Total Completed" />
+			<DataCell row="1" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="Contact" />
+			<DataCell row="1" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="Sale" />
+			<DataCell row="1" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="BP CR%" />
+			<DataCell row="1" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="SPC" />
+			<DataCell row="1" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="List Conv." />
+			<DataCell row="1" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="TYP" />
+			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="AMP" />
+			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="AYP" />
+			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="Campaign Code" />
+			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="Campaign Name" />
+			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Campaign Info" />
+			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="From Date" />
+			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="To Date" />
+			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="Print Date" />
+			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Lead Load" />
+			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="New Lead Remaining" />
+			<DataCell row="1" column="Z" dataType="TEXT" fieldName="fieldZ" defaultValue="Referral Lead" />
+			<DataCell row="1" column="AA" dataType="TEXT" fieldName="fieldAA" defaultValue="Sale Pending" />
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Date"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Callback / Nocontact / Follow Used" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Total Lead Used" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Callback/ Nocontact (Remaining)" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Follow up (Remaining)" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Total Completed" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Contact" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="Sale" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="BP CR%" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="SPC" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="List Conv." />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="TYP" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="AMP" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="AYP" dataFormat="0.00" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="Campaign Code" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="Campaign Name" />
+				<DataCell row="1" column="T" dataType="TEXT" fieldName="Campaign Info" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="From Date"/>
+				<DataCell row="1" column="V" dataType="TEXT" fieldName="To Date"/>
+				<DataCell row="1" column="W" dataType="TEXT" fieldName="Print Date"/>
+				<DataCell row="1" column="X" dataType="NUMBER" fieldName="Lead Load" />
+				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="New Lead Remaining" />
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="Referral Lead" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="Sale Pending" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+<!--
+		<DataSheet sheetIndex="1" skipWhenNull="TRUE">
+			<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Date" />
+			<DataCell row="1" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="TSR No" />
+			<DataCell row="1" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="New Lead Used / TSR" />
+			<DataCell row="1" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="New Lead Used" />
+			<DataCell row="1" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="Callback / Nocontact / Follow Used" />
+			<DataCell row="1" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="Total Lead Used" />
+			<DataCell row="1" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Callback/ Nocontact (Remaining)" />
+			<DataCell row="1" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Follow up (Remaining)" />
+			<DataCell row="1" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="Total Completed" />
+			<DataCell row="1" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="Contact" />
+			<DataCell row="1" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="Sale" />
+			<DataCell row="1" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="BP CR%" />
+			<DataCell row="1" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="SPC" />
+			<DataCell row="1" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="List Conv." />
+			<DataCell row="1" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="TYP" />
+			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="AMP" />
+			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="AYP" />
+			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="Campaign Code" />
+			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="Campaign Name" />
+			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Campaign Info" />
+			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="From Date" />
+			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="To Date" />
+			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="Print Date" />
+			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Lead Load" />
+			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="New Lead Remaining" />
+			<DataCell row="1" column="Z" dataType="TEXT" fieldName="fieldZ" defaultValue="Referral Lead" />
+			<DataCell row="1" column="AA" dataType="TEXT" fieldName="fieldAA" defaultValue="Sale Pending" />
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Date"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Callback / Nocontact / Follow Used" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Total Lead Used" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Callback/ Nocontact (Remaining)" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Follow up (Remaining)" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Total Completed" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Contact" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="Sale" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="BP CR%" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="SPC" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="List Conv." />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="TYP" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="AMP" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="AYP" dataFormat="0.00" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="Campaign Code" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="Campaign Name" />
+				<DataCell row="1" column="T" dataType="TEXT" fieldName="Campaign Info" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="From Date"/>
+				<DataCell row="1" column="V" dataType="TEXT" fieldName="To Date"/>
+				<DataCell row="1" column="W" dataType="TEXT" fieldName="Print Date"/>
+				<DataCell row="1" column="X" dataType="NUMBER" fieldName="Lead Load" />
+				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="New Lead Remaining" />
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="Referral Lead" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="Sale Pending" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetIndex="2" skipWhenNull="TRUE">
+			<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Date" />
+			<DataCell row="1" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="TSR No" />
+			<DataCell row="1" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="New Lead Used / TSR" />
+			<DataCell row="1" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="New Lead Used" />
+			<DataCell row="1" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="Callback / Nocontact / Follow Used" />
+			<DataCell row="1" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="Total Lead Used" />
+			<DataCell row="1" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Callback/ Nocontact (Remaining)" />
+			<DataCell row="1" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Follow up (Remaining)" />
+			<DataCell row="1" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="Total Completed" />
+			<DataCell row="1" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="Contact" />
+			<DataCell row="1" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="Sale" />
+			<DataCell row="1" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="BP CR%" />
+			<DataCell row="1" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="SPC" />
+			<DataCell row="1" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="List Conv." />
+			<DataCell row="1" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="TYP" />
+			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="AMP" />
+			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="AYP" />
+			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="Campaign Code" />
+			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="Campaign Name" />
+			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Campaign Info" />
+			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="From Date" />
+			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="To Date" />
+			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="Print Date" />
+			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Lead Load" />
+			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="New Lead Remaining" />
+			<DataCell row="1" column="Z" dataType="TEXT" fieldName="fieldZ" defaultValue="Referral Lead" />
+			<DataCell row="1" column="AA" dataType="TEXT" fieldName="fieldAA" defaultValue="Sale Pending" />
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Date"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Callback / Nocontact / Follow Used" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Total Lead Used" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Callback/ Nocontact (Remaining)" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Follow up (Remaining)" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Total Completed" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Contact" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="Sale" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="BP CR%" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="SPC" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="List Conv." />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="TYP" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="AMP" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="AYP" dataFormat="0.00" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="Campaign Code" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="Campaign Name" />
+				<DataCell row="1" column="T" dataType="TEXT" fieldName="Campaign Info" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="From Date"/>
+				<DataCell row="1" column="V" dataType="TEXT" fieldName="To Date"/>
+				<DataCell row="1" column="W" dataType="TEXT" fieldName="Print Date"/>
+				<DataCell row="1" column="X" dataType="NUMBER" fieldName="Lead Load" />
+				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="New Lead Remaining" />
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="Referral Lead" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="Sale Pending" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+-->
+	</DataSet>
+</FileFormat>
