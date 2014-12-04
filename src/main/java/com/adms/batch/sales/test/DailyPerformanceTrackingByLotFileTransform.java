@@ -113,6 +113,10 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 				dataRecord.put("Campaign Info", dataHolder);
 				
 				dataHolder = new SimpleMapDataHolder();
+				dataHolder.setValue(sheetName);
+				dataRecord.put("Lot (Excel Sheet Name)", dataHolder);
+				
+				dataHolder = new SimpleMapDataHolder();
 				dataHolder.setValue(campaignName);
 				dataRecord.put("Campaign Name", dataHolder);
 				
@@ -156,6 +160,51 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 
 		}
 
+		// merge data into first sheet
+		boolean removeFirstSheet = false;
+		sheetNames = fileDataHolder.getKeyList();
+		if (sheetNames.size() > 1)
+		{
+			for (String sheetName : sheetNames)
+			{
+				if (sheetName.contains("DailyPerformanceTracking") || sheetName.contains("DailyPerformanceTracking_ByLot") || sheetName.contains("Summary") || sheetName.contains("ALL") || sheetName.contains("All"))
+				{
+					removeFirstSheet = true;
+					continue;
+				}
+			}
+		}
+
+		if (removeFirstSheet)
+		{
+			fileDataHolder.remove(sheetNames.get(0));
+		}
+
+		sheetNames = fileDataHolder.getKeyList();
+		if (sheetNames.size() > 0)
+		{
+			String baseSheetName = null;
+			int i = 0;
+			for (String sheetName : sheetNames)
+			{
+				if (i == 0)
+				{
+					baseSheetName = sheetName;
+					i++;
+					continue;
+				}
+
+				fileDataHolder.get(baseSheetName).getDataList("dataRecord").addAll(fileDataHolder.get(sheetName).getDataList("dataRecord"));
+			}
+			
+			if (!baseSheetName.equals("DailyPerformanceTracking"))
+			{
+				fileDataHolder.put("DailyPerformanceTracking", fileDataHolder.get(baseSheetName));
+				fileDataHolder.setSheetNameByIndex(0, "DailyPerformanceTracking");
+				fileDataHolder.remove(baseSheetName);
+			}
+		}
+
 		fileFormat.close();
 		sampleReport.close();
 
@@ -166,8 +215,8 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 
 	public static void main(String[] ss) throws Exception
 	{
-		String inputFileFormat = "FileFormat_SSIS_DailyPerformanceTrackingByLot-input-OTO.xml";
-		String inputFile = "D:/Work/ADAMS/Report/DailyReport/201410/OTO/MTLBL/21102014_MTLife Hip Broker/DailyPerformanceTrackingReport_MTL_BL_20141021.xlsx";
+		String inputFileFormat = "FileFormat_SSIS_DailyPerformanceTrackingByLot-input-TELE.xml";
+		String inputFile = "D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTLKBANK/POM_PA_Cash_Back_28.10.2014/Daily_Performance_Tracking.xls";
 		String outputFileFormat = "FileFormat_SSIS_DailyPerformanceTrackingByLot-output.xml";
 		String outputFile = "D:/testOutput.xlsx";
 		new DailyPerformanceTrackingByLotFileTransform().transform(inputFileFormat, new File(inputFile), outputFileFormat, new File(outputFile));

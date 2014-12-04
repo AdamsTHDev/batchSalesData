@@ -26,6 +26,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import com.adms.batch.sales.domain.Campaign;
+import com.adms.batch.sales.domain.IncentiveComposite;
 import com.adms.batch.sales.domain.IncentiveCriteria;
 import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
@@ -93,8 +94,22 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 				log("QA Status --> " + qaStatus);
 				log("QA Reason --> " + qaReason);
 
+				IncentiveComposite incentiveComposite = getIncentiveCompositeService().findByIncentiveAndCampaignCode("SYDNEY", campaign.getCampaignCode());
+
 				log("start ic");
-				List<IncentiveCriteria> incentiveCriteriaList = getIncentiveCriteriaService().findBySydneyCriteria(campaign.getCampaignCode(), qaStatus.getReconfirmStatus(), qaReason);
+				List<IncentiveCriteria> incentiveCriteriaList;
+				try
+				{
+					incentiveCriteriaList = getIncentiveCriteriaService().findBySydneyCriteria(campaign.getCampaignCode(), qaStatus.getReconfirmStatus(), qaReason);
+				}
+				catch (Exception e)
+				{
+					System.err.println("sales     --> " + sales);
+					System.err.println("Campaign  --> " + campaign);
+					System.err.println("QA Status --> " + qaStatus);
+					System.err.println("QA Reason --> " + qaReason);
+					throw e;
+				}
 				log("finish ic");
 				if (CollectionUtils.isNotEmpty(incentiveCriteriaList))
 				{
@@ -103,12 +118,14 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 					if ("Y".equalsIgnoreCase(incentiveCriteria.getIsCount()))
 					{
 						log("start process sale");
-						Map<String, Map<String, ProductionByTsr>> campaignMap = map.get(campaign.getCampaignName());
+//						Map<String, Map<String, ProductionByTsr>> campaignMap = map.get(campaign.getCampaignName());
+						Map<String, Map<String, ProductionByTsr>> campaignMap = map.get(incentiveComposite.getCompositeName());
 
 						if (campaignMap == null)
 						{
 							campaignMap = new ListOrderedMap<String, Map<String, ProductionByTsr>>();
-							map.put(campaign.getCampaignName(), campaignMap);
+//							map.put(campaign.getCampaignName(), campaignMap);
+							map.put(incentiveComposite.getCompositeName(), campaignMap);
 						}
 
 						Map<String, ProductionByTsr> allTsrMap = campaignMap.get("TSR");
@@ -205,10 +222,10 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 
 		if (aggregateData != null)
 		{
-			for (String campaignName : aggregateData.keySet())
+			for (String compositeName : aggregateData.keySet())
 			{
-				Map<String, Map<String, ProductionByTsr>> campaignMap = aggregateData.get(campaignName);
-				Sheet campaignSheet = wb.createSheet(campaignName);
+				Map<String, Map<String, ProductionByTsr>> campaignMap = aggregateData.get(compositeName);
+				Sheet campaignSheet = wb.createSheet(compositeName);
 				campaignSheet.getSheetConditionalFormatting().addConditionalFormatting(scf.getConditionalFormattingAt(0));
 
 				campaignSheet.addMergedRegion(new CellRangeAddress(1, 1, 0, 11));
@@ -223,7 +240,7 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 				Cell campaignCellName = campaignRow.createCell(3);
 				copyCellStyle(tCampaignCell, campaignCell);
 				copyCellStyle(tCampaignCellName, campaignCellName);
-				campaignCellName.setCellValue(campaignName);
+				campaignCellName.setCellValue(compositeName);
 
 				// ====================== TSR Header ======================
 				Row tTsrHeaderRow1 = tSheet.getRow(6);
@@ -692,13 +709,13 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 							{
 								copyCellStyle(tSupDataRow2.getCell(6), supDataSalesCell);
 								copyCellStyle(tSupDataRow2.getCell(7), supDataReconfirmCell);
-								copyCellStyle(tSupDataRow1.getCell(8), supDataTarpCell);
+								copyCellStyle(tSupDataRow2.getCell(8), supDataTarpCell);
 							}
 							else
 							{
 								copyCellStyle(tSupDataRow3.getCell(6), supDataSalesCell);
 								copyCellStyle(tSupDataRow3.getCell(7), supDataReconfirmCell);
-								copyCellStyle(tSupDataRow1.getCell(8), supDataTarpCell);
+								copyCellStyle(tSupDataRow3.getCell(8), supDataTarpCell);
 							}
 							supDataSalesCell.setCellValue(supProd.getProdMonthList().get(i).getSales());
 							supDataReconfirmCell.setCellValue(supProd.getProdMonthList().get(i).getReconfirm());
@@ -813,6 +830,45 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 				// supSumTotalListConvCell.setCellValue(sumProdBySup.getTotal().getListConv());
 				// TODO
 				supSumTotalTarpCell.setCellValue(sumProdBySup.getTotal().getTarp().doubleValue());
+				
+				
+				// Chart
+				int c = 5;
+				Row chartHeaderRow = campaignSheet.createRow(rowOffset + supRecorcCount + 5);
+				for (int i = 0; i < totalMonth; i++)
+				{
+					Date date = DateUtils.addMonths(getStartDate(), i);
+					SimpleDateFormat df = new SimpleDateFormat("MMM-yy", Locale.US);
+					chartHeaderRow.createCell(c + i).setCellValue(df.format(date));;
+				}
+				Row chartDataRow = campaignSheet.createRow(rowOffset + supRecorcCount + 6);
+				chartDataRow.createCell(c - 1).setCellValue("Performance");
+				BigDecimal accumulatedTarp = new BigDecimal(0.0);
+				for (int i = 0; i < sumProdBySup.getProdMonthList().size(); i++)
+				{
+					accumulatedTarp = accumulatedTarp.add(sumProdBySup.getProdMonthList().get(i).getTarp());
+					chartDataRow.createCell(c + i).setCellValue(accumulatedTarp.doubleValue());
+				}
+
+				IncentiveComposite incentiveComposite = getIncentiveCompositeService().findByIncentiveAndCompositeName("SYDNEY", compositeName);
+				Row target100Row = campaignSheet.createRow(rowOffset + supRecorcCount + 7);
+				target100Row.createCell(c - 1).setCellValue("Target 100%");
+				for (int i = 0; i < sumProdBySup.getProdMonthList().size(); i++)
+				{
+					if (incentiveComposite != null && incentiveComposite.getTargetA() != null)
+					{
+						target100Row.createCell(c + i).setCellValue(incentiveComposite.getTargetA().doubleValue());
+					}
+				}
+				Row target120Row = campaignSheet.createRow(rowOffset + supRecorcCount + 8);
+				target120Row.createCell(c - 1).setCellValue("Target 120%");
+				for (int i = 0; i < sumProdBySup.getProdMonthList().size(); i++)
+				{
+					if (incentiveComposite != null && incentiveComposite.getTargetB() != null)
+					{
+						target120Row.createCell(c + i).setCellValue(incentiveComposite.getTargetB().doubleValue());
+					}
+				}
 			}
 		}
 
@@ -938,7 +994,7 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 			throws Exception
 	{
 		ReportIncentiveSydney batch = new ReportIncentiveSydney(false);
-		batch.totalMonth = 3;
+		batch.totalMonth = 5;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}
 

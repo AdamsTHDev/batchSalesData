@@ -2,12 +2,15 @@ package com.adms.batch.sales.data;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import com.adms.batch.sales.test.FileWalker;
+import com.adms.batch.sales.test.TestQcReconfirmMain;
 import com.adms.batch.sales.test.TestSalesMain;
 
 public class ImportSalesReportByRecords extends TestSalesMain {
@@ -214,5 +217,45 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 //		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MSIGUOB/MSIG UOB_[LOCATION_DATE]/Sales_Report_By_Records_Pending.xls");
 //		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-MSIG.xml");
 //		batch.importByMonth("201410");
+		
+		
+
+		FileWalker fw = new FileWalker();
+		fw.walk("D:/Work/Report/DailyReport/201410", new FilenameFilter()
+		{
+			public boolean accept(File dir, String name)
+			{
+				return name.contains("Sales_Report_By_Records") || name.contains("SalesReportByRecords_") || name.contains("SalesReportByRecords.xlsx");
+			}
+		});
+
+		batch = new ImportSalesReportByRecords(false);
+		batch.setProcessDate(new Date());
+		for (String filename : fw.getFileList())
+		{
+			System.out.println("import file: " + filename);
+
+			if (filename.contains("MSIGUOB"))
+			{
+				batch.setDataSheetName("Sales_Report_By_Records_Pending");
+				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-MSIG.xml");
+			}
+			else if (filename.contains("OTO") || filename.contains("SalesReportByRecords_") || filename.contains("Broker") || filename.contains("MTLife POM 2nd Get"))
+			{
+				batch.setDataSheetName("Sales_Report_By_Records");
+				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-OTO.xml");
+			}
+			else if (filename.contains("TELE") || filename.contains("Sales_Report_By_Records.xls") || filename.contains("DDOP") || filename.contains("KBANK"))
+			{
+				batch.setDataSheetName("Sales_Report_By_Records");
+				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-TELE.xml");
+			}
+			else
+			{
+				throw new Exception("file not supported");
+			}
+
+			batch.importFile(new File(batch.getFileFormatLocation()), new File(filename), batch.getDataSheetName());
+		}
 	}
 }

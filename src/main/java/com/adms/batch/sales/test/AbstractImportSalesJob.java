@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.adms.batch.sales.service.CallCenterService;
 import com.adms.batch.sales.service.CampaignService;
+import com.adms.batch.sales.service.IncentiveCompositeService;
 import com.adms.batch.sales.service.IncentiveCriteriaService;
 import com.adms.batch.sales.service.IncentiveInfoService;
 import com.adms.batch.sales.service.InsurerService;
@@ -162,6 +163,11 @@ public class AbstractImportSalesJob {
 	protected IncentiveCriteriaService getIncentiveCriteriaService()
 	{
 		return (IncentiveCriteriaService) getBean("incentiveCriteriaService");
+	}
+
+	protected IncentiveCompositeService getIncentiveCompositeService()
+	{
+		return (IncentiveCompositeService) getBean("incentiveCompositeService");
 	}
 
 }

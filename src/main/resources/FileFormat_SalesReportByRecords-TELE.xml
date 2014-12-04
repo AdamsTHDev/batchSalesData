@@ -2,11 +2,12 @@
 <FileFormat fileName="Sales_Report_By_Records.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="Sales_Report_By_Records">
 		<DataSheet sheetName="Sales_Report_By_Records">
+			<!--
 			<DataCell row="2" column="B" dataType="TEXT" fieldName="campaignName" />
 			<DataCell row="3" column="B" dataType="TEXT" fieldName="listLot" />
 			<DataCell row="4" column="B" dataType="TEXT" fieldName="period" />
 			<DataCell row="5" column="B" dataType="DATE" fieldName="printDate" dataFormat="dd/MM/yyyy H:mm:ss a" />
-
+			-->
 			<DataRecord listSourceName="salesRecord" beginRow="2" endRow="99999">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X-Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
@@ -26,6 +27,7 @@
 				<DataCell row="1" column="O" dataType="TEXT" fieldName="qaReason" />
 				<DataCell row="1" column="P" dataType="DATE" fieldName="saleDate" dataFormat="yyyy-MM-dd" />
 				<DataCell row="1" column="Q" dataType="TEXT" fieldName="tsrCode" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="tsrName" autoTrim="TRUE" />
 				<DataCell row="1" column="S" dataType="TEXT" fieldName="supCode" />
 				<DataCell row="1" column="U" dataType="TEXT" fieldName="qaReasonDetail" />
 				<EndRecordCondition column="E" comparator="BLANK" />

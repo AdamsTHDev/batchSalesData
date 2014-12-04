@@ -2,7 +2,8 @@
 <FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="QC Reconfirm">
 		<DataSheet sheetIndex="0">
-			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999">
+			<DataRecord listSourceName="qcList" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="H" comparator="EQ" checkValue="TSR Name" firstRowAsData="FALSE" />
 
 				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="tsrFullName" />
@@ -18,7 +19,7 @@
 				<DataCell row="1" column="R" dataType="TEXT" fieldName="currentReason" />
 				<DataCell row="1" column="S" dataType="TEXT" fieldName="currentRemark" />
 
-				<EndRecordCondition column="A" comparator="BLANK" />
+				<EndRecordCondition column="H" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>
 	</DataSet>

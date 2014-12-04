@@ -139,11 +139,12 @@ public class TestTsrMain {
 	public static void main(String[] args)
 			throws Exception
 	{
-		String fileFormat = "D:/Eclipse/Workspace/ADAMS/batch-sales-data/src/main/resources/FileFormat_TSR_Update_Monthly.xml";
+		String fileFormat = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_TSR_Update_Monthly.xml";
 //		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_September 14_no_pw.xlsx";
-		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_October 14_no_pw.xlsx";
+//		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_October 14_no_pw.xlsx";
 //		String fileInput = "D:/Work/ADAMS/Report/TSR Update/test.xlsx";
-		String sheetName = "Summary  Active October 14";
+		String fileInput = "D:/Work/Report/TSR Update/Employees_OCT_for_batch.xlsx";
+		String sheetName = "Data";
 //		String processDate = "";
 //		String rerun = "";
 //

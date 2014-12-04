@@ -27,10 +27,16 @@
 	<!-- Data Source -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+<!--
 		<property name="url"
 			value="jdbc:jtds:sqlserver://localhost/SALES;integrated security=false" />
 		<property name="username" value="salesadm" />
 		<property name="password" value="Passw0rd" />
+-->
+		<property name="url"
+			value="jdbc:jtds:sqlserver://aegonsrv03/SALES;integrated security=false" />
+		<property name="username" value="sa" />
+		<property name="password" value="Aegon03" />
 	</bean>
 
 	<!-- Session Factory Declaration -->
@@ -47,6 +53,7 @@
 				<value>com.adms.batch.sales.domain.FileImport</value>
 				<value>com.adms.batch.sales.domain.FileImportFrequency</value>
 				<value>com.adms.batch.sales.domain.FileImportType</value>
+				<value>com.adms.batch.sales.domain.IncentiveComposite</value>
 				<value>com.adms.batch.sales.domain.IncentiveCriteria</value>
 				<value>com.adms.batch.sales.domain.IncentiveInfo</value>
 				<value>com.adms.batch.sales.domain.Insurer</value>

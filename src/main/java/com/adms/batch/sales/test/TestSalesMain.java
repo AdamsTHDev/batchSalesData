@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.adms.batch.sales.dao.SalesDataHelper;
 //import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.ListLot;
@@ -51,8 +53,18 @@ public class TestSalesMain extends AbstractImportSalesJob {
 		}
 		sales.setListLot(listLot);
 
+		Tsr tsr = null;
 		String tsrCode = salesDataHolder.get("tsrCode").getStringValue();
-		Tsr tsr = getTsrService().findTsrByTsrCode(tsrCode);
+		if (StringUtils.isNotBlank(tsrCode))
+		{
+			tsr = getTsrService().findTsrByTsrCode(tsrCode);
+		}
+		if (tsr == null)
+		{
+			String tsrName = salesDataHolder.get("tsrName").getStringValue();
+			tsr = getTsrService().findTsrByFullName(tsrName);
+		}
+		
 		if (tsr == null)
 		{
 			tsr = new Tsr();
