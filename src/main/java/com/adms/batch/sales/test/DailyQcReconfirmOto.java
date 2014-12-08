@@ -3,14 +3,14 @@ package com.adms.batch.sales.test;
 import java.io.File;
 import java.io.FilenameFilter;
 
-public class BatchDailyQcReconfirmTeleFileTransform {
+public class DailyQcReconfirmOto {
 
 	public static void main(String[] args)
 			throws Exception
 	{
-		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTLKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTLKBANK");
-		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTIKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTIKBANK");
-		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MSIGUOB", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MSIGUOB");
+		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MTLBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MTLBL");
+		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MSIGBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MSIGBL");
+		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/FWDTVD", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/FWDTVD");
 	}
 
 	public static void runRoot(String sInputPath, String sOutputPath)
@@ -27,7 +27,7 @@ public class BatchDailyQcReconfirmTeleFileTransform {
 
 					public boolean accept(File dir, String name)
 					{
-						return name.contains("QC_Reconfirm.xls") || (name.contains("QC_Reconfirm") && name.contains(".xls"));
+						return name.contains("_Reconfirm") && name.contains(".xls");
 					}
 				}))
 				{
@@ -40,7 +40,7 @@ public class BatchDailyQcReconfirmTeleFileTransform {
 
 					File outputFile = new File(outputPath.getPath() + "/" + inputFile.getName().substring(0, inputFile.getName().lastIndexOf('.')) + ".xlsx");
 
-					new DailyQcReconfirmFileTransform().transform("FileFormat_SSIS_QcReconfirm-input-TELE.xml", inputFile, "FileFormat_SSIS_QcReconfirm-output.xml", outputFile);
+					new DailyQcReconfirmFileTransform().transform("FileFormat_SSIS_QcReconfirm-input-OTO.xml", inputFile, "FileFormat_SSIS_QcReconfirm-output.xml", outputFile);
 				}
 			}
 
