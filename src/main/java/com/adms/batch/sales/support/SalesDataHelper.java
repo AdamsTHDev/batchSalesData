@@ -1,4 +1,4 @@
-package com.adms.batch.sales.dao;
+package com.adms.batch.sales.support;
 
 import org.apache.commons.lang3.StringUtils;
 

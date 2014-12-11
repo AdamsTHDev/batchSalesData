@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DailyTsrProduction" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily TSR Production">
+
+		<DataSheet sheetIndex="0" outputSheetName="DailyTsrTracking">
+			<!-- begin column name -->
+			<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Employee Name" />
+			<DataCell row="1" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="Working Day" />
+			<DataCell row="1" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="Hours" />
+			<DataCell row="1" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="Completed" />
+			<DataCell row="1" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="Contacts" />
+			<DataCell row="1" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="Sales" />
+			<DataCell row="1" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Compl./Hours" />
+			<DataCell row="1" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="CPH" />
+			<DataCell row="1" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="SPH" />
+			<DataCell row="1" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="SPC" />
+			<DataCell row="1" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="SPL" />
+			<DataCell row="1" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="AMP" />
+			<DataCell row="1" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="TMP" />
+			<DataCell row="1" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="Total API" />
+			<DataCell row="1" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="Campaign Info" />
+			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="Campaign Code" />
+			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="Key Code" />
+			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="TM Agency" />
+			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="Period" />
+			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Print Date" />
+			<!-- end column name -->
+
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Employee Name"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="Working Day" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Hours" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="Completed" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Contacts" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Sales" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Compl./Hours" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="CPH" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="SPH" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="SPC" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="SPL" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="AMP" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="TMP" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="Total API" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="Campaign Info" />
+				<DataCell row="1" column="P" dataType="TEXT" fieldName="Campaign Code" />
+				<DataCell row="1" column="Q" dataType="TEXT" fieldName="Key Code" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="TM Agency" />
+				<DataCell row="1" column="S" dataType="DATE" fieldName="Period" dataFormat="dd/MM/yyyy"/>
+				<DataCell row="1" column="T" dataType="DATE" fieldName="Print Date" dataFormat="dd/MM/yyyy"/>
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

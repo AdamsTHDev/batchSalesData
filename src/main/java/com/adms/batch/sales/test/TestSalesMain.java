@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.adms.batch.sales.dao.SalesDataHelper;
 //import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.ListLot;
 import com.adms.batch.sales.domain.PaymentFrequency;
@@ -17,6 +16,7 @@ import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.SalesProcess;
 import com.adms.batch.sales.domain.Tsr;
+import com.adms.batch.sales.support.SalesDataHelper;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.StringUtil;

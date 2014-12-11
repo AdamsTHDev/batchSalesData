@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DailyTsrTracking" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily TSR Tracking">
+
+		<DataSheet sheetIndex="0" outputSheetName="DailyTsrTracking">
+			<!-- begin column name -->
+			<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="No." />
+			<DataCell row="1" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="Name" />
+			<DataCell row="1" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="Work Days" />
+			<DataCell row="1" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="List Used" />
+			<DataCell row="1" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="Comp." />
+			<DataCell row="1" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="Remaining New" />
+			<DataCell row="1" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Remaining Call back" />
+			<DataCell row="1" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Remaining No Contact" />
+			<DataCell row="1" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="Remaining Follow up" />
+			<DataCell row="1" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="Remaining Total" />
+			<DataCell row="1" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="New Used" />
+			<DataCell row="1" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="Follow Used" />
+			<DataCell row="1" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="Call Back Used" />
+			<DataCell row="1" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="No Contact Used" />
+			<DataCell row="1" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="Policy 1 st" />
+			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="Policy %" />
+			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="Policy Follow" />
+			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="Plan Standard" />
+			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="Plan Premier" />
+			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Total Policy" />
+			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="Policy API" />
+			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="Total DMC Present" />
+			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="Total DMC No Present" />
+			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="DMC Contact Rate (60%)" />
+			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="CPH" />
+			<DataCell row="1" column="Z" dataType="TEXT" fieldName="fieldZ" defaultValue="SPH" />
+			<DataCell row="1" column="AA" dataType="TEXT" fieldName="fieldAA" defaultValue="SPC (Total)" />
+			<DataCell row="1" column="AB" dataType="TEXT" fieldName="fieldAB" defaultValue="SPC (Present)" />
+			<DataCell row="1" column="AC" dataType="TEXT" fieldName="fieldAC" defaultValue="Hours (Hrs)" />
+			<DataCell row="1" column="AD" dataType="TEXT" fieldName="fieldAD" defaultValue="DMC. Avg. Talk Time" />
+			<DataCell row="1" column="AE" dataType="TEXT" fieldName="fieldAE" defaultValue="Max. Talk Time (Min.)" />
+			<DataCell row="1" column="AF" dataType="TEXT" fieldName="fieldAF" defaultValue="DMC Talk Time (Hr.)" />
+			<DataCell row="1" column="AG" dataType="TEXT" fieldName="fieldAG" defaultValue="Total Talk Time (Hr.)" />
+			<DataCell row="1" column="AH" dataType="TEXT" fieldName="fieldAH" defaultValue="Key Code" />
+			<DataCell row="1" column="AI" dataType="TEXT" fieldName="fieldAI" defaultValue="Period" />
+			<DataCell row="1" column="AJ" dataType="TEXT" fieldName="fieldAJ" defaultValue="Print Date" />
+			<!-- end column name -->
+
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="NUMBER" fieldName="No."/>
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="Name" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Work Days" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="List Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Comp." />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Remaining New" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Remaining Call back" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Remaining No Contact" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Remaining Follow up" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Remaining Total" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="New Used" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="Follow Used" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="Call Back Used" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="No Contact Used" />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="Policy 1 st" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="Policy %" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="Policy Follow" dataFormat="0.00" />
+				<DataCell row="1" column="R" dataType="NUMBER" fieldName="Plan Standard" />
+				<DataCell row="1" column="S" dataType="NUMBER" fieldName="Plan Premier" />
+				<DataCell row="1" column="T" dataType="NUMBER" fieldName="Total Policy" />
+				<DataCell row="1" column="U" dataType="NUMBER" fieldName="Policy API"/>
+				<DataCell row="1" column="V" dataType="NUMBER" fieldName="Total DMC Present"/>
+				<DataCell row="1" column="W" dataType="NUMBER" fieldName="Total DMC No Present"/>
+				<DataCell row="1" column="X" dataType="NUMBER" fieldName="DMC Contact Rate (60%)" />
+				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="CPH" />
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="SPH" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="SPC (Total)" />
+				<DataCell row="1" column="AB" dataType="NUMBER" fieldName="SPC (Present)" />
+				<DataCell row="1" column="AC" dataType="NUMBER" fieldName="Hours (Hrs)" />
+				<DataCell row="1" column="AD" dataType="NUMBER" fieldName="DMC. Avg. Talk Time" />
+				<DataCell row="1" column="AE" dataType="NUMBER" fieldName="Max. Talk Time (Min.)" />
+				<DataCell row="1" column="AF" dataType="NUMBER" fieldName="DMC Talk Time (Hr.)" />
+				<DataCell row="1" column="AG" dataType="NUMBER" fieldName="Total Talk Time (Hr.)" />
+				<DataCell row="1" column="AH" dataType="TEXT" fieldName="Key Code" />
+				<DataCell row="1" column="AI" dataType="DATE" fieldName="Period" dataFormat="dd/MM/yyyy"/>
+				<DataCell row="1" column="AJ" dataType="DATE" fieldName="Print Date" dataFormat="dd/MM/yyyy"/>
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

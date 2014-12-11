@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DailyTsrTracking" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily TSR Tracking">
+
+		<DataSheet sheetIndex="0">
+
+			<DataRecord listSourceName="dataHeader" beginRow="1" endRow="5">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign : " firstRowAsData="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="dataInfo" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRecord" beginRow="9" endRow="99999">
+				<DataCell row="1" column="A" dataType="NUMBER" fieldName="No."/>
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="Name" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Work Days" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="List Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Comp." />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Remaining New" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Remaining Call back" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Remaining No Contact" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Remaining Follow up" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Remaining Total" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="New Used" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="Follow Used" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="Call Back Used" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="No Contact Used" />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="Policy 1 st" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="Policy %" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="Policy Follow" dataFormat="0.00" />
+				<DataCell row="1" column="R" dataType="NUMBER" fieldName="Plan Standard" />
+				<DataCell row="1" column="S" dataType="NUMBER" fieldName="Plan Premier" />
+				<DataCell row="1" column="T" dataType="NUMBER" fieldName="Total Policy" />
+				<DataCell row="1" column="U" dataType="NUMBER" fieldName="Policy API"/>
+				<DataCell row="1" column="V" dataType="NUMBER" fieldName="Total DMC Present"/>
+				<DataCell row="1" column="W" dataType="NUMBER" fieldName="Total DMC No Present"/>
+				<DataCell row="1" column="X" dataType="NUMBER" fieldName="DMC Contact Rate (60%)" />
+				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="CPH" />
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="SPH" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="SPC (Total)" />
+				<DataCell row="1" column="AB" dataType="NUMBER" fieldName="SPC (Present)" />
+				<DataCell row="1" column="AC" dataType="NUMBER" fieldName="Hours (Hrs)" />
+				<DataCell row="1" column="AD" dataType="NUMBER" fieldName="DMC. Avg. Talk Time" />
+				<DataCell row="1" column="AE" dataType="NUMBER" fieldName="Max. Talk Time (Min.)" />
+				<DataCell row="1" column="AF" dataType="NUMBER" fieldName="DMC Talk Time (Hr.)" />
+				<DataCell row="1" column="AG" dataType="NUMBER" fieldName="Total Talk Time (Hr.)" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="TOTAL" />
+			</DataRecord>
+
+		</DataSheet>
+
+
+		<DataSheet sheetIndex="1" skipWhenNull="TRUE">
+
+			<DataRecord listSourceName="dataHeader" beginRow="1" endRow="5">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign : " firstRowAsData="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="dataInfo" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRecord" beginRow="9" endRow="99999">
+				<DataCell row="1" column="A" dataType="NUMBER" fieldName="No."/>
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="Name" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Work Days" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="List Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Comp." />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Remaining New" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Remaining Call back" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Remaining No Contact" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Remaining Follow up" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Remaining Total" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="New Used" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="Follow Used" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="Call Back Used" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="No Contact Used" />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="Policy 1 st" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="Policy %" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="Policy Follow" dataFormat="0.00" />
+				<DataCell row="1" column="R" dataType="NUMBER" fieldName="Plan Standard" />
+				<DataCell row="1" column="S" dataType="NUMBER" fieldName="Plan Premier" />
+				<DataCell row="1" column="T" dataType="NUMBER" fieldName="Total Policy" />
+				<DataCell row="1" column="U" dataType="NUMBER" fieldName="Policy API"/>
+				<DataCell row="1" column="V" dataType="NUMBER" fieldName="Total DMC Present"/>
+				<DataCell row="1" column="W" dataType="NUMBER" fieldName="Total DMC No Present"/>
+				<DataCell row="1" column="X" dataType="NUMBER" fieldName="DMC Contact Rate (60%)" />
+				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="CPH" />
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="SPH" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="SPC (Total)" />
+				<DataCell row="1" column="AB" dataType="NUMBER" fieldName="SPC (Present)" />
+				<DataCell row="1" column="AC" dataType="NUMBER" fieldName="Hours (Hrs)" />
+				<DataCell row="1" column="AD" dataType="NUMBER" fieldName="DMC. Avg. Talk Time" />
+				<DataCell row="1" column="AE" dataType="NUMBER" fieldName="Max. Talk Time (Min.)" />
+				<DataCell row="1" column="AF" dataType="NUMBER" fieldName="DMC Talk Time (Hr.)" />
+				<DataCell row="1" column="AG" dataType="NUMBER" fieldName="Total Talk Time (Hr.)" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="TOTAL" />
+			</DataRecord>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

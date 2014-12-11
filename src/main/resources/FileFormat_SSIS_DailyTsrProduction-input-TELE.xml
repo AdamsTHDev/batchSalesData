@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DailyTsrProduction" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily TSR Production">
+
+		<DataSheet sheetIndex="0">
+
+			<DataRecord listSourceName="dataHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign Type :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="dataInfo" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRecord" beginRow="10" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Employee Name"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Employee Name"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="Working Day" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Hours" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="Completed" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Contacts" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Sales" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Compl./Hours" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="CPH" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="SPH" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="SPC" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="SPL" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="AMP" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="TMP" />
+				<DataCell row="1" column="N" dataType="NUMBER" fieldName="Total API" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

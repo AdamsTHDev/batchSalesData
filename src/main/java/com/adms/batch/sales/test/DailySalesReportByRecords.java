@@ -3,7 +3,7 @@ package com.adms.batch.sales.test;
 import java.io.File;
 import java.io.FilenameFilter;
 
-public class BatchDailySalesReportByRecordsFileTransform {
+public class DailySalesReportByRecords {
 
 	public static void main(String[] args)
 			throws Exception
