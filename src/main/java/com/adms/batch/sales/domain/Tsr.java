@@ -20,7 +20,8 @@ import com.adms.common.domain.BaseAuditDomain;
 @Entity
 @Table(name = "TSR")
 @Cacheable
-@NamedNativeQueries({ @NamedNativeQuery(name = "findTsrByFullName", query = "select tsr.* from TSR tsr where replace(replace(tsr.FULL_NAME, ' ', ''), ' ', '') like '%' + replace(?, ' ', '') order by tsr.TSR_CODE desc", resultClass = Tsr.class) })
+@NamedNativeQueries({ @NamedNativeQuery(name = "findTsrByFullName", query = "select tsr.* from TSR tsr where replace(replace(tsr.FULL_NAME, ' ', ''), ' ', '') like '%' + replace(?, ' ', '') order by tsr.EFFECTIVE_DATE desc", resultClass = Tsr.class) })
+/* and (? <= RESIGN_DATE or RESIGN_DATE is null)*/
 public class Tsr extends BaseAuditDomain {
 
 	private static final long serialVersionUID = 8613969135550373424L;

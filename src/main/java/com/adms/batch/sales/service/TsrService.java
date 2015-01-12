@@ -1,5 +1,6 @@
 package com.adms.batch.sales.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.adms.batch.sales.domain.Tsr;
@@ -15,7 +16,7 @@ public interface TsrService {
 	public Tsr findTsrByTsrCode(String tsrCode)
 			throws Exception;
 
-	public Tsr findTsrByFullName(String fullName)
+	public Tsr findTsrByFullName(String fullName, Date saleDate)
 			throws Exception;
 
 	public List<Tsr> findTsrByExample(Tsr tsr)
