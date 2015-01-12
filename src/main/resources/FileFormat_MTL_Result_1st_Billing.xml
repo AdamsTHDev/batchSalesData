@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Result 1st Billing" fileType="EXCEL" locale="en-US">
+	<DataSet description="Result 1st Billing">
+
+		<!-- start DDOP -->
+
+		<DataSheet sheetName="KB2-AG-HIP_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB2-AG-HIP_Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="PA Cashback_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="PA Cashback  Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="X- Reference" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="Health Return Cash_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="Health Return Cash_Return_Rejec" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="X- Reference" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<!-- end DDOP -->
+
+		<!-- start Broker -->
+
+		<DataSheet sheetName="HIP_Broker_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="HIP_Broker_Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="PA_POM_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="PA_POM_Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB2_AG_HIP_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB2_AG_HIP_Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB_PA_PACB_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB_PA_PACB_Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB_Health_Return Cash_Paid" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="KB_Health_Return Cash_Reject" skipWhenNull="TRUE">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="Seq No" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="accountNo" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="accountExp" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="insuredName" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="age" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
+				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
+				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="changeDate" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="mobileNo" />
+				<DataCell row="1" column="P" dataType="TEXT" autoTrim="TRUE" fieldName="tmCode" />
+				<DataCell row="1" column="Q" dataType="TEXT" autoTrim="TRUE" fieldName="planLevel" />
+				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
+				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<!-- end Broker -->
+
+	</DataSet>
+</FileFormat>
