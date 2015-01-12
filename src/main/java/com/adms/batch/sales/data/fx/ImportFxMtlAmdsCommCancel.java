@@ -1,4 +1,4 @@
-package com.adms.batch.sales.data;
+package com.adms.batch.sales.data.fx;
 
 import java.io.File;
 import java.io.FileInputStream;

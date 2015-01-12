@@ -1,17 +1,13 @@
 package com.adms.batch.sales.data;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FilenameFilter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 import com.adms.batch.sales.test.FileWalker;
-import com.adms.batch.sales.test.TestQcReconfirmMain;
 import com.adms.batch.sales.test.TestSalesMain;
+import com.adms.utils.Logger;
 
 public class ImportSalesReportByRecords extends TestSalesMain {
 
@@ -20,12 +16,6 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 	private String dataRootLocation;
 	private String fileFormatLocation;
 	private String dataSheetName;
-
-	public ImportSalesReportByRecords(boolean enableLog)
-			throws Exception
-	{
-		super(enableLog);
-	}
 
 	public String getLocationDateFormat()
 	{
@@ -77,7 +67,7 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		this.dataSheetName = dataSheetName;
 	}
 
-	private String getNextProcessDate(String processDate)
+	/*private String getNextProcessDate(String processDate)
 			throws ParseException
 	{
 		if (processDate.length() == 6)
@@ -153,7 +143,7 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		}
 		
 		System.out.println("end: " + counter + " files imported");
-	}
+	}*/
 
 	public static void main(String[] args)
 			throws Exception
@@ -220,16 +210,18 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		
 		
 
+		String rootPath = "D:/Work/Report/DailyReport/201412/TELE/MTLKBANK";
 		FileWalker fw = new FileWalker();
-		fw.walk("D:/Work/Report/DailyReport/201410", new FilenameFilter()
+		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return name.contains("Sales_Report_By_Records") || name.contains("SalesReportByRecords_") || name.contains("SalesReportByRecords.xlsx");
+				return name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx");
 			}
 		});
 
-		batch = new ImportSalesReportByRecords(false);
+		batch = new ImportSalesReportByRecords();
+		batch.setLogLevel(Logger.INFO);
 		batch.setProcessDate(new Date());
 		for (String filename : fw.getFileList())
 		{
@@ -238,17 +230,17 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 			if (filename.contains("MSIGUOB"))
 			{
 				batch.setDataSheetName("Sales_Report_By_Records_Pending");
-				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-MSIG.xml");
+				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-MSIGUOB.xml");
 			}
-			else if (filename.contains("OTO") || filename.contains("SalesReportByRecords_") || filename.contains("Broker") || filename.contains("MTLife POM 2nd Get"))
+			else if (filename.contains("OTO"))
 			{
 				batch.setDataSheetName("Sales_Report_By_Records");
-				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-OTO.xml");
+				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-OTO.xml");
 			}
-			else if (filename.contains("TELE") || filename.contains("Sales_Report_By_Records.xls") || filename.contains("DDOP") || filename.contains("KBANK"))
+			else if (filename.contains("TELE") && !filename.contains("MSIGUOB"))
 			{
 				batch.setDataSheetName("Sales_Report_By_Records");
-				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-TELE.xml");
+				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-TELE.xml");
 			}
 			else
 			{

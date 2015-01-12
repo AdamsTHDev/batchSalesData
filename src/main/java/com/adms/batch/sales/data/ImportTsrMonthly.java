@@ -1,4 +1,4 @@
-package com.adms.batch.sales.test;
+package com.adms.batch.sales.data;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,51 +6,20 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.adms.batch.sales.domain.Tsr;
 import com.adms.batch.sales.domain.TsrPosition;
 import com.adms.batch.sales.domain.TsrStatus;
-import com.adms.batch.sales.service.TsrPositionService;
-import com.adms.batch.sales.service.TsrService;
-import com.adms.batch.sales.service.TsrStatusService;
+import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
+import com.adms.utils.Logger;
 
-public class TestTsrMain {
-
-	private ApplicationContext applicationContext;
-
-	private Object getBean(String beanId)
-	{
-		if (this.applicationContext == null)
-		{
-			applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
-		}
-
-		return this.applicationContext.getBean(beanId);
-	}
-
-	private TsrService getTsrService()
-	{
-		return (TsrService) getBean("tsrService");
-	}
-	
-	private TsrPositionService getTsrPositionService()
-	{
-		return (TsrPositionService) getBean("tsrPositionService");
-	}
-	
-	private TsrStatusService getTsrStatusService()
-	{
-		return (TsrStatusService) getBean("tsrStatusService");
-	}
+public class ImportTsrMonthly extends AbstractImportSalesJob {
 
 	private Tsr extractTsrRecord(DataHolder tsrDataHolder, Tsr tsr)
 			throws Exception
 	{
-		System.out.println("extractTsrRecord " + tsrDataHolder.printValues());
+		log.debug("extractTsrRecord " + tsrDataHolder.printValues());
 		
 		String positionName = tsrDataHolder.get("positionName").getStringValue();
 		TsrPosition tsrPosition = getTsrPositionService().findTsrPositionByPositionName(positionName);
@@ -60,7 +29,7 @@ public class TestTsrMain {
 		TsrStatus tsrStatus = getTsrStatusService().findTsrStatusByStatusCode(statusCode);
 		tsr.setTsrStatus(tsrStatus);
 
-		tsr.setEmployeeCode(tsrDataHolder.get("employeeCode").getStringValue());
+//		tsr.setEmployeeCode(tsrDataHolder.get("employeeCode").getStringValue());
 		
 		String firstName = tsrDataHolder.get("firstName").getStringValue().trim();
 		String lastName = tsrDataHolder.get("lastName").getStringValue().trim();
@@ -70,7 +39,7 @@ public class TestTsrMain {
 		
 		tsr.setEffectiveDate((Date) tsrDataHolder.get("effectiveDate").getValue());
 		tsr.setResignDate((Date) tsrDataHolder.get("resignDate").getValue());
-		tsr.setRemark(tsrDataHolder.get("remark").getStringValue());
+//		tsr.setRemark(tsrDataHolder.get("remark").getStringValue());
 
 		return tsr;
 	}
@@ -78,7 +47,7 @@ public class TestTsrMain {
 	private void importTsr(List<DataHolder> tsrDataHolderList)
 			throws Exception
 	{
-		System.out.println("importTsr");
+		log.info("importTsr");
 		for (DataHolder tsrDataHolder : tsrDataHolderList)
 		{
 			String tsrCode = tsrDataHolder.get("tsrCode").getStringValue();
@@ -107,7 +76,7 @@ public class TestTsrMain {
 
 	private void importFile(File fileFormat, File tsrRecordFile, String sheetName)
 	{
-		System.out.println("importFile");
+		log.info("importFile: " + tsrRecordFile.getAbsolutePath());
 		InputStream input = null;
 		try
 		{
@@ -143,13 +112,16 @@ public class TestTsrMain {
 //		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_September 14_no_pw.xlsx";
 //		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_October 14_no_pw.xlsx";
 //		String fileInput = "D:/Work/ADAMS/Report/TSR Update/test.xlsx";
-		String fileInput = "D:/Work/Report/TSR Update/Employees_OCT_for_batch.xlsx";
+//		String fileInput = "D:/Work/Report/TSR Update/Employees_OCT_for_batch.xlsx";
+		String fileInput = "D:/Work/Report/TSR Update/Employees_Nov_for_batch.xlsx";
 		String sheetName = "Data";
 //		String processDate = "";
 //		String rerun = "";
 //
 		System.out.println("main");
-		new TestTsrMain().importFile(new File(fileFormat), new File(fileInput), sheetName);
+		ImportTsrMonthly batch = new ImportTsrMonthly();
+		batch.setLogLevel(Logger.INFO);
+		batch.importFile(new File(fileFormat), new File(fileInput), sheetName);
 	}
 
 }

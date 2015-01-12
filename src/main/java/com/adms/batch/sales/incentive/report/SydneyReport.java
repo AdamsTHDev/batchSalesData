@@ -1,4 +1,4 @@
-package com.adms.batch.sales.test;
+package com.adms.batch.sales.incentive.report;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -31,20 +31,16 @@ import com.adms.batch.sales.domain.IncentiveCriteria;
 import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.Tsr;
+import com.adms.batch.sales.test.AbstractImportSalesJob;
+import com.adms.utils.Logger;
 
-public class ReportIncentiveSydney extends AbstractImportSalesJob {
+public class SydneyReport extends AbstractImportSalesJob {
 
 	private int totalMonth;
 
-	public ReportIncentiveSydney(boolean enableLog)
-			throws Exception
-	{
-		super(enableLog);
-	}
-
 	private void sortData(Map<String, ProductionByTsr> allTsrMap)
 	{
-		List<ProductionByTsr> productionByTsrList = new ArrayList<ReportIncentiveSydney.ProductionByTsr>();
+		List<ProductionByTsr> productionByTsrList = new ArrayList<SydneyReport.ProductionByTsr>();
 		for (String tsrCode : allTsrMap.keySet())
 		{
 			productionByTsrList.add(allTsrMap.get(tsrCode));
@@ -79,24 +75,31 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 			String monthQuery = df.format(date);
 
 			List<Sales> salesList = getSalesService().findSalesRecordBySaleMonth(monthQuery);
+			
+			// Double TARP (TARPx2) for Nov & Dec
+			BigDecimal multiplicand = BigDecimal.valueOf(1);
+			if (monthQuery.equals("201411") || monthQuery.equals("201412"))
+			{
+				multiplicand = BigDecimal.valueOf(2);
+			}
 
 			System.out.println(salesList.size());
 			for (Sales sales : salesList)
 			{
-				log("start");
-				log("Sales     --> " + sales);
+				log.debug("start");
+				log.debug("Sales     --> " + sales);
 
 				Campaign campaign = sales.getListLot().getCampaign();
 				ReconfirmStatus qaStatus = sales.getQaStatus();
 				String qaReason = sales.getQaReason();
 
-				log("Campaign  --> " + campaign);
-				log("QA Status --> " + qaStatus);
-				log("QA Reason --> " + qaReason);
+				log.debug("Campaign  --> " + campaign);
+				log.debug("QA Status --> " + qaStatus);
+				log.debug("QA Reason --> " + qaReason);
 
 				IncentiveComposite incentiveComposite = getIncentiveCompositeService().findByIncentiveAndCampaignCode("SYDNEY", campaign.getCampaignCode());
 
-				log("start ic");
+				log.debug("start ic");
 				List<IncentiveCriteria> incentiveCriteriaList;
 				try
 				{
@@ -104,20 +107,20 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 				}
 				catch (Exception e)
 				{
-					System.err.println("sales     --> " + sales);
-					System.err.println("Campaign  --> " + campaign);
-					System.err.println("QA Status --> " + qaStatus);
-					System.err.println("QA Reason --> " + qaReason);
+					log.error("sales     --> " + sales);
+					log.error("Campaign  --> " + campaign);
+					log.error("QA Status --> " + qaStatus);
+					log.error("QA Reason --> " + qaReason);
 					throw e;
 				}
-				log("finish ic");
+				log.debug("finish ic");
 				if (CollectionUtils.isNotEmpty(incentiveCriteriaList))
 				{
 					IncentiveCriteria incentiveCriteria = incentiveCriteriaList.get(0);
 
 					if ("Y".equalsIgnoreCase(incentiveCriteria.getIsCount()))
 					{
-						log("start process sale");
+						log.debug("start process sale");
 //						Map<String, Map<String, ProductionByTsr>> campaignMap = map.get(campaign.getCampaignName());
 						Map<String, Map<String, ProductionByTsr>> campaignMap = map.get(incentiveComposite.getCompositeName());
 
@@ -131,7 +134,7 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 						Map<String, ProductionByTsr> allTsrMap = campaignMap.get("TSR");
 						if (allTsrMap == null)
 						{
-							allTsrMap = new ListOrderedMap<String, ReportIncentiveSydney.ProductionByTsr>();
+							allTsrMap = new ListOrderedMap<String, SydneyReport.ProductionByTsr>();
 							campaignMap.put("TSR", allTsrMap);
 						}
 
@@ -147,13 +150,13 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 						ProductionMonth tsrPodMonth = tsrProd.getProdMonthList().get(monthIdx);
 						tsrPodMonth.setSales(tsrPodMonth.getSales() + 1);
 						tsrProd.getTotal().setSales(tsrProd.getTotal().getSales() + 1);
-						tsrPodMonth.setTarp(tsrPodMonth.getTarp().add(sales.getAnnualFyp()));
-						tsrProd.getTotal().setTarp(tsrProd.getTotal().getTarp().add(sales.getAnnualFyp()));
+						tsrPodMonth.setTarp(tsrPodMonth.getTarp().add(sales.getAnnualFyp().multiply(multiplicand)));
+						tsrProd.getTotal().setTarp(tsrProd.getTotal().getTarp().add(sales.getAnnualFyp().multiply(multiplicand)));
 
 						Map<String, ProductionByTsr> allSupMap = campaignMap.get("SUP");
 						if (allSupMap == null)
 						{
-							allSupMap = new ListOrderedMap<String, ReportIncentiveSydney.ProductionByTsr>();
+							allSupMap = new ListOrderedMap<String, SydneyReport.ProductionByTsr>();
 							campaignMap.put("SUP", allSupMap);
 						}
 
@@ -169,15 +172,15 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 						ProductionMonth supProdMonth = supProd.getProdMonthList().get(monthIdx);
 						supProdMonth.setSales(supProdMonth.getSales() + 1);
 						supProd.getTotal().setSales(supProd.getTotal().getSales() + 1);
-						supProdMonth.setTarp(supProdMonth.getTarp().add(sales.getAnnualFyp()));
-						supProd.getTotal().setTarp(supProd.getTotal().getTarp().add(sales.getAnnualFyp()));
+						supProdMonth.setTarp(supProdMonth.getTarp().add(sales.getAnnualFyp().multiply(multiplicand)));
+						supProd.getTotal().setTarp(supProd.getTotal().getTarp().add(sales.getAnnualFyp().multiply(multiplicand)));
 						if (getQcReconfirmService().countReconfirmByxReference(sales.getxReference()) > 0)
 						{
 							supProdMonth.setReconfirm(supProdMonth.getReconfirm() + 1);
 							supProd.getTotal().setReconfirm(supProd.getTotal().getReconfirm() + 1);
 						}
 
-						log("finish process sale");
+						log.debug("finish process sale");
 					}
 				}
 			}
@@ -886,7 +889,7 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 
 	class ProductionByTsr {
 		Tsr tsr;
-		List<ProductionMonth> prodMonthList = new ArrayList<ReportIncentiveSydney.ProductionMonth>();
+		List<ProductionMonth> prodMonthList = new ArrayList<SydneyReport.ProductionMonth>();
 		ProductionMonth total;
 
 		public ProductionByTsr(int totalMonth)
@@ -993,8 +996,9 @@ public class ReportIncentiveSydney extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		ReportIncentiveSydney batch = new ReportIncentiveSydney(false);
-		batch.totalMonth = 5;
+		SydneyReport batch = new SydneyReport();
+		batch.setLogLevel(Logger.INFO);
+		batch.totalMonth = 6;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}
 
