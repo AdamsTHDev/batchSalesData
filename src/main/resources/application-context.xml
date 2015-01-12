@@ -27,16 +27,18 @@
 	<!-- Data Source -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
-<!--
+
 		<property name="url"
 			value="jdbc:jtds:sqlserver://localhost/SALES;integrated security=false" />
 		<property name="username" value="salesadm" />
 		<property name="password" value="Passw0rd" />
--->
+
+<!-- 
 		<property name="url"
 			value="jdbc:jtds:sqlserver://aegonsrv03/SALES;integrated security=false" />
 		<property name="username" value="sa" />
 		<property name="password" value="Aegon03" />
+ -->
 	</bean>
 
 	<!-- Session Factory Declaration -->
@@ -49,6 +51,9 @@
 				<value>com.adms.batch.sales.domain.TestDomain</value>
 				<value>com.adms.batch.sales.domain.CallCenter</value>
 				<value>com.adms.batch.sales.domain.Campaign</value>
+				<value>com.adms.batch.sales.domain.CofStatus</value>
+				<value>com.adms.batch.sales.domain.EocCallOutcome</value>
+				<value>com.adms.batch.sales.domain.EocCallOutcomeCount</value>
 				<value>com.adms.batch.sales.domain.FileContent</value>
 				<value>com.adms.batch.sales.domain.FileImport</value>
 				<value>com.adms.batch.sales.domain.FileImportFrequency</value>
@@ -70,6 +75,8 @@
 				<value>com.adms.batch.sales.domain.TsrLevel</value>
 				<value>com.adms.batch.sales.domain.TsrPosition</value>
 				<value>com.adms.batch.sales.domain.TsrStatus</value>
+				<value>com.adms.batch.sales.domain.UwDecision</value>
+				<value>com.adms.batch.sales.domain.UwResult</value>
 				<value>com.adms.batch.sales.domain.UwStatus</value>
 			</list>
 		</property>
