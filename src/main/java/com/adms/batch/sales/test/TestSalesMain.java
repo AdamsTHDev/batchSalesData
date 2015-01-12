@@ -2,11 +2,13 @@ package com.adms.batch.sales.test;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+
 
 //import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.ListLot;
@@ -23,12 +25,6 @@ import com.adms.utils.StringUtil;
 
 public class TestSalesMain extends AbstractImportSalesJob {
 
-	public TestSalesMain(boolean enableLog)
-			throws Exception
-	{
-		super(enableLog);
-	}
-
 	protected Sales findSaleRecord(String xRefference)
 			throws Exception
 	{
@@ -38,7 +34,7 @@ public class TestSalesMain extends AbstractImportSalesJob {
 	protected Sales extractSalesRecord(DataHolder salesDataHolder, Sales sales)
 			throws Exception
 	{
-		log("extractSalesRecord: " + salesDataHolder.printValues());
+		log.debug("extractSalesRecord: " + salesDataHolder.printValues());
 
 		String listLotText = salesDataHolder.get("listLotName").getStringValue();
 		String listLotCode = SalesDataHelper.extractListLotCode(listLotText);
@@ -62,7 +58,7 @@ public class TestSalesMain extends AbstractImportSalesJob {
 		if (tsr == null)
 		{
 			String tsrName = salesDataHolder.get("tsrName").getStringValue();
-			tsr = getTsrService().findTsrByFullName(tsrName);
+			tsr = getTsrService().findTsrByFullName(tsrName, (Date) salesDataHolder.get("saleDate").getValue());
 		}
 		
 		if (tsr == null)
@@ -129,17 +125,16 @@ public class TestSalesMain extends AbstractImportSalesJob {
 		{
 			getSalesProcessService().addSalesProcess(salesProcess, BATCH_ID);
 		}
-		// added new only
-		// else
-		// {
-		// getSalesProcessService().updateSalesProcess(salesProcess, BATCH_ID);
-		// }
+		else
+		{
+			getSalesProcessService().updateSalesProcess(salesProcess, BATCH_ID);
+		}
 	}
 
 	protected void importSalesRecord(List<DataHolder> salesDataHolderList)
 			throws Exception
 	{
-		log("importSalesRecord...");
+		log.debug("importSalesRecord...");
 
 		if (getProcessDate() == null)
 		{
@@ -179,14 +174,16 @@ public class TestSalesMain extends AbstractImportSalesJob {
 			{
 				System.err.println("error on: " + salesDataHolder.printValues());
 				System.err.println("error on: " + sales);
-				throw e;
+				e.printStackTrace();
+//				throw e;
 			}
 		}
 	}
 
 	protected void importFile(File fileFormat, File salesRecordFile, String sheetName)
+			throws FileNotFoundException
 	{
-		log("importFile");
+		log.info("importFile: " + salesRecordFile.getAbsolutePath());
 		InputStream input = null;
 		try
 		{
@@ -198,6 +195,10 @@ public class TestSalesMain extends AbstractImportSalesJob {
 			List<DataHolder> salesDataHolderList = fileDataHolder.get(sheetName).getDataList("salesRecord");
 
 			importSalesRecord(salesDataHolderList);
+		}
+		catch (FileNotFoundException e)
+		{
+			throw e;
 		}
 		catch (Exception e)
 		{
@@ -296,7 +297,8 @@ public class TestSalesMain extends AbstractImportSalesJob {
 		//
 		fileInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Sydney_trip_rawdata_Sep_2014/Rawdata_Sep 2014 (Sydney trip)/0_ALL.xls";
 		sheetName = "Sep";
-		new TestSalesMain(false).importFile(new File(fileFormat), new File(fileInput), sheetName);
+		TestSalesMain batch = new TestSalesMain();
+		batch.importFile(new File(fileFormat), new File(fileInput), sheetName);
 
 	}
 

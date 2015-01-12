@@ -41,6 +41,7 @@ public class QcReconfirmServiceImpl implements QcReconfirmService {
 	{
 		QcReconfirm example = new QcReconfirm();
 		Sales sales = new Sales();
+		sales.setxReference(xReference);
 		example.setxReference(sales);
 
 		List<QcReconfirm> qcReconfirmList = this.qcReconfirmDao.find(example);

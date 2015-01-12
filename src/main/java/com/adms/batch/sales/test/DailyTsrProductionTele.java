@@ -3,7 +3,7 @@ package com.adms.batch.sales.test;
 import java.io.File;
 import java.io.FilenameFilter;
 
-public class DailyQcReconfirmTele {
+public class DailyTsrProductionTele {
 
 	public static void main(String[] args)
 			throws Exception
@@ -11,7 +11,11 @@ public class DailyQcReconfirmTele {
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTLKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTLKBANK");
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTIKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTIKBANK");
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MSIGUOB", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MSIGUOB");
-
+//
+//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MTLBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MTLBL");
+//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MSIGBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MSIGBL");
+//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/FWDTVD", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/FWDTVD");
+		
 		test("D:/Work/Report/DailyReport/201411");
 	}
 
@@ -29,7 +33,7 @@ public class DailyQcReconfirmTele {
 
 					public boolean accept(File dir, String name)
 					{
-						return name.contains("QC_Reconfirm.xls") || (name.contains("QC_Reconfirm") && name.contains(".xls"));
+						return name.contains("Sales_Report_By_Records.xls") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx"));
 					}
 				}))
 				{
@@ -42,7 +46,7 @@ public class DailyQcReconfirmTele {
 
 					File outputFile = new File(outputPath.getPath() + "/" + inputFile.getName().substring(0, inputFile.getName().lastIndexOf('.')) + ".xlsx");
 
-					new DailyQcReconfirmFileTransform().transform("FileFormat_SSIS_QcReconfirm-input-TELE.xml", inputFile, "FileFormat_SSIS_QcReconfirm-output.xml", outputFile);
+					new DailySalesReportByRecordsFileTransform().transform("FileFormat_SSIS_DailySalesReportByRecords-input.xml", inputFile, "FileFormat_SSIS_DailySalesReportByRecords-output.xml", outputFile);
 				}
 			}
 
@@ -59,7 +63,7 @@ public class DailyQcReconfirmTele {
 			
 			public boolean accept(File dir, String name)
 			{
-				return dir.getAbsolutePath().contains("TELE") && (name.contains("QC_Reconfirm.xls") || (name.contains("QC_Reconfirm") && name.contains(".xls")));
+				return dir.getAbsolutePath().contains("TELE") && name.contains("TSR_Production.xls");
 			}
 		});
 
@@ -68,7 +72,7 @@ public class DailyQcReconfirmTele {
 			String outputFileNameSsis = fileName.replace("DailyReport", "DailyReportSSIS");
 			String outputPathSsis = outputFileNameSsis.substring(0, outputFileNameSsis.lastIndexOf(System.getProperty("file.separator")));
 
-			outputFileNameSsis = outputPathSsis + System.getProperty("file.separator") + "QcReconfirm.xlsx";
+			outputFileNameSsis = outputPathSsis + System.getProperty("file.separator") + "TsrProduction.xlsx";
 
 			File outputPath = new File(outputPathSsis);
 			if (!outputPath.exists())
@@ -77,7 +81,7 @@ public class DailyQcReconfirmTele {
 			}
 			
 			System.out.println(fileName + " --> " + outputFileNameSsis);
-			new DailyQcReconfirmFileTransform().transform("FileFormat_SSIS_QcReconfirm-input-TELE.xml", new File(fileName), "FileFormat_SSIS_QcReconfirm-output.xml", new File(outputFileNameSsis));
+			new DailyTsrProductionFileTransform().transform("FileFormat_SSIS_DailyTsrProduction-input-TELE.xml", new File(fileName), "FileFormat_SSIS_DailyTsrProduction-output.xml", new File(outputFileNameSsis));
 		}
 	}
 

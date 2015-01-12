@@ -24,14 +24,42 @@
 			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Manager Name" />
 			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="Reason Detail" />
 			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="ListLot" />
-			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="Period" />
-			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Print Date" />
-			<DataRecord listSourceName="salesRecord" beginRow="2" endRow="99999">
+			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="KeyCode" />
+			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Period" />
+			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="Print Date" />
+			
+			<DataCell row="2" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="CampaignName" />
+			<DataCell row="2" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="CampaignCode" />
+			<DataCell row="2" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="ListlotName" />
+			<DataCell row="2" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="Approve Date" />
+			<DataCell row="2" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="X-Ref" />
+			<DataCell row="2" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="No" />
+			<DataCell row="2" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Customer" />
+			<DataCell row="2" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Product" />
+			<DataCell row="2" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="Premium" />
+			<DataCell row="2" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="AFYP" />
+			<DataCell row="2" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="ProtectAmount" />
+			<DataCell row="2" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="Payment Channel" />
+			<DataCell row="2" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="Mode Of Payment" />
+			<DataCell row="2" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="QA Status" />
+			<DataCell row="2" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="QA Reason Status" />
+			<DataCell row="2" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="Sale Date" />
+			<DataCell row="2" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="TMR Code" />
+			<DataCell row="2" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="TSR" />
+			<DataCell row="2" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="TMR Code Manager" />
+			<DataCell row="2" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Manager Name" />
+			<DataCell row="2" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail Reason Detail" />
+			<DataCell row="2" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot ListLot" />
+			<DataCell row="2" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="DUMMY" />
+			<DataCell row="2" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Period" />
+			<DataCell row="2" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="Print Date" />
+			
+			<DataRecord listSourceName="salesRecord" beginRow="3" endRow="99999">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X-Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="listLotName" />
-				<DataCell row="1" column="D" dataType="TEXT" fieldName="approveDate"/>
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="approveDate" />
 				<DataCell row="1" column="E" dataType="TEXT" fieldName="xRefference" />
 				<DataCell row="1" column="F" dataType="NUMBER" fieldName="itemNo" dataFormat="0" />
 				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
@@ -43,15 +71,16 @@
 				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentFrequency" />
 				<DataCell row="1" column="N" dataType="TEXT" fieldName="qaStatus" />
 				<DataCell row="1" column="O" dataType="TEXT" fieldName="qaReason" />
-				<DataCell row="1" column="P" dataType="TEXT" fieldName="saleDate"/>
+				<DataCell row="1" column="P" dataType="TEXT" fieldName="saleDate" />
 				<DataCell row="1" column="Q" dataType="TEXT" fieldName="tsrCode" />
 				<DataCell row="1" column="R" dataType="TEXT" fieldName="tsrName" />
 				<DataCell row="1" column="S" dataType="TEXT" fieldName="supCode" />
 				<DataCell row="1" column="T" dataType="TEXT" fieldName="supName" />
 				<DataCell row="1" column="U" dataType="TEXT" fieldName="qaReasonDetail" />
 				<DataCell row="1" column="V" dataType="TEXT" fieldName="ListLot" />
-				<DataCell row="1" column="W" dataType="TEXT" fieldName="Period" />
-				<DataCell row="1" column="X" dataType="TEXT" fieldName="Print Date" />
+				<DataCell row="1" column="W" dataType="TEXT" fieldName="KeyCode" />
+				<DataCell row="1" column="X" dataType="TEXT" fieldName="Period" />
+				<DataCell row="1" column="Y" dataType="TEXT" fieldName="Print Date" />
 				<EndRecordCondition column="E" comparator="BLANK" />
 			</DataRecord>
 

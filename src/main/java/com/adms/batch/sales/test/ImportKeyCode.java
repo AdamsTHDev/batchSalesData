@@ -32,17 +32,10 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 	public static final String SCRIPT_ID = "scriptId";
 	public static final String LOT_EFFECTIVE_DATE = "lotEffectiveDate";
 
-	public ImportKeyCode(boolean enableLog)
-			throws Exception
-	{
-		super(enableLog);
-		// TODO Auto-generated constructor stub
-	}
-
 	private Campaign extractCampaignRecord(DataHolder keyCodeDataHolder, Campaign campaign)
 			throws Exception
 	{
-		log("extractCampaignRecord " + keyCodeDataHolder.printValues());
+		log.debug("extractCampaignRecord " + keyCodeDataHolder.printValues());
 
 		String campaignName = keyCodeDataHolder.get(CAMPAIGN_NAME).getStringValue();
 		String callCenter = keyCodeDataHolder.get(CALL_CENTER).getStringValue();
@@ -68,7 +61,7 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 	private ListLot extractListLotRecord(DataHolder keyCodeDataHolder, Campaign campaign, ListLot listLot)
 			throws Exception
 	{
-		log("extractKeyCodeRecord " + keyCodeDataHolder.printValues());
+		log.debug("extractKeyCodeRecord " + keyCodeDataHolder.printValues());
 
 		String listLotName = keyCodeDataHolder.get(LIST_LOT_NAME).getStringValue();
 		String scriptId = keyCodeDataHolder.get(SCRIPT_ID).getStringValue();
@@ -85,7 +78,7 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 	private void importKeyCode(List<DataHolder> keyCodeDataHolderList)
 			throws Exception
 	{
-		log("importKeyCode");
+		log.info("importKeyCode");
 		Campaign campaign = null;
 		for (DataHolder keyCodeDataHolder : keyCodeDataHolderList)
 		{
@@ -140,7 +133,7 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 
 	private void importFile(File fileFormat, File keyCodeRecordFile, String sheetName)
 	{
-		log("importFile");
+		log.info("importFile: " + keyCodeRecordFile.getAbsolutePath());
 		InputStream input = null;
 		try
 		{
@@ -176,8 +169,8 @@ public class ImportKeyCode extends AbstractImportSalesJob {
 		String fileInput = "D:/Work/ADAMS/Report/Key Code Campaign Code Setup/Campaign Keycode Management Thailand2014 - Copy.xls";
 		String sheetName = "2014";
 
-		ImportKeyCode ikc = new ImportKeyCode(true);
-		ikc.importFile(new File(fileFormat), new File(fileInput), sheetName);
+		ImportKeyCode batch = new ImportKeyCode();
+		batch.importFile(new File(fileFormat), new File(fileInput), sheetName);
 	}
 
 }

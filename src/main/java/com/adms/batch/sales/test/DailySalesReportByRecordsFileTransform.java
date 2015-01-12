@@ -7,9 +7,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLClassLoader;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.adms.batch.sales.support.SalesDataHelper;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.imex.excelformat.SimpleMapDataHolder;
@@ -21,7 +23,7 @@ public class DailySalesReportByRecordsFileTransform implements DialyFileTransfor
 	{
 		InputStream fileFormat = null;
 		InputStream sampleReport = null;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
 
 //		fileFormat = URLClassLoader.getSystemResourceAsStream("FileFormat_SSIS_DailySalesReportByRecords-input.xml");
 		fileFormat = URLClassLoader.getSystemResourceAsStream(inputFileFormat);
@@ -36,35 +38,40 @@ public class DailySalesReportByRecordsFileTransform implements DialyFileTransfor
 		{
 			DataHolder sheetDataHolder = fileDataHolder.get(sheetName);
 
-			String campaignName = null;
-			String listLot = null;
-			String period = null;
-			String printDate = null;
-			List<DataHolder> reportHeader = sheetDataHolder.getDataList("reportHeader");
-			int i = 0;
-			for (DataHolder rh : reportHeader)
-			{
+			String campaignName = sheetDataHolder.get("campaignName").getStringValue();
+			String listLot = sheetDataHolder.get("listLot").getStringValue();
+			String period = sheetDataHolder.get("period").getStringValue();
+			Date printDate = (Date) sheetDataHolder.get("printDate").getValue();
+//			List<DataHolder> reportHeader = sheetDataHolder.getDataList("reportHeader");
+//			int i = 0;
+//			for (DataHolder rh : reportHeader)
+//			{
 //				System.out.println(rh.printValues());
-				switch (i) {
-				case 0:
-					campaignName = rh.get("reportInfo").getStringValue();
-					break;
-				case 1:
-					listLot = rh.get("reportInfo").getStringValue();
-					break;
-				case 2:
-					period = rh.get("reportInfo").getStringValue();
-					break;
-				case 3:
-					printDate = rh.get("reportInfo").getStringValue();
-					break;
-				}
-				i++;
-			}
+//				switch (i) {
+//				case 0:
+//					campaignName = rh.get("reportInfo").getStringValue();
+//					break;
+//				case 1:
+//					break;
+//				case 2:
+//					listLot = rh.get("reportInfo").getStringValue();
+//					break;
+//				case 3:
+//					period = rh.get("reportInfo").getStringValue();
+//					break;
+//				case 4:
+//					printDate = rh.get("reportInfo").getStringValue();
+//					break;
+//				}
+//				i++;
+//			}
 
 			List<DataHolder> dataRecordList = sheetDataHolder.getDataList("salesRecord");
 			for (DataHolder dataRecord : dataRecordList)
 			{
+				String listLotName = dataRecord.get("listLotName").getStringValue();
+				String keyCode = SalesDataHelper.extractListLotCode(listLotName);
+				
 				DataHolder dataHolder = new SimpleMapDataHolder();
 				dataHolder.setValue(campaignName);
 				dataRecord.put("Campaign Name", dataHolder);
@@ -74,11 +81,15 @@ public class DailySalesReportByRecordsFileTransform implements DialyFileTransfor
 				dataRecord.put("ListLot", dataHolder);
 				
 				dataHolder = new SimpleMapDataHolder();
+				dataHolder.setValue(keyCode);
+				dataRecord.put("KeyCode", dataHolder);
+				
+				dataHolder = new SimpleMapDataHolder();
 				dataHolder.setValue(period);
 				dataRecord.put("Period", dataHolder);
 				
 				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(printDate);
+				dataHolder.setValue(dateFormat.format(printDate));
 				dataRecord.put("Print Date", dataHolder);
 				
 				dataHolder = new SimpleMapDataHolder();
@@ -98,6 +109,14 @@ public class DailySalesReportByRecordsFileTransform implements DialyFileTransfor
 //				System.out.println(dataRecord.printValues());
 			}
 
+		}
+
+		String baseSheetName = fileDataHolder.getKeyList().get(0);
+		if (!baseSheetName.equals("Sales_Report_By_Records"))
+		{
+			fileDataHolder.put("Sales_Report_By_Records", fileDataHolder.get(fileDataHolder.getKeyList().get(0)));
+			fileDataHolder.setSheetNameByIndex(0, "Sales_Report_By_Records");
+			fileDataHolder.remove(baseSheetName);
 		}
 
 		fileFormat.close();

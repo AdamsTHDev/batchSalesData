@@ -21,7 +21,7 @@ public class DailyQcReconfirmFileTransform implements DialyFileTransform {
 	{
 		InputStream fileFormat = null;
 		InputStream sampleReport = null;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
 
 		fileFormat = URLClassLoader.getSystemResourceAsStream(inputFileFormat);
 		sampleReport = new FileInputStream(inputFile);
@@ -53,6 +53,14 @@ public class DailyQcReconfirmFileTransform implements DialyFileTransform {
 					dataRecord.put("qcStatusDate", dataHolder);
 				}
 			}
+		}
+
+		String baseSheetName = fileDataHolder.getKeyList().get(0);
+		if (!baseSheetName.equals("QC_Reconfirm"))
+		{
+			fileDataHolder.put("QC_Reconfirm", fileDataHolder.get(fileDataHolder.getKeyList().get(0)));
+			fileDataHolder.setSheetNameByIndex(0, "QC_Reconfirm");
+			fileDataHolder.remove(baseSheetName);
 		}
 
 		fileFormat.close();

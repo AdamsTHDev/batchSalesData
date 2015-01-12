@@ -51,7 +51,7 @@ public class SalesServiceImpl implements SalesService {
 
 		if (saleList.size() > 1)
 		{
-			throw new Exception("more that 1 record found for X-Reference[" + xReference + "]");
+			throw new Exception("more than 1 Sales record found for X-Reference[" + xReference + "]");
 		}
 
 		return saleList.get(0);
@@ -80,7 +80,7 @@ public class SalesServiceImpl implements SalesService {
 			throw new Exception("more that 1 record found for customerFullName[" + customerFullName + "] and tsr[" + tsr + "] and saleDate[" + saleDate + "]");
 		}
 
-		System.out.println("found sales " + salesList.get(0));
+//		System.out.println("found sales " + salesList.get(0));
 		return salesList.get(0);
 	}
 

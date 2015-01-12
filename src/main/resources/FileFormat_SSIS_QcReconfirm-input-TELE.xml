@@ -6,7 +6,7 @@
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="listLotName" />
-				<DataCell row="1" column="E" dataType="TEXT" fieldName="xRefference" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="xReference" />
 				<DataCell row="1" column="G" dataType="DATE" fieldName="saleDate" dataFormat="dd/MM/yyyy" />
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="customerFullName" />
 				<DataCell row="1" column="I" dataType="TEXT" fieldName="tsrCode" />

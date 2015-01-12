@@ -20,7 +20,27 @@
 			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="ReconfirmRemark"/>
 			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="CurrentReason"/>
 			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="CurrentRemark"/>
-			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999">
+			
+			<DataCell row="2" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Campaign"/>
+			<DataCell row="2" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="ListLot"/>
+			<DataCell row="2" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="DUMMY"/>
+			<DataCell row="2" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="12345678"/>
+			<DataCell row="2" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="Customer Name"/>
+			<DataCell row="2" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="TMR Code"/>
+			<DataCell row="2" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="TSR Name"/>
+			<DataCell row="2" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Manager"/>
+			<DataCell row="2" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="12345678"/>
+			<DataCell row="2" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="QC ID"/>
+			<DataCell row="2" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="Payment"/>
+			<DataCell row="2" column="L" dataType="NUMBER" fieldName="fieldL" defaultValue="0"/>
+			<DataCell row="2" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="TSRStatus"/>
+			<DataCell row="2" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="QCStatus"/>
+			<DataCell row="2" column="O" dataType="TEXT" fieldName="fieldO" defaultValue="ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason ReconfirmReason"/>
+			<DataCell row="2" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark"/>
+			<DataCell row="2" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason"/>
+			<DataCell row="2" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark"/>
+			
+			<DataRecord listSourceName="qcList" beginRow="3" endRow="99999">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="listLotName" />
@@ -30,7 +50,7 @@
 				<DataCell row="1" column="F" dataType="TEXT" fieldName="tsrCode" />
 				<DataCell row="1" column="G" dataType="TEXT" fieldName="tsrFullName" />
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="supFullName" />
-				<DataCell row="1" column="I" dataType="DATE" fieldName="qcStatusDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="qcStatusDate" />
 				<DataCell row="1" column="J" dataType="TEXT" fieldName="qcId" />
 				<DataCell row="1" column="K" dataType="TEXT" fieldName="paymentMethod" />
 				<DataCell row="1" column="L" dataType="NUMBER" fieldName="premium" />

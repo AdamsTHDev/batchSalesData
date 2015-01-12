@@ -30,9 +30,9 @@ public class FileWalker {
 			}
 			else
 			{
-//				System.out.println("File:" + f.getAbsoluteFile());
+//				System.out.println("File:" + f.getParentFile().getAbsolutePath());
 				
-				if (filter.accept(null, f.getName()))
+				if (filter.accept(f.getParentFile(), f.getName()))
 				{
 					if (this.fileList == null)
 					{

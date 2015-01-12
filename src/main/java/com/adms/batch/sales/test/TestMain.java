@@ -1,68 +1,30 @@
 package com.adms.batch.sales.test;
 
-import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import com.adms.batch.sales.domain.Sales;
+import com.adms.batch.sales.domain.Tsr;
 
-public class TestMain {
-	
-	public Sales findSaleRecord()
-	{
-		return null;
-	}
 
-	public static void test(Integer i) {
-		i++;
-	}
-	
-	public static void test2(Inner in)
-	{
-		in.i++;
-	}
-	public static void test3(BigDecimal dec)
-	{
-		dec = dec.add(new BigDecimal(1));
-	}
+public class TestMain extends AbstractImportSalesJob {
 
 	public static void main(String[] args) throws Exception
 	{
-		
-		Integer i = 0;
-		test(i);
-		test(i);
-		System.out.println(i);
-		
-		Inner in = new TestMain().new Inner();
-		test2(in);
-		test2(in);
-		test2(in);
-		System.out.println(in.i);
-		
-		BigDecimal dec = new BigDecimal(0);
-		test3(dec);
-		test3(dec);
-		test3(dec);
-		test3(dec);
-		System.out.println(dec);
-		
-//		String inputFile = "";
-//		String processDate = "";
-//		String rerun = "";
-//		
-//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
-//		
-//		TestService testService = (TestService) applicationContext.getBean("testService");
-//		
-//		TestDomain testDomain = new TestDomain();
-//		testDomain.setId(1l);
-//		testDomain.setName("didi didi");
-//		testService.addTestDomain(testDomain, "didi");
-//		testService.deleteTestDomain(testDomain);
-		
-	}
-	
-	class Inner {
-		Integer i = 0;
+		TestMain main = new TestMain();
+		Date saleDate = null;
+		Calendar c = Calendar.getInstance(Locale.US);
+		c.set(Calendar.YEAR, 2014);
+		c.set(Calendar.MONTH, Calendar.OCTOBER);
+		c.set(Calendar.DATE, 17);
+		saleDate = new SimpleDateFormat("yyyyMMdd", Locale.US).parse(new SimpleDateFormat("yyyyMMdd", Locale.US).format(c.getTime()));
+		System.out.println(saleDate);
+		Tsr tsr = main.getTsrService().findTsrByFullName("น.ส. พัณณ์ชิตา ธนวัฒน์กุลกานต์", saleDate);
+		System.out.println(tsr.getTsrCode());
+		Sales sale = main.getSalesService().findSalesRecordByCustomerFullNameAndTsrAndSaleDate("นางกัณหา จันทวาศ", tsr, saleDate);
+		System.out.println(sale);
 		
 	}
 
