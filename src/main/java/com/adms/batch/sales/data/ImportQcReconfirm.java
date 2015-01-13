@@ -73,23 +73,33 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 			Date saleDate = (Date) qcDataHolder.get("saleDate").getValue();
 			SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy");
 			saleDate = df.parse(df.format(saleDate));
-			
+
+			String tsrCode = qcDataHolder.get("tsrCode") == null ? null : qcDataHolder.get("tsrCode").getStringValue();
 			String fullName = qcDataHolder.get("tsrFullName").getStringValue();
 			Tsr tsr = null;
 			try
 			{
-				tsr = getTsrService().findTsrByFullName(fullName, saleDate);
+				if (StringUtils.isNotBlank(tsrCode))
+				{
+					tsr = getTsrService().findTsrByTsrCode(tsrCode);
+				}
+
+				if (tsr == null)
+				{
+					tsr = getTsrService().findTsrByFullName(fullName, saleDate);
+				}
 			}
 			catch (Exception e)
 			{
 				log.error("Error!! TSR fullName" + fullName);
 				throw e;
 			}
-			
+
 //			String xReferenceString = qcDataHolder.get("xReference").getStringValue();
 			String customerFullName = qcDataHolder.get("customerFullName").getStringValue();
 
 			Sales xReference = null;
+			//disable find by xRef
 			/*if (StringUtils.isNoneBlank(xReferenceString))
 			{
 				// try search by X-Reference
@@ -118,6 +128,11 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 						xReference = getSalesService().findSalesRecordByCustomerFullNameAndSaleDate(customerFullName, saleDate);
 					}
 				}
+			}
+			
+			if (xReference == null)
+			{
+				throw new Exception("not found SalesRecord for QC Reconfirm: " + qcDataHolder.printValues());
 			}
 
 			QcReconfirm qcReconfirm = getQcReconfirmService().findByxReferenceAndQcStatusTime(xReference.getxReference(), (Date) qcDataHolder.get("qcStatusDate").getValue());
@@ -265,8 +280,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 //		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
 
-//		String rootPath = "D:/Work/Report/DailyReport/201412/TELE/MTLKBANK";
-		String rootPath = "D:/Work/Report/DailyReport/201411/OTO/FWDTVD";
+		String rootPath = "D:/Work/Report/DailyReport/201412";
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
@@ -335,8 +349,15 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 			}
 			else if (filename.contains("TELE"))
 			{
+				if (filename.contains("MSIGUOB"))
+				{
+					fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-MSIGUOB.xml";
+				}
+				else
+				{
+					fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-TELE.xml";
+				}
 				dataSheetName = "QC_Reconfirm";
-				fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-TELE.xml";
 			}
 			else
 			{

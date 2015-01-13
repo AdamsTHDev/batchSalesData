@@ -210,7 +210,7 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		
 		
 
-		String rootPath = "D:/Work/Report/DailyReport/201412/TELE/MTLKBANK";
+		String rootPath = "D:/Work/Report/DailyReport/201411/TELE/MTLKBANK";
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
@@ -225,7 +225,7 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		batch.setProcessDate(new Date());
 		for (String filename : fw.getFileList())
 		{
-			System.out.println("import file: " + filename);
+//			System.out.println("import file: " + filename);
 
 			if (filename.contains("MSIGUOB"))
 			{

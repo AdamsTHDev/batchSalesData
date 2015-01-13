@@ -80,6 +80,7 @@ public class TestSalesMain extends AbstractImportSalesJob {
 		sales.setApproveDate((Date) salesDataHolder.get("approveDate").getValue());
 		sales.setItemNo(salesDataHolder.get("itemNo").getIntValue());
 		sales.setCustomerFullName(StringUtil.removeDoubleSpace(salesDataHolder.get("customerFullName").getStringValue()));
+		sales.setProduct(salesDataHolder.get("product").getStringValue());
 		sales.setPremium(salesDataHolder.get("premium").getDecimalValue());
 		sales.setAnnualFyp(salesDataHolder.get("annualPremium").getDecimalValue());
 		sales.setProtectAmount(salesDataHolder.get("protectAmount").getDecimalValue());

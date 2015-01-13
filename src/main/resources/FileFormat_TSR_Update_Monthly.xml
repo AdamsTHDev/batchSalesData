@@ -3,21 +3,22 @@
 	<DataSet description="TSR_Update">
 		<DataSheet sheetName="Data">
 			<DataRecord listSourceName="tsrList" beginRow="1" endRow="99999">
-				<BeginRecordCondition column="B" comparator="EQ" checkValue="Site" firstRowAsData="FALSE" />
+				<BeginRecordCondition column="C" comparator="EQ" checkValue="Site" firstRowAsData="FALSE" />
 				<DataCell row="1" column="A" dataType="NUMBER" fieldName="no" />
-				<DataCell row="1" column="B" dataType="TEXT" fieldName="site" autoTrim="TRUE" />
-				<DataCell row="1" column="C" dataType="TEXT" fieldName="tsrCode" autoTrim="TRUE" />
-				<DataCell row="1" column="D" dataType="TEXT" fieldName="firstName" autoTrim="TRUE" />
-				<DataCell row="1" column="E" dataType="TEXT" fieldName="lastName" autoTrim="TRUE" />
-				<DataCell row="1" column="F" dataType="TEXT" fieldName="positionName" autoTrim="TRUE" />
-				<DataCell row="1" column="G" dataType="DATE" fieldName="effectiveDate" dataFormat="yyyy-MM-dd" />
-				<DataCell row="1" column="H" dataType="DATE" fieldName="resignDate" dataFormat="yyyy-MM-dd" />
-				<DataCell row="1" column="I" dataType="TEXT" fieldName="tatalSales" autoTrim="TRUE" />
-				<DataCell row="1" column="J" dataType="TEXT" fieldName="status" autoTrim="TRUE" />
-				<!--
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="tsrCode" autoTrim="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="site" autoTrim="TRUE" />
 				<DataCell row="1" column="D" dataType="TEXT" fieldName="employeeCode" autoTrim="TRUE" />
-				<DataCell row="1" column="H" dataType="TEXT" fieldName="campaign" autoTrim="TRUE" />
-				<DataCell row="1" column="K" dataType="TEXT" fieldName="remark" autoTrim="TRUE" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="firstName" autoTrim="TRUE" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="lastName" autoTrim="TRUE" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="positionName" autoTrim="TRUE" />
+				<DataCell row="1" column="K" dataType="DATE" fieldName="effectiveDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="L" dataType="DATE" fieldName="resignDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="status" autoTrim="TRUE" />
+				<!--
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="campaign" autoTrim="TRUE" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="campaign" autoTrim="TRUE" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="tatalSales" autoTrim="TRUE" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="remark" autoTrim="TRUE" />
 				-->
 				<EndRecordCondition column="B" comparator="BLANK" />
 			</DataRecord>
