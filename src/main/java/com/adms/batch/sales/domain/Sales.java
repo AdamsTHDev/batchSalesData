@@ -82,6 +82,9 @@ public class Sales extends BaseAuditDomain {
 	@Column(name = "CUSTOMER_LAST_NAME")
 	private String customerLastName;
 
+	@Column(name = "PRODUCT")
+	private String product;
+
 	@Column(name = "PREMIUM")
 	private BigDecimal premium;
 
@@ -252,6 +255,16 @@ public class Sales extends BaseAuditDomain {
 		this.customerLastName = customerLastName;
 	}
 
+	public String getProduct()
+	{
+		return product;
+	}
+
+	public void setProduct(String product)
+	{
+		this.product = product;
+	}
+
 	public BigDecimal getPremium()
 	{
 		return premium;
@@ -336,7 +349,7 @@ public class Sales extends BaseAuditDomain {
 	public String toString()
 	{
 		return "Sales [id=" + id + ", fileImport=" + fileImport + ", xReference=" + xReference + ", listLot=" + listLot + ", tsr=" + tsr + ", supervisor=" + supervisor + ", saleDate=" + saleDate + ", approveDate=" + approveDate + ", itemNo=" + itemNo + ", customerFullName=" + customerFullName
-				+ ", customerTitle=" + customerTitle + ", customerFirstName=" + customerFirstName + ", customerMidName=" + customerMidName + ", customerLastName=" + customerLastName + ", premium=" + premium + ", annualFyp=" + annualFyp + ", protectAmount=" + protectAmount + ", paymentMethod="
+				+ ", customerTitle=" + customerTitle + ", customerFirstName=" + customerFirstName + ", customerMidName=" + customerMidName + ", customerLastName=" + customerLastName + ", product=" + product + ", premium=" + premium + ", annualFyp=" + annualFyp + ", protectAmount=" + protectAmount + ", paymentMethod="
 				+ paymentMethod + ", paymentFrequency=" + paymentFrequency + ", qaStatus=" + qaStatus + ", qaReason=" + qaReason + ", qaReasonDetail=" + qaReasonDetail + "]";
 	}
 
