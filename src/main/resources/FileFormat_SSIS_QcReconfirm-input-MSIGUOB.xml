@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="QC Reconfirm">
+		<DataSheet sheetIndex="0">
+			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999">
+				<BeginRecordCondition column="E" comparator="EQ" checkValue="Sale Date" />
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="listLotName" />
+<!-- 				<DataCell row="1" column="E" dataType="TEXT" fieldName="xReference" /> -->
+				<DataCell row="1" column="E" dataType="DATE" fieldName="saleDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
+<!-- 				<DataCell row="1" column="I" dataType="TEXT" fieldName="tsrCode" /> -->
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="tsrFullName" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="supFullName" />
+				<DataCell row="1" column="J" dataType="DATE" fieldName="qcStatusDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="qcId" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentMethod" />
+				<DataCell row="1" column="M" dataType="NUMBER" fieldName="premium" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="tsrStatus" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="qcStatus" />
+				<DataCell row="1" column="P" dataType="TEXT" fieldName="reconfirmReason" />
+				<DataCell row="1" column="Q" dataType="TEXT" fieldName="reconfirmRemark" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="currentReason" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="currentRemark" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+	</DataSet>
+</FileFormat>
