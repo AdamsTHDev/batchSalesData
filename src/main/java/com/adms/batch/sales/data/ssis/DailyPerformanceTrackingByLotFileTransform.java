@@ -1,4 +1,4 @@
-package com.adms.batch.sales.test;
+package com.adms.batch.sales.data.ssis;
 
 import java.io.File;
 import java.io.FileInputStream;

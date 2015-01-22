@@ -1,4 +1,4 @@
-package com.adms.batch.sales.test;
+package com.adms.batch.sales.support;
 
 import java.io.File;
 import java.io.FilenameFilter;

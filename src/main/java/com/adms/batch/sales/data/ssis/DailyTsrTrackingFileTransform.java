@@ -1,4 +1,4 @@
-package com.adms.batch.sales.test;
+package com.adms.batch.sales.data.ssis;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.imex.excelformat.SimpleMapDataHolder;
 
-public class DailyTsrProductionFileTransform implements DialyFileTransform {
+public class DailyTsrTrackingFileTransform implements DialyFileTransform {
 
 	public void transform(String inputFileFormat, File inputFile, String outputFileFormat, File outputFile)
 			throws Exception
@@ -35,10 +35,7 @@ public class DailyTsrProductionFileTransform implements DialyFileTransform {
 		{
 			DataHolder sheetDataHolder = fileDataHolder.get(sheetName);
 
-			String campaignInfo = null;
-			String campaignCode = null;
 			String keyCode = null;
-			String tmAgency = null;
 			String period = null;
 			String printDate = null;
 			List<DataHolder> dataHeader = sheetDataHolder.getDataList("dataHeader");
@@ -48,19 +45,12 @@ public class DailyTsrProductionFileTransform implements DialyFileTransform {
 //				System.out.println(d.printValues());
 				switch (i) {
 				case 0:
-					campaignInfo = d.get("dataInfo").getStringValue();
+					keyCode = d.get("dataInfo").getStringValue();
 					break;
 				case 1:
-					campaignCode = SalesDataHelper.extractListLotName(d.get("dataInfo").getStringValue());
-					keyCode = SalesDataHelper.extractListLotCode(d.get("dataInfo").getStringValue());
-					break;
-				case 2:
-					tmAgency = d.get("dataInfo").getStringValue();
-					break;
-				case 3:
 					period = d.get("dataInfo").getStringValue();
 					break;
-				case 4:
+				case 2:
 					printDate = d.get("dataInfo").getStringValue();
 					break;
 				}
@@ -71,39 +61,66 @@ public class DailyTsrProductionFileTransform implements DialyFileTransform {
 //			System.out.println(dataRecordList.size());
 			for (DataHolder dataRecord : dataRecordList)
 			{
-				DataHolder dataHolder = null;
-
-				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(campaignInfo);
-				dataRecord.put("Campaign Info", dataHolder);
-
-				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(campaignCode);
-				dataRecord.put("Campaign Code", dataHolder);
-
-				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(keyCode);
+				DataHolder dataHolder = new SimpleMapDataHolder();
+				dataHolder.setValue(SalesDataHelper.extractListLotCode(keyCode));
 				dataRecord.put("Key Code", dataHolder);
-
-				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(tmAgency);
-				dataRecord.put("TM Agency", dataHolder);
 
 				dataHolder = new SimpleMapDataHolder();
 				dataHolder.setValue(dateFormat.parse(period));
 				dataRecord.put("Period", dataHolder);
 
 				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(dateFormat.parse(printDate));
+				dataHolder.setValue(dateFormat.parse(printDate.substring(0, 10)));
 				dataRecord.put("Print Date", dataHolder);
 
 //				System.out.println(dataRecord.printValues());
 			}
 		}
 
-		fileDataHolder.put("DailyTsrProduction", fileDataHolder.get("TSR_Production"));
-		fileDataHolder.setSheetNameByIndex(0, "DailyTsrProduction");
-		fileDataHolder.remove("TSR_Production");
+		// merge data into first sheet
+		boolean removeFirstSheet = false;
+		sheetNames = fileDataHolder.getKeyList();
+		if (sheetNames.size() > 1)
+		{
+			for (String sheetName : sheetNames)
+			{
+				if (sheetName.contains("Summary") || sheetName.contains("ALL") || sheetName.contains("All"))
+				{
+					removeFirstSheet = true;
+					continue;
+				}
+			}
+		}
+
+		if (removeFirstSheet)
+		{
+			fileDataHolder.remove(sheetNames.get(0));
+		}
+
+		sheetNames = fileDataHolder.getKeyList();
+		if (sheetNames.size() > 0)
+		{
+			String baseSheetName = null;
+			int i = 0;
+			for (String sheetName : sheetNames)
+			{
+				if (i == 0)
+				{
+					baseSheetName = sheetName;
+					i++;
+					continue;
+				}
+
+				fileDataHolder.get(baseSheetName).getDataList("dataRecord").addAll(fileDataHolder.get(sheetName).getDataList("dataRecord"));
+			}
+			
+			if (!baseSheetName.equals("DailyTsrTracking"))
+			{
+				fileDataHolder.put("DailyTsrTracking", fileDataHolder.get(baseSheetName));
+				fileDataHolder.setSheetNameByIndex(0, "DailyTsrTracking");
+				fileDataHolder.remove(baseSheetName);
+			}
+		}
 
 		fileFormat.close();
 		sampleReport.close();
@@ -116,11 +133,11 @@ public class DailyTsrProductionFileTransform implements DialyFileTransform {
 
 	public static void main(String[] args) throws Exception
 	{
-		String inputFileFormat = "FileFormat_SSIS_DailyTsrProduction-input-TELE.xml";
-		String inputFile = "D:/Work/Report/DailyReport/201411/TELE/MTLKBANK/HIP_DDOP_17112014/TSR_Production.xls";
-		String outputFileFormat = "FileFormat_SSIS_DailyTsrProduction-output.xml";
+		String inputFileFormat = "FileFormat_SSIS_DailyTsrTracking-input-TELE.xml";
+		String inputFile = "D:/Work/Report/DailyReport/201411/TELE/MTIKBANK/KBANK DDOP -PA Cash Back_04112014/TSRTracking.xls";
+		String outputFileFormat = "FileFormat_SSIS_DailyTsrTracking-output.xml";
 		String outputFile = "D:/testOutput.xlsx";
-		new DailyTsrProductionFileTransform().transform(inputFileFormat, new File(inputFile), outputFileFormat, new File(outputFile));
+		new DailyTsrTrackingFileTransform().transform(inputFileFormat, new File(inputFile), outputFileFormat, new File(outputFile));
 	}
 
 }
