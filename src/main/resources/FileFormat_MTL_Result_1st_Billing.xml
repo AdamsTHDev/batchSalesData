@@ -15,7 +15,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -41,7 +41,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -67,7 +67,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -93,7 +93,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -119,7 +119,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -145,7 +145,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -175,7 +175,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -201,7 +201,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -227,7 +227,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -253,7 +253,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -264,7 +264,7 @@
 				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
 				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
 				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
-				<EndRecordCondition column="J" comparator="BLANK" />
+				<EndRecordCondition column="I" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>
 
@@ -279,7 +279,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -305,7 +305,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -331,7 +331,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -357,7 +357,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -368,7 +368,7 @@
 				<DataCell row="1" column="R" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
 				<DataCell row="1" column="S" dataType="TEXT" autoTrim="TRUE" fieldName="produceCode" />
 				<DataCell row="1" column="T" dataType="TEXT" autoTrim="TRUE" fieldName="billingTotal" />
-				<EndRecordCondition column="J" comparator="BLANK" />
+				<EndRecordCondition column="I" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>
 
@@ -383,7 +383,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />
@@ -409,7 +409,7 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="gender" />
 				<DataCell row="1" column="H" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="dob" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" recoveryType="TEXT" />
-				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremiun" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="firstPremium" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMode" />
 				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="salesDate" />
 				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="effDate" />

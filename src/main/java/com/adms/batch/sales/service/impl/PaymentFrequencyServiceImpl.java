@@ -34,6 +34,27 @@ public class PaymentFrequencyServiceImpl implements PaymentFrequencyService {
 		return this.paymentFrequencyDao.find(id);
 	}
 
+	public PaymentFrequency findPaymentFrequencyByFrequencyName(String frequencyName)
+			throws Exception
+	{
+		PaymentFrequency example = new PaymentFrequency();
+		example.setFrequencyName(frequencyName);
+
+		List<PaymentFrequency> paymentFrequencyList = this.paymentFrequencyDao.findByExamplePaging(example, null);
+
+		if (paymentFrequencyList.size() == 0)
+		{
+			throw new Exception("not found any record for PaymentFrequency[" + frequencyName + "]");
+		}
+
+		if (paymentFrequencyList.size() > 1)
+		{
+			throw new Exception("more that 1 record found for PaymentFrequency[" + frequencyName + "]");
+		}
+
+		return paymentFrequencyList.get(0);
+	}
+
 	public PaymentFrequency findPaymentFrequencyByDescription(String description)
 			throws Exception
 	{

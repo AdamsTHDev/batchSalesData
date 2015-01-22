@@ -12,6 +12,9 @@ public interface PaymentFrequencyService {
 	public PaymentFrequency findPaymentFrequencyById(Long id)
 			throws Exception;
 
+	public PaymentFrequency findPaymentFrequencyByFrequencyName(String frequencyName)
+			throws Exception;
+
 	public PaymentFrequency findPaymentFrequencyByDescription(String description)
 			throws Exception;
 

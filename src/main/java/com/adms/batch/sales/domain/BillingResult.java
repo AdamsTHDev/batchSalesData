@@ -25,13 +25,9 @@ import com.adms.common.domain.BaseAuditDomain;
  * @author kampon.pan
  *
  */
-/**
- * @author kampon.pan
- *
- */
 @Entity
 @Table(name = "BILLING_RESULT")
-@NamedNativeQueries({ @NamedNativeQuery(name = "findUwResultByxReference", query = "select * from BILLING_RESULT where X_REFERENCE = ?", resultClass = BillingResult.class),
+@NamedNativeQueries({ @NamedNativeQuery(name = "findBillingResultByxReference", query = "select * from BILLING_RESULT where X_REFERENCE = ?", resultClass = BillingResult.class),
 	@NamedNativeQuery(name = "findBillingResultByxRefAndBillingDate", query = "select * from BILLING_RESULT where X_REFERENCE = ? and BILLING_DATE = ?", resultClass = BillingResult.class)})
 public class BillingResult extends BaseAuditDomain {
 

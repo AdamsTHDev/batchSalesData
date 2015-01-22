@@ -2,6 +2,7 @@ package com.adms.batch.sales.data.partner;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.adms.batch.sales.domain.BillingStatus;
 import com.adms.batch.sales.domain.PaymentFrequency;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.test.AbstractImportSalesJob;
+import com.adms.batch.sales.test.FileWalker;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -27,12 +29,12 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 		billingResult.setAccountNo(dataHolder.get("accountNo").getStringValue());
 		billingResult.setAccountExp(dataHolder.get("accountExp").getStringValue());
 		billingResult.setPremium(dataHolder.get("premium").getDecimalValue());
-		billingResult.setFirstPremium(dataHolder.get("firstPremiun").getDecimalValue());
+		billingResult.setFirstPremium(dataHolder.get("firstPremium").getDecimalValue());
 
 		String paymentFrequencyString = dataHolder.get("paymentMode").getStringValue();
 		if (StringUtils.isNotBlank(paymentFrequencyString))
 		{
-			PaymentFrequency paymentFrequency = getPaymentFrequencyService().findPaymentFrequencyByDescription(paymentFrequencyString);
+			PaymentFrequency paymentFrequency = getPaymentFrequencyService().findPaymentFrequencyByFrequencyName(paymentFrequencyString);
 			if (paymentFrequency == null)
 			{
 				throw new Exception("PaymentFrequency not found for paymentFrequencyDescription [" + paymentFrequencyString + "]");
@@ -73,44 +75,46 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 	{
 		for (DataHolder dataHolder : dataHolderList)
 		{
-			extractRecord(dataHolder, null);
-			
 			String xReference = dataHolder.get("xRef").getStringValue();
-			Sales sales = getSalesService().findSalesRecordByXRefference(xReference);
-
-			if (sales != null)
+			
+			if (StringUtils.isNotBlank(xReference))
 			{
-				Date billingDate = (Date) dataHolder.get("effDate").getValue();
-				BillingResult billingResult = getBillingResultService().findBillingResultByxRefAndBillingDate(xReference, billingDate);
+				Sales sales = getSalesService().findSalesRecordByXRefference(xReference);
 
-				boolean newBillingResult = false;
-				if (billingResult == null)
+				if (sales != null)
 				{
-					billingResult = new BillingResult();
-					billingResult.setxReference(sales);
-					newBillingResult = true;
-				}
-				else
-				{
-					log.debug("found billingResult record [" + billingResult + "]");
-				}
+					Date billingDate = (Date) dataHolder.get("effDate").getValue();
+					BillingResult billingResult = getBillingResultService().findBillingResultByxRefAndBillingDate(xReference, billingDate);
 
-				try
-				{
-					extractRecord(dataHolder, billingResult);
-
-					if (newBillingResult)
+					boolean newBillingResult = false;
+					if (billingResult == null)
 					{
-						getBillingResultService().addBillingResult(billingResult, BATCH_ID);
+						billingResult = new BillingResult();
+						billingResult.setxReference(sales);
+						newBillingResult = true;
 					}
 					else
 					{
-						getBillingResultService().updateBillingResult(billingResult, BATCH_ID);
+						log.debug("found billingResult record [" + billingResult + "]");
 					}
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
+
+					try
+					{
+						extractRecord(dataHolder, billingResult);
+
+						if (newBillingResult)
+						{
+							getBillingResultService().addBillingResult(billingResult, BATCH_ID);
+						}
+						else
+						{
+							getBillingResultService().updateBillingResult(billingResult, BATCH_ID);
+						}
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -169,14 +173,27 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 	{
 		String fileFormatLocation = /* args[0]; */"D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_MTL_Result_1st_Billing.xml";
 //		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing/DDOP_Plan_Post 30_12_2014 report.xls";
-		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing/ADMS Plan Post 30_12_2014 report.xls";
+//		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing/ADMS Plan Post 30_12_2014 report.xls";
+		String rootPath = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing";
 
-		System.out.println(fileFormatLocation);
-		System.out.println(fileDataLocation);
+		FileWalker fw = new FileWalker();
+		fw.walk(rootPath, new FilenameFilter()
+		{
+			public boolean accept(File dir, String name)
+			{
+				return name.contains(".xls");
+			}
+		});
 
 		ImportMtlBilling batch = new ImportMtlBilling();
-		batch.setLogLevel(Logger.DEBUG);
-		batch.importFile(new File(fileFormatLocation), new File(fileDataLocation));
+		batch.setLogLevel(Logger.INFO);
+		batch.setProcessDate(new Date());
+
+		for (String filename : fw.getFileList())
+		{
+			batch.importFile(new File(fileFormatLocation), new File(filename));
+		}
+		
 		
 	}
 }

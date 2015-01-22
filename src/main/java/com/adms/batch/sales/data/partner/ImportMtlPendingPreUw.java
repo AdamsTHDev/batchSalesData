@@ -2,6 +2,7 @@ package com.adms.batch.sales.data.partner;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.adms.batch.sales.domain.UwDecision;
 import com.adms.batch.sales.domain.UwResult;
 import com.adms.batch.sales.domain.UwStatus;
 import com.adms.batch.sales.test.AbstractImportSalesJob;
+import com.adms.batch.sales.test.FileWalker;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -170,14 +172,26 @@ public class ImportMtlPendingPreUw extends AbstractImportSalesJob {
 			throws Exception
 	{
 		String fileFormatLocation = /* args[0]; */"D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_MTL_Pending_Pre_UW.xml";
-		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Pending_Pre_UW/ADMS_Pending Pre UW 2014.xls";
+//		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Pending_Pre_UW/ADMS_Pending Pre UW 2014.xls";
+		String rootPath = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Pending_Pre_UW";
 
-		System.out.println(fileFormatLocation);
-		System.out.println(fileDataLocation);
+		FileWalker fw = new FileWalker();
+		fw.walk(rootPath, new FilenameFilter()
+		{
+			public boolean accept(File dir, String name)
+			{
+				return name.contains("ADMS_Pending Pre UW");
+			}
+		});
 
 		ImportMtlPendingPreUw batch = new ImportMtlPendingPreUw();
 		batch.setLogLevel(Logger.INFO);
-		batch.importFile(new File(fileFormatLocation), new File(fileDataLocation));
+		batch.setProcessDate(new Date());
+
+		for (String filename : fw.getFileList())
+		{
+			batch.importFile(new File(fileFormatLocation), new File(filename));
+		}
 		
 	}
 }
