@@ -12,7 +12,11 @@ public class DailyQcReconfirmOto {
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MSIGBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MSIGBL");
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/FWDTVD", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/FWDTVD");
 
-		test("D:/Work/Report/DailyReport/201411");
+//		test("D:/Work/Report/DailyReport/201410");
+//		test("D:/Work/Report/DailyReport/201411");
+//		test("D:/Work/Report/DailyReport/201412");
+//		test("D:/Work/Report/DailyReport/201501");
+		test(args[0]);
 	}
 
 	/*public static void runRoot(String sInputPath, String sOutputPath)

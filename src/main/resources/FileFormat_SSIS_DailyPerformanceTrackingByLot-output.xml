@@ -24,13 +24,15 @@
 			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="Campaign Code" />
 			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="Campaign Name" />
 			<DataCell row="1" column="T" dataType="TEXT" fieldName="fieldT" defaultValue="Campaign Info" />
-			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldU" defaultValue="From Date" />
-			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldV" defaultValue="To Date" />
-			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldW" defaultValue="Print Date" />
-			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Lead Load" />
-			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="New Lead Remaining" />
-			<DataCell row="1" column="Z" dataType="TEXT" fieldName="fieldZ" defaultValue="Referral Lead" />
-			<DataCell row="1" column="AA" dataType="TEXT" fieldName="fieldAA" defaultValue="Sale Pending" />
+			<DataCell row="1" column="U" dataType="TEXT" fieldName="fieldT" defaultValue="KeyCode" />
+			<DataCell row="1" column="V" dataType="TEXT" fieldName="fieldT" defaultValue="BP Name" />
+			<DataCell row="1" column="W" dataType="TEXT" fieldName="fieldU" defaultValue="From Date" />
+			<DataCell row="1" column="X" dataType="TEXT" fieldName="fieldV" defaultValue="To Date" />
+			<DataCell row="1" column="Y" dataType="TEXT" fieldName="fieldW" defaultValue="Print Date" />
+			<DataCell row="1" column="Z" dataType="TEXT" fieldName="fieldX" defaultValue="Lead Load" />
+			<DataCell row="1" column="AA" dataType="TEXT" fieldName="fieldY" defaultValue="New Lead Remaining" />
+			<DataCell row="1" column="AB" dataType="TEXT" fieldName="fieldZ" defaultValue="Referral Lead" />
+			<DataCell row="1" column="AC" dataType="TEXT" fieldName="fieldAA" defaultValue="Sale Pending" />
 			<!-- end column name -->
 			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="Date"/>
@@ -53,13 +55,15 @@
 				<DataCell row="1" column="R" dataType="TEXT" fieldName="Campaign Code" />
 				<DataCell row="1" column="S" dataType="TEXT" fieldName="Campaign Name" />
 				<DataCell row="1" column="T" dataType="TEXT" fieldName="Campaign Info" />
-				<DataCell row="1" column="U" dataType="TEXT" fieldName="From Date"/>
-				<DataCell row="1" column="V" dataType="TEXT" fieldName="To Date"/>
-				<DataCell row="1" column="W" dataType="TEXT" fieldName="Print Date"/>
-				<DataCell row="1" column="X" dataType="NUMBER" fieldName="Lead Load" />
-				<DataCell row="1" column="Y" dataType="NUMBER" fieldName="New Lead Remaining" />
-				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="Referral Lead" />
-				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="Sale Pending" />
+				<DataCell row="1" column="U" dataType="TEXT" fieldName="KeyCode" />
+				<DataCell row="1" column="V" dataType="TEXT" fieldName="BP Name" />
+				<DataCell row="1" column="W" dataType="TEXT" fieldName="From Date"/>
+				<DataCell row="1" column="X" dataType="TEXT" fieldName="To Date"/>
+				<DataCell row="1" column="Y" dataType="TEXT" fieldName="Print Date"/>
+				<DataCell row="1" column="Z" dataType="NUMBER" fieldName="Lead Load" />
+				<DataCell row="1" column="AA" dataType="NUMBER" fieldName="New Lead Remaining" />
+				<DataCell row="1" column="AB" dataType="NUMBER" fieldName="Referral Lead" />
+				<DataCell row="1" column="AC" dataType="NUMBER" fieldName="Sale Pending" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>

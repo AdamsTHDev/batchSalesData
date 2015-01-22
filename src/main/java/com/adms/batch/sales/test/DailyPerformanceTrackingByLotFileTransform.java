@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import com.adms.batch.sales.support.SalesDataHelper;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.imex.excelformat.SimpleMapDataHolder;
@@ -37,6 +38,7 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 			String campaignCode = null;
 			String campaignInfo = null;
 			String campaignName = null;
+			String bpName = null;
 			List<DataHolder> cHeader = sheetDataHolder.getDataList("CampaignHeader");
 			int i = 0;
 			for (DataHolder c : cHeader)
@@ -48,6 +50,7 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 					break;
 				case 1:
 					campaignInfo = c.get("campaignInfo").getStringValue();
+					bpName = c.get("bpName").getStringValue();
 					break;
 				case 2:
 					campaignName = c.get("campaignInfo").getStringValue();
@@ -113,6 +116,14 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 				dataRecord.put("Campaign Info", dataHolder);
 				
 				dataHolder = new SimpleMapDataHolder();
+				dataHolder.setValue(SalesDataHelper.extractListLotCode(campaignInfo));
+				dataRecord.put("KeyCode", dataHolder);
+				
+				dataHolder = new SimpleMapDataHolder();
+				dataHolder.setValue(bpName);
+				dataRecord.put("BP Name", dataHolder);
+				
+				dataHolder = new SimpleMapDataHolder();
 				dataHolder.setValue(sheetName);
 				dataRecord.put("Lot (Excel Sheet Name)", dataHolder);
 				
@@ -167,7 +178,7 @@ public class DailyPerformanceTrackingByLotFileTransform implements DialyFileTran
 		{
 			for (String sheetName : sheetNames)
 			{
-				if (sheetName.contains("DailyPerformanceTracking") || sheetName.contains("DailyPerformanceTracking_ByLot") || sheetName.contains("Summary") || sheetName.contains("ALL") || sheetName.contains("All"))
+				if (sheetName.contains("DailyPerformanceTracking") || sheetName.contains("DailyPerformanceTracking_ByLot") || sheetName.contains("Summary") || sheetName.contains("summary") || sheetName.contains("ALL") || sheetName.contains("All"))
 				{
 					removeFirstSheet = true;
 					continue;

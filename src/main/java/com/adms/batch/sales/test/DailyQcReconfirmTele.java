@@ -12,7 +12,11 @@ public class DailyQcReconfirmTele {
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTIKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTIKBANK");
 //		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MSIGUOB", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MSIGUOB");
 
-		test("D:/Work/Report/DailyReport/201411");
+//		test("D:/Work/Report/DailyReport/201410");
+//		test("D:/Work/Report/DailyReport/201411");
+//		test("D:/Work/Report/DailyReport/201412");
+//		test("D:/Work/Report/DailyReport/201501");
+		test(args[0]);
 	}
 
 	/*public static void runRoot(String sInputPath, String sOutputPath)

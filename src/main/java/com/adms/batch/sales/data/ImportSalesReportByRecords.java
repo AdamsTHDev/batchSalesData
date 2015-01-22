@@ -210,7 +210,7 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		
 		
 
-		String rootPath = "D:/Work/Report/DailyReport/201411/TELE/MTLKBANK";
+		String rootPath = "D:/Work/Report/DailyReport/201412";
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{

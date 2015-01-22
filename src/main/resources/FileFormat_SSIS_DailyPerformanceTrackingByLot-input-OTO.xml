@@ -6,6 +6,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -51,6 +52,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -69,7 +71,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -96,6 +98,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -114,7 +117,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -141,6 +144,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -159,7 +163,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -186,6 +190,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -204,7 +209,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -231,6 +236,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -249,7 +255,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -276,6 +282,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -294,7 +301,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -321,6 +328,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -339,7 +347,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -366,6 +374,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -384,7 +393,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
@@ -411,6 +420,7 @@
 
 			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
@@ -429,7 +439,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="13" endRow="99999">
-				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd-MM-yyyy" recoveryType="TEXT"/>
 				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
 				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
