@@ -3,6 +3,9 @@ package com.adms.batch.sales.test;
 import java.io.File;
 import java.io.FilenameFilter;
 
+import com.adms.batch.sales.data.ssis.DailyQcReconfirmFileTransform;
+import com.adms.batch.sales.support.FileWalker;
+
 public class DailyQcReconfirmOto {
 
 	public static void main(String[] args)

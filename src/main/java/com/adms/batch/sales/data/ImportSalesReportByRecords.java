@@ -5,7 +5,7 @@ import java.io.FilenameFilter;
 import java.util.Date;
 import java.util.Locale;
 
-import com.adms.batch.sales.test.FileWalker;
+import com.adms.batch.sales.support.FileWalker;
 import com.adms.batch.sales.test.TestSalesMain;
 import com.adms.utils.Logger;
 
