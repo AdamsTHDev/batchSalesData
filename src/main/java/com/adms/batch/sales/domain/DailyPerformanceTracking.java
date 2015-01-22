@@ -18,7 +18,8 @@ import com.adms.common.domain.BaseDomain;
  */
 @Entity
 @Table(name = "BILLING_RESULT")
-@NamedNativeQueries({ @NamedNativeQuery(name = "findDailyPerformanceTrackingByCampaign", query = "exec [dbo].[DAILY_PERFORMANCE_TRACKING] ?, ?", resultClass = DailyPerformanceTracking.class)  })
+@NamedNativeQueries({ @NamedNativeQuery(name = "findDailyPerformanceTrackingByCampaign", query = "exec [dbo].[DAILY_PERFORMANCE_TRACKING] ?, ?", resultClass = DailyPerformanceTracking.class),
+	@NamedNativeQuery(name = "findDailyPerformanceKeyCodeByCampaign", query = "select [Campaign Code] + KeyCode + [Date] as [Record ID], NULL as [LOT_EFFECTIVE_DATE], NULL as [Section], NULL as [TYP], NULL as [TSR No], NULL as [Total Lead Used], NULL as [Total Completed], NULL as [SPC], NULL as [Sale Pending], NULL as [Sale], NULL as [Referral Lead], NULL as [New Lead Used / TSR], NULL as [New Lead Used], NULL as [New Lead Remaining], NULL as [List Conv#], NULL as [Lead Load], NULL as [Print Date], NULL as [To Date], NULL as [From Date], NULL as [Follow up (Remaining)], NULL as [Date], NULL as [Contact], NULL as [Campaign Name], NULL as [Campaign Info], NULL as [Campaign Code], NULL as [Callback/ Nocontact (Remaining)], NULL as [Callback / Nocontact / Follow Used], NULL as [BP Name], NULL as [BP CR%], NULL as [AYP], NULL as [AMP], dp.KeyCode from [dbo].[daily_performance_tracking_report_cons] dp left outer join LIST_LOT ll on dp.KeyCode = ll.LIST_LOT_CODE where [Campaign Code] like ? order by ll.LOT_EFFECTIVE_DATE asc", resultClass = DailyPerformanceTracking.class)})
 public class DailyPerformanceTracking extends BaseDomain {
 
 	private static final long serialVersionUID = 4640567838018338096L;
@@ -26,6 +27,9 @@ public class DailyPerformanceTracking extends BaseDomain {
 	@Id
 	@Column(name = "Record ID")
 	private String recordId;
+
+	@Column(name = "Section")
+	private Integer section;
 
 	@Column(name = "Date")
 	private String date;
@@ -90,6 +94,9 @@ public class DailyPerformanceTracking extends BaseDomain {
 	@Column(name = "KeyCode")
 	private String keyCode;
 
+	@Column(name = "LOT_EFFECTIVE_DATE")
+	private Date lotEffectiveDate;
+
 	@Column(name = "BP Name")
 	private String bpName;
 
@@ -122,6 +129,16 @@ public class DailyPerformanceTracking extends BaseDomain {
 	public void setRecordId(String recordId)
 	{
 		this.recordId = recordId;
+	}
+
+	public Integer getSection()
+	{
+		return section;
+	}
+
+	public void setSection(Integer section)
+	{
+		this.section = section;
 	}
 
 	public String getDate()
@@ -334,6 +351,16 @@ public class DailyPerformanceTracking extends BaseDomain {
 		this.keyCode = keyCode;
 	}
 
+	public Date getLotEffectiveDate()
+	{
+		return lotEffectiveDate;
+	}
+
+	public void setLotEffectiveDate(Date lotEffectiveDate)
+	{
+		this.lotEffectiveDate = lotEffectiveDate;
+	}
+
 	public String getBpName()
 	{
 		return bpName;
@@ -417,10 +444,10 @@ public class DailyPerformanceTracking extends BaseDomain {
 	@Override
 	public String toString()
 	{
-		return "DailyPerformanceTracking [recordId=" + recordId + ", date=" + date + ", tsrNo=" + tsrNo + ", newLeadUsedPerTsr=" + newLeadUsedPerTsr + ", newLeadUsed=" + newLeadUsed + ", callbackNocontactFollowUsed=" + callbackNocontactFollowUsed + ", totalLeadUsed=" + totalLeadUsed
-				+ ", callbackNocontactRemaining=" + callbackNocontactRemaining + ", followUpRemaining=" + followUpRemaining + ", totalCompleted=" + totalCompleted + ", contact=" + contact + ", sale=" + sale + ", bpCr=" + bpCr + ", spc=" + spc + ", listConversion=" + listConversion + ", typ=" + typ
-				+ ", amp=" + amp + ", ayp=" + ayp + ", campaignCode=" + campaignCode + ", campaignName=" + campaignName + ", campaignInfo=" + campaignInfo + ", keyCode=" + keyCode + ", bpName=" + bpName + ", formDate=" + formDate + ", toDate=" + toDate + ", printDate=" + printDate + ", leadLoad="
-				+ leadLoad + ", newLeadRemaining=" + newLeadRemaining + ", referralLead=" + referralLead + ", salePending=" + salePending + "]";
+		return "DailyPerformanceTracking [recordId=" + recordId + ", section=" + section + ", date=" + date + ", tsrNo=" + tsrNo + ", newLeadUsedPerTsr=" + newLeadUsedPerTsr + ", newLeadUsed=" + newLeadUsed + ", callbackNocontactFollowUsed=" + callbackNocontactFollowUsed + ", totalLeadUsed="
+				+ totalLeadUsed + ", callbackNocontactRemaining=" + callbackNocontactRemaining + ", followUpRemaining=" + followUpRemaining + ", totalCompleted=" + totalCompleted + ", contact=" + contact + ", sale=" + sale + ", bpCr=" + bpCr + ", spc=" + spc + ", listConversion=" + listConversion
+				+ ", typ=" + typ + ", amp=" + amp + ", ayp=" + ayp + ", campaignCode=" + campaignCode + ", campaignName=" + campaignName + ", campaignInfo=" + campaignInfo + ", keyCode=" + keyCode + ", lotEffectiveDate=" + lotEffectiveDate + ", bpName=" + bpName + ", formDate=" + formDate
+				+ ", toDate=" + toDate + ", printDate=" + printDate + ", leadLoad=" + leadLoad + ", newLeadRemaining=" + newLeadRemaining + ", referralLead=" + referralLead + ", salePending=" + salePending + "]";
 	}
 
 }

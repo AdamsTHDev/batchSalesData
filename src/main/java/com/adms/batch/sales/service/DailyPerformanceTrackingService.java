@@ -9,4 +9,7 @@ public interface DailyPerformanceTrackingService {
 	public List<DailyPerformanceTracking> findDailyPerformanceTrackingByCampaign(String campaignCode, String keyCode)
 			throws Exception;
 
+	public List<String> findDailyPerformanceKeyCodeByCampaign(String campaignCode)
+			throws Exception;
+
 }
