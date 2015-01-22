@@ -49,9 +49,12 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.adms.batch.sales.domain.TestDomain</value>
+				<value>com.adms.batch.sales.domain.BillingResult</value>
+				<value>com.adms.batch.sales.domain.BillingStatus</value>
 				<value>com.adms.batch.sales.domain.CallCenter</value>
 				<value>com.adms.batch.sales.domain.Campaign</value>
 				<value>com.adms.batch.sales.domain.CofStatus</value>
+				<value>com.adms.batch.sales.domain.DailyPerformanceTracking</value>
 				<value>com.adms.batch.sales.domain.EocCallOutcome</value>
 				<value>com.adms.batch.sales.domain.EocCallOutcomeCount</value>
 				<value>com.adms.batch.sales.domain.FileContent</value>
