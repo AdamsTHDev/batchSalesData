@@ -6,23 +6,19 @@ import java.io.FilenameFilter;
 import com.adms.batch.sales.data.ssis.DailyPerformanceTrackingByLotFileTransform;
 import com.adms.batch.sales.support.FileWalker;
 
-public class DailyPerformanceTrackingByLotOto {
+public class DailyPerformanceTrackingByLotOto extends AbstractImportSalesJob {
 
 	public static void main(String[] args)
 			throws Exception
 	{
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MTLBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MTLBL");
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MSIGBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MSIGBL");
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/FWDTVD", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/FWDTVD");
-
 //		test("D:/Work/Report/DailyReport/201410");
 //		test("D:/Work/Report/DailyReport/201411");
 //		test("D:/Work/Report/DailyReport/201412");
 //		test("D:/Work/Report/DailyReport/201501");
-		test(args[0]);
+		new DailyPerformanceTrackingByLotOto().test(args[0]);
 	}
 
-	public static void test(String sInputPath)
+	public void test(String sInputPath)
 			throws Exception
 	{
 		FileWalker fw = new FileWalker();
@@ -48,7 +44,7 @@ public class DailyPerformanceTrackingByLotOto {
 				outputPath.mkdirs();
 			}
 
-			System.out.println(fileName + " --> " + outputFileNameSsis);
+			log.info(fileName + " --> " + outputFileNameSsis);
 			new DailyPerformanceTrackingByLotFileTransform().transform("FileFormat_SSIS_DailyPerformanceTrackingByLot-input-OTO.xml", new File(fileName), "FileFormat_SSIS_DailyPerformanceTrackingByLot-output.xml", new File(outputFileNameSsis));
 		}
 	}

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DailyTsrProduction" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily TSR Production">
+
+		<DataSheet sheetIndex="0" sheetName="In-complete">
+
+			<DataCell row="3" column="B" dataType="TEXT" fieldName="Project" />
+			<DataCell row="3" column="E" dataType="TEXT" fieldName="Campaign_Description" />
+			<DataCell row="4" column="B" dataType="TEXT" fieldName="Lot_Description" />
+			<DataCell row="4" column="E" dataType="TEXT" fieldName="Status" />
+			<DataCell row="5" column="B" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="Date_Start" />
+			<DataCell row="5" column="E" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="Date_End" />
+			<DataCell row="6" column="B" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="Print_Date" />
+
+			<DataCell row="7" column="F" dataType="TEXT" fieldName="List_lot1" />
+			<DataRecord listSourceName="dataRecord1" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="G" dataType="TEXT" fieldName="List_lot2" />
+			<DataRecord listSourceName="dataRecord2" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="H" dataType="TEXT" fieldName="List_lot3" />
+			<DataRecord listSourceName="dataRecord3" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="I" dataType="TEXT" fieldName="List_lot4" />
+			<DataRecord listSourceName="dataRecord4" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="J" dataType="TEXT" fieldName="List_lot5" />
+			<DataRecord listSourceName="dataRecord5" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="K" dataType="TEXT" fieldName="List_lot6" />
+			<DataRecord listSourceName="dataRecord6" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+		</DataSheet>
+
+		<DataSheet sheetIndex="1" sheetName="Completed">
+
+			<DataCell row="3" column="B" dataType="TEXT" fieldName="Project" />
+			<DataCell row="3" column="E" dataType="TEXT" fieldName="Campaign_Description" />
+			<DataCell row="4" column="B" dataType="TEXT" fieldName="Lot_Description" />
+			<DataCell row="4" column="E" dataType="TEXT" fieldName="Status" />
+			<DataCell row="5" column="B" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="Date_Start" />
+			<DataCell row="5" column="E" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="Date_End" />
+			<DataCell row="6" column="B" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="Print_Date" />
+
+			<DataCell row="7" column="F" dataType="TEXT" fieldName="List_lot1" />
+			<DataRecord listSourceName="dataRecord1" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="G" dataType="TEXT" fieldName="List_lot2" />
+			<DataRecord listSourceName="dataRecord2" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="H" dataType="TEXT" fieldName="List_lot3" />
+			<DataRecord listSourceName="dataRecord3" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="I" dataType="TEXT" fieldName="List_lot4" />
+			<DataRecord listSourceName="dataRecord4" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="J" dataType="TEXT" fieldName="List_lot5" />
+			<DataRecord listSourceName="dataRecord5" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataCell row="7" column="K" dataType="TEXT" fieldName="List_lot6" />
+			<DataRecord listSourceName="dataRecord6" beginRow="8" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Status and Reason"/>
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="Reason_Main"/>
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="No_of_Records" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

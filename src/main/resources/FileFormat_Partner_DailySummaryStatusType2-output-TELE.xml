@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Daily_Performance_Tracking_ByLot.xls" fileType="EXCEL" locale="en-US"
+			templateFile="template/Daily_Summary_Status_Type_2.xls"
+			templateSheetName="Summary Status Type2 Template"
+			removeTemplateAfterComplete="TRUE">
+
+	<DataSet description="Daily Summary Status Type 2">
+
+		<DataSheet sheetIndex="1" displayGridlines="FALSE">
+			<!-- begin header -->
+			<DataCell row="1" column="A" dataType="TEXT" defaultValue="Summary Status Type2 Report"
+						templateRow="1" templateColumn="A" rowMergeFrom="1" rowMergeTo="2" columnMergeFrom="A" columnMergeTo="E"/>
+
+			<DataCell row="3" column="A" dataType="TEXT" defaultValue="Project :"    templateRow="3" templateColumn="A"/>
+			<DataCell row="4" column="A" dataType="TEXT" defaultValue="List Lot :"   templateRow="4" templateColumn="A"/>
+			<DataCell row="5" column="A" dataType="TEXT" defaultValue="Date Start:"  templateRow="5" templateColumn="A"/>
+			<DataCell row="6" column="A" dataType="TEXT" defaultValue="Print Date :" templateRow="6" templateColumn="A"/>
+			
+			<DataCell row="3" column="B" dataType="TEXT" templateRow="3" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="3" column="C" dataType="TEXT" templateRow="3" templateColumn="C"/>
+			<DataCell row="4" column="B" dataType="TEXT" templateRow="4" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="4" column="C" dataType="TEXT" templateRow="4" templateColumn="C"/>
+			<DataCell row="5" column="B" dataType="TEXT" templateRow="5" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="5" column="C" dataType="TEXT" templateRow="5" templateColumn="C"/>
+			<DataCell row="6" column="B" dataType="TEXT" templateRow="6" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="6" column="C" dataType="TEXT" templateRow="6" templateColumn="C"/>
+			
+			<DataCell row="3" column="D" dataType="TEXT" defaultValue="Campaign :" templateRow="3" templateColumn="D"/>
+			<DataCell row="4" column="D" dataType="TEXT" defaultValue="Status :"   templateRow="4" templateColumn="D"/>
+			<DataCell row="5" column="D" dataType="TEXT" defaultValue="Date End :" templateRow="5" templateColumn="D"/>
+
+			<DataCell row="3" column="E" dataType="TEXT" templateRow="3" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
+			<DataCell row="3" column="F" dataType="TEXT" templateRow="3" templateColumn="F"/>
+			<DataCell row="4" column="E" dataType="TEXT" templateRow="4" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
+			<DataCell row="4" column="F" dataType="TEXT" templateRow="4" templateColumn="F"/>
+			<DataCell row="5" column="E" dataType="TEXT" templateRow="5" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
+			<DataCell row="5" column="F" dataType="TEXT" templateRow="5" templateColumn="F"/>
+			
+			<DataCell row="7" column="A" dataType="TEXT" defaultValue="Status and Reason"
+						templateRow="7" templateColumn="A" rowMergeFrom="7" rowMergeTo="8" columnMergeFrom="A" columnMergeTo="E"/>
+			
+			<!-- end header -->
+
+			<DataRecord listSourceName="dailyRecord" beginRow="9" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT"   templateRow="9" templateColumn="A" fieldName="ReasonMain" columnMergeFrom="A" columnMergeTo="B"/>
+				<DataCell row="1" column="B" dataType="TEXT"   templateRow="9" templateColumn="B"/>
+				<DataCell row="1" column="C" dataType="TEXT"   templateRow="9" templateColumn="C" fieldName="ReasonSub"  columnMergeFrom="C" columnMergeTo="E"/>
+				<DataCell row="1" column="D" dataType="TEXT"   templateRow="9" templateColumn="D"/>
+				<DataCell row="1" column="E" dataType="TEXT"   templateRow="9" templateColumn="E"/>
+			</DataRecord>
+
+			<DataRecord listSourceName="totalRecord" offsetRow="0" offsetFrom="dailyRecord" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT"   templateRow="53" templateColumn="A" fieldName="total"      columnMergeFrom="A" columnMergeTo="E"/>
+				<DataCell row="1" column="B" dataType="TEXT"   templateRow="53" templateColumn="B"/>
+				<DataCell row="1" column="C" dataType="TEXT"   templateRow="53" templateColumn="C"/>
+				<DataCell row="1" column="D" dataType="TEXT"   templateRow="53" templateColumn="D"/>
+				<DataCell row="1" column="E" dataType="TEXT"   templateRow="53" templateColumn="E"/>
+			</DataRecord>
+
+			
+			<ColumnWidth column="A" width="5000"/>
+			<ColumnWidth column="B" width="3000"/>
+			<ColumnWidth column="C" width="7000"/>
+			<ColumnWidth column="D" width="5000"/>
+			<ColumnWidth column="E" width="3000"/>
+			<ColumnWidth column="F" width="8000"/>
+			<ColumnWidth column="G" width="8000"/>
+			<ColumnWidth column="H" width="8000"/>
+			<ColumnWidth column="I" width="8000"/>
+			<ColumnWidth column="J" width="8000"/>
+			<ColumnWidth column="K" width="8000"/>
+			<ColumnWidth column="L" width="8000"/>
+			<ColumnWidth column="M" width="8000"/>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

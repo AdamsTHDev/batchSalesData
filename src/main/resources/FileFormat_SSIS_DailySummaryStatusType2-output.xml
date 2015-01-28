@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DailySummaryStatusType2" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily Summary Status Type 2">
+
+		<DataSheet sheetIndex="2" outputSheetName="Template summary table2">
+			<!-- begin column name -->
+			<DataCell row="1" column="A" dataType="TEXT" defaultValue="ReportID" />
+			<DataCell row="1" column="B" dataType="TEXT" defaultValue="Status" />
+			<DataCell row="1" column="C" dataType="TEXT" defaultValue="Campaign_Description" />
+			<DataCell row="1" column="D" dataType="TEXT" defaultValue="Reason_Main" />
+			<DataCell row="1" column="E" dataType="TEXT" defaultValue="Reason_SUB" />
+			<DataCell row="1" column="F" dataType="TEXT" defaultValue="Lot_Description" />
+			<DataCell row="1" column="G" dataType="TEXT" defaultValue="KeyCode" />
+			<DataCell row="1" column="H" dataType="TEXT" defaultValue="No_of_Records" />
+			<DataCell row="1" column="I" dataType="TEXT" defaultValue="Date_Start" />
+			<DataCell row="1" column="J" dataType="TEXT" defaultValue="Date_End" />
+			<DataCell row="1" column="K" dataType="TEXT" defaultValue="Print_Date" />
+			<DataCell row="1" column="L" dataType="TEXT" defaultValue="Project" />
+			<DataCell row="1" column="M" dataType="TEXT" defaultValue=" list_lot" />
+			<!-- end column name -->
+
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="NUMBER" fieldName="ReportID"/>
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="Status" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="Campaign_Description" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="Reason_Main" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="Reason_SUB" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="List_lot" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="KeyCode" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="No_of_Records" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="Date_Start" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="Date_End" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="Print_Date" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="Project" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="Lot_Description" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

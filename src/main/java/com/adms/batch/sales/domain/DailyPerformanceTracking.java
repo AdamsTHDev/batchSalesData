@@ -12,10 +12,6 @@ import javax.persistence.Table;
 
 import com.adms.common.domain.BaseDomain;
 
-/**
- * @author kampon.pan
- *
- */
 @Entity
 @Table(name = "BILLING_RESULT")
 @NamedNativeQueries({ @NamedNativeQuery(name = "findDailyPerformanceTrackingByCampaign", query = "exec [dbo].[DAILY_PERFORMANCE_TRACKING] ?, ?", resultClass = DailyPerformanceTracking.class),

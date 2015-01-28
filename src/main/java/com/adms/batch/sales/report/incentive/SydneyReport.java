@@ -1,4 +1,4 @@
-package com.adms.batch.sales.incentive.report;
+package com.adms.batch.sales.report.incentive;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;

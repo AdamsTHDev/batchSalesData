@@ -2,17 +2,23 @@
 <FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="QC Reconfirm">
 		<DataSheet sheetIndex="0">
+			<DataRecord listSourceName="dataHeader" beginRow="2" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Date: " firstRowAsData="TRUE" />
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldName" />
+				<DataCell row="1" column="B" dataType="DATE" dataFormat="MM/dd/yyyy" fieldName="printDate" />
+				<EndRecordCondition column="A" comparator="NE" checkValue="Date: " />
+			</DataRecord>
 			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999">
 				<BeginRecordCondition column="C" comparator="EQ" checkValue="X-Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" autoTrim="TRUE" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="listLotName" />
 				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="xReference" />
-				<DataCell row="1" column="D" dataType="DATE" fieldName="saleDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="D" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="saleDate" />
 				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="customerFullName" />
 				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="tsrCode" />
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="tsrFullName" />
 				<DataCell row="1" column="H" dataType="TEXT" autoTrim="TRUE" fieldName="supFullName" />
-				<DataCell row="1" column="I" dataType="DATE" fieldName="qcStatusDate" dataFormat="dd/MM/yyyy" />
+				<DataCell row="1" column="I" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="qcStatusDate" />
 				<DataCell row="1" column="J" dataType="TEXT" autoTrim="TRUE" fieldName="qcId" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMethod" />
 				<DataCell row="1" column="L" dataType="NUMBER" fieldName="premium" />

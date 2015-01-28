@@ -28,16 +28,16 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
 
-		<property name="url"
-			value="jdbc:jtds:sqlserver://localhost/SALES;integrated security=false" />
-		<property name="username" value="salesadm" />
-		<property name="password" value="Passw0rd" />
 
-<!-- 
 		<property name="url"
 			value="jdbc:jtds:sqlserver://aegonsrv03/SALES;integrated security=false" />
 		<property name="username" value="sa" />
 		<property name="password" value="Aegon03" />
+<!-- 
+		<property name="url"
+			value="jdbc:jtds:sqlserver://localhost/SALES;integrated security=false" />
+		<property name="username" value="salesadm" />
+		<property name="password" value="Passw0rd" />
  -->
 	</bean>
 
@@ -54,7 +54,9 @@
 				<value>com.adms.batch.sales.domain.CallCenter</value>
 				<value>com.adms.batch.sales.domain.Campaign</value>
 				<value>com.adms.batch.sales.domain.CofStatus</value>
-				<value>com.adms.batch.sales.domain.DailyPerformanceTracking</value>
+				<!-- <value>com.adms.batch.sales.domain.DailyPerformanceTracking</value> -->
+				<value>com.adms.batch.sales.domain.DailySummaryStatusType2Detail</value>
+				<value>com.adms.batch.sales.domain.DailySummaryStatusType2Header</value>
 				<value>com.adms.batch.sales.domain.EocCallOutcome</value>
 				<value>com.adms.batch.sales.domain.EocCallOutcomeCount</value>
 				<value>com.adms.batch.sales.domain.FileContent</value>

@@ -6,62 +6,19 @@ import java.io.FilenameFilter;
 import com.adms.batch.sales.data.ssis.DailySalesReportByRecordsFileTransform;
 import com.adms.batch.sales.support.FileWalker;
 
-public class DailySalesReportByRecordsMsigUob {
+public class DailySalesReportByRecordsMsigUob extends AbstractImportSalesJob {
 
 	public static void main(String[] args)
 			throws Exception
 	{
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTLKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTLKBANK");
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MTIKBANK", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MTIKBANK");
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/TELE/MSIGUOB", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/TELE/MSIGUOB");
-//
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MTLBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MTLBL");
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/MSIGBL", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/MSIGBL");
-//		runRoot("D:/Work/ADAMS/Report/DailyReport/201410/OTO/FWDTVD", "D:/Work/ADAMS/Report/DailyReportTransformOutput/201410/OTO/FWDTVD");
-
 //		test("D:/Work/Report/DailyReport/201410");
 //		test("D:/Work/Report/DailyReport/201411");
 //		test("D:/Work/Report/DailyReport/201412");
 //		test("D:/Work/Report/DailyReport/201501");
-		test(args[0]);
+		new DailySalesReportByRecordsMsigUob().test(args[0]);
 	}
 
-	public static void runRoot(String sInputPath, String sOutputPath)
-			throws Exception
-	{
-		File inputPath = new File(sInputPath);
-
-		for (File p : inputPath.listFiles())
-		{
-			if (p.isDirectory())
-			{
-				for (File inputFile : p.listFiles(new FilenameFilter()
-				{
-
-					public boolean accept(File dir, String name)
-					{
-						return name.contains("Sales_Report_By_Records.xls") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx"));
-					}
-				}))
-				{
-					System.out.println(inputFile);
-					File outputPath = new File(sOutputPath + "/" + inputFile.getParentFile().getName());
-					if (!outputPath.exists())
-					{
-						outputPath.mkdirs();
-					}
-
-					File outputFile = new File(outputPath.getPath() + "/" + inputFile.getName().substring(0, inputFile.getName().lastIndexOf('.')) + ".xlsx");
-
-					new DailySalesReportByRecordsFileTransform().transform("FileFormat_SSIS_DailySalesReportByRecords-input.xml", inputFile, "FileFormat_SSIS_DailySalesReportByRecords-output.xml", outputFile);
-				}
-			}
-
-			continue;
-		}
-	}
-	
-	public static void test(String sInputPath)
+	public void test(String sInputPath)
 			throws Exception
 	{
 		FileWalker fw = new FileWalker();
@@ -87,7 +44,7 @@ public class DailySalesReportByRecordsMsigUob {
 				outputPath.mkdirs();
 			}
 			
-			System.out.println(fileName + " --> " + outputFileNameSsis);
+			log.info(fileName + " --> " + outputFileNameSsis);
 			new DailySalesReportByRecordsFileTransform().transform("FileFormat_SSIS_DailySalesReportByRecords-input-MSIGUOB.xml", new File(fileName), "FileFormat_SSIS_DailySalesReportByRecords-output.xml", new File(outputFileNameSsis));
 		}
 		

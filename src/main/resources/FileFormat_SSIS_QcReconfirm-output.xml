@@ -20,6 +20,7 @@
 			<DataCell row="1" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="ReconfirmRemark"/>
 			<DataCell row="1" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="CurrentReason"/>
 			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="CurrentRemark"/>
+			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="PrintDate"/>
 			
 			<DataCell row="2" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Campaign"/>
 			<DataCell row="2" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="ListLot"/>
@@ -39,6 +40,7 @@
 			<DataCell row="2" column="P" dataType="TEXT" fieldName="fieldP" defaultValue="ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark ReconfirmRemark"/>
 			<DataCell row="2" column="Q" dataType="TEXT" fieldName="fieldQ" defaultValue="CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason CurrentReason"/>
 			<DataCell row="2" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark"/>
+			<DataCell row="2" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="20150101"/>
 			
 			<DataRecord listSourceName="qcList" beginRow="3" endRow="99999">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X Ref" />
@@ -60,6 +62,7 @@
 				<DataCell row="1" column="P" dataType="TEXT" fieldName="reconfirmRemark" />
 				<DataCell row="1" column="Q" dataType="TEXT" fieldName="currentReason" />
 				<DataCell row="1" column="R" dataType="TEXT" fieldName="currentRemark" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="printDate" />
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>

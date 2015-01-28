@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLClassLoader;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,6 +34,13 @@ public class DailyQcReconfirmFileTransform implements DialyFileTransform {
 		for (String sheetName : sheetNames)
 		{
 			DataHolder sheetDataHolder = fileDataHolder.get(sheetName);
+			
+			List<DataHolder> dataHeaderList = sheetDataHolder.getDataList("dataHeader");
+			Date printDate = null;
+			for (DataHolder dataHeader : dataHeaderList)
+			{
+				printDate = (Date) dataHeader.get("printDate").getValue();
+			}
 
 			List<DataHolder> dataRecordList = sheetDataHolder.getDataList("qcList");
 			for (DataHolder dataRecord : dataRecordList)
@@ -52,6 +60,10 @@ public class DailyQcReconfirmFileTransform implements DialyFileTransform {
 					dataHolder.setValue(dateFormat.format(dataRecord.get("qcStatusDate").getValue()));
 					dataRecord.put("qcStatusDate", dataHolder);
 				}
+
+				dataHolder = new SimpleMapDataHolder();
+				dataHolder.setValue(dateFormat.format(printDate));
+				dataRecord.put("printDate", dataHolder);
 			}
 		}
 
