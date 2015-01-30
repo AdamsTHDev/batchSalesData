@@ -12,4 +12,7 @@ public interface DailySummaryStatusType2DetailService {
 	public List<String> findKeyCodeByCampaignAndProcessDate(String campaign, String processDate)
 			throws Exception;
 
+	public String findLotDecriptionByKeyCode(String keyCode)
+			throws Exception;
+
 }

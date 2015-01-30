@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.adms.batch.sales.domain.DailySummaryStatusType2Detail;
 import com.adms.batch.sales.service.DailySummaryStatusType2DetailService;
 import com.adms.batch.sales.test.AbstractImportSalesJob;
@@ -30,8 +32,8 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 		
 		new File(args[2]).mkdirs();
 
-		campaignName = "AEGON MSIG-POM";
-		processDate = "20150107";
+		campaignName = "AEGON FWD-ENDOWMENT";
+		processDate = "20150105";
 //		String outputFileName = args[2] 
 		
 		DailySummaryStatusType2Report batch = new DailySummaryStatusType2Report();
@@ -54,7 +56,7 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 		OutputStream output = null;
 		try
 		{
-			fileFormat = URLClassLoader.getSystemResourceAsStream("FileFormat_Partner_DailySummaryStatusType2-output-TELE.xml");
+			fileFormat = URLClassLoader.getSystemResourceAsStream("FileFormat_Partner_DailySummaryStatusType2-output-OTO.xml");
 			output = new FileOutputStream(outputFileName);
 			new ExcelFormat(fileFormat).writeExcel(output, fileDataHolder);
 		}
@@ -76,50 +78,81 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 
 	private void aggregateFileDataHolder(String campaignName, String processDate, DataHolder fileDataHolder) throws Exception
 	{
+		DailySummaryStatusType2DetailService service = (DailySummaryStatusType2DetailService) getBean("dailySummaryStatusType2DetailService");
+		
 		DataHolder sheetDataHolder = new SimpleMapDataHolder();
 		fileDataHolder.put("SummaryStatusType2Report", sheetDataHolder);
 		fileDataHolder.setSheetNameByIndex(1, "SummaryStatusType2Report");
-
-		List<DataHolder> recordDataHolderList = new ArrayList<DataHolder>();
-		List<DailySummaryStatusType2Detail> dataList = getData(campaignName, processDate);
-		for (DailySummaryStatusType2Detail detail : dataList)
-		{
-			DataHolder recordDataHolder = new SimpleMapDataHolder();
-			DataHolder dataHolder = null;
-			
-			dataHolder = new SimpleMapDataHolder();
-			dataHolder.setValue(detail.getReasonMain());
-			recordDataHolder.put("ReasonMain", dataHolder);
-
-			dataHolder = new SimpleMapDataHolder();
-			dataHolder.setValue(detail.getReasonSub());
-			recordDataHolder.put("ReasonSub", dataHolder);
-			
-			recordDataHolderList.add(recordDataHolder);
-		}
 		
-		sheetDataHolder.putDataList("dailyRecord", recordDataHolderList);
-		
-		
-		List<DataHolder> totalDataHolderList = new ArrayList<DataHolder>();
-		DataHolder totalRecordDataHolder = new SimpleMapDataHolder();
-		DataHolder totalDataHolder = new SimpleMapDataHolder();
-		totalDataHolder.setValue("Total");
-		totalRecordDataHolder.put("total", totalDataHolder);
-		totalDataHolderList.add(totalRecordDataHolder);
-		sheetDataHolder.putDataList("totalRecord", totalDataHolderList);
-	}
-
-	private List<DailySummaryStatusType2Detail> getData(String campaignName, String processDate) throws Exception
-	{
-		DailySummaryStatusType2DetailService service = (DailySummaryStatusType2DetailService) getBean("dailySummaryStatusType2DetailService");
 		List<String> keyCodeList = service.findKeyCodeByCampaignAndProcessDate(campaignName, processDate);
+
+		int i = 1;
 		for (String keyCode : keyCodeList)
 		{
-			return service.findByCampaignAndProcessDateAndKeyCode(campaignName, processDate, keyCode);
+			String lotDescription = service.findLotDecriptionByKeyCode(keyCode);
+			
+			DataHolder lotDescriptionDataHolder = new SimpleMapDataHolder();
+			lotDescriptionDataHolder.setValue(lotDescription);
+			
+			List<DataHolder> headerRecordList = new ArrayList<DataHolder>();
+			DataHolder headerRecord = new SimpleMapDataHolder();
+			headerRecord.put("LotDescription", lotDescriptionDataHolder);
+			headerRecordList.add(headerRecord);
+			sheetDataHolder.putDataList("headerRecord" + i, headerRecordList);
+			
+			List<DataHolder> dataRecordList = new ArrayList<DataHolder>();
+			List<DailySummaryStatusType2Detail> dailySummaryStatusType2DetailList = service.findByCampaignAndProcessDateAndKeyCode(campaignName, processDate, keyCode);
+			String reasonMainCheck = "";
+			Integer totalMain = 0;
+			Integer totalSub = 0;
+			for (DailySummaryStatusType2Detail detail : dailySummaryStatusType2DetailList)
+			{
+				if (StringUtils.isBlank(reasonMainCheck))
+				{
+					reasonMainCheck = detail.getReasonMain();
+				}
+
+				DataHolder dataRecord = null;
+				DataHolder noOfRecord = null;
+
+				if (!reasonMainCheck.equals(detail.getReasonMain()))
+				{
+					dataRecord = new SimpleMapDataHolder();
+					noOfRecord = new SimpleMapDataHolder();
+					noOfRecord.setValue(totalSub);
+					dataRecord.put("NoOfRecord", noOfRecord);
+					dataRecordList.add(dataRecord);
+
+					totalSub = 0;
+					reasonMainCheck = detail.getReasonMain();
+				}
+
+				dataRecord = new SimpleMapDataHolder();
+				noOfRecord = new SimpleMapDataHolder();
+				noOfRecord.setValue(detail.getNoOfRecord());
+				dataRecord.put("NoOfRecord", noOfRecord);
+				dataRecordList.add(dataRecord);
+
+				totalMain += detail.getNoOfRecord();
+				totalSub += detail.getNoOfRecord();
+			}
+
+			DataHolder dataRecord = new SimpleMapDataHolder();
+			DataHolder noOfRecord = new SimpleMapDataHolder();
+			noOfRecord.setValue(totalSub);
+			dataRecord.put("NoOfRecord", noOfRecord);
+			dataRecordList.add(dataRecord);
+
+			dataRecord = new SimpleMapDataHolder();
+			noOfRecord = new SimpleMapDataHolder();
+			noOfRecord.setValue(totalMain);
+			dataRecord.put("NoOfRecord", noOfRecord);
+			dataRecordList.add(dataRecord);
+
+			sheetDataHolder.putDataList("dataRecord" + i, dataRecordList);
+
+			i++;
 		}
-//		return service.findByCampaignAndProcessDate(campaignName, processDate);
-		return null;
 	}
 
 }

@@ -275,7 +275,7 @@
 			<DataCell row="39" column="E" dataType="TEXT" templateRow="39" templateColumn="E"/>
 			
 			<DataCell row="40" column="A" dataType="TEXT" defaultValue="Sale"
-						templateRow="40" templateColumn="A" rowMergeFrom="40" rowMergeTo="47" columnMergeFrom="A" columnMergeTo="B"/>
+						templateRow="40" templateColumn="A" rowMergeFrom="40" rowMergeTo="46" columnMergeFrom="A" columnMergeTo="B"/>
 			<DataCell row="40" column="B" dataType="TEXT" templateRow="40" templateColumn="B"/>
 			<DataCell row="41" column="A" dataType="TEXT" templateRow="41" templateColumn="A"/>
 			<DataCell row="41" column="B" dataType="TEXT" templateRow="41" templateColumn="B"/>
@@ -287,10 +287,8 @@
 			<DataCell row="44" column="B" dataType="TEXT" templateRow="44" templateColumn="B"/>
 			<DataCell row="45" column="A" dataType="TEXT" templateRow="45" templateColumn="A"/>
 			<DataCell row="45" column="B" dataType="TEXT" templateRow="45" templateColumn="B"/>
-			<DataCell row="46" column="A" dataType="TEXT" templateRow="46" templateColumn="A"/>
-			<DataCell row="46" column="B" dataType="TEXT" templateRow="46" templateColumn="B"/>
-			<DataCell row="47" column="A" dataType="TEXT" templateRow="47" templateColumn="A"/>
-			<DataCell row="47" column="B" dataType="TEXT" templateRow="47" templateColumn="B"/>
+			<DataCell row="46" column="A" dataType="TEXT" templateRow="10" templateColumn="A"/>
+			<DataCell row="46" column="B" dataType="TEXT" templateRow="10" templateColumn="B"/>
 			
 			<DataCell row="40" column="C" dataType="TEXT" defaultValue="พอใจในผลประโยชน์โครงการ"
 						templateRow="40" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
@@ -322,59 +320,54 @@
 			<DataCell row="45" column="D" dataType="TEXT" templateRow="45" templateColumn="D"/>
 			<DataCell row="45" column="E" dataType="TEXT" templateRow="45" templateColumn="E"/>
 			
-			<DataCell row="46" column="C" dataType="TEXT" defaultValue="referral"
+			<DataCell row="46" column="C" dataType="TEXT" defaultValue=""
 						templateRow="46" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
 			<DataCell row="46" column="D" dataType="TEXT" templateRow="46" templateColumn="D"/>
 			<DataCell row="46" column="E" dataType="TEXT" templateRow="46" templateColumn="E"/>
 			
-			<DataCell row="47" column="C" dataType="TEXT" defaultValue=""
-						templateRow="47" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
-			<DataCell row="47" column="D" dataType="TEXT" templateRow="47" templateColumn="D"/>
-			<DataCell row="47" column="E" dataType="TEXT" templateRow="47" templateColumn="E"/>
-			
-			<DataCell row="48" column="A" dataType="TEXT" defaultValue="UnReachable"
-						templateRow="48" templateColumn="A" rowMergeFrom="48" rowMergeTo="52" columnMergeFrom="A" columnMergeTo="B"/>
+			<DataCell row="47" column="A" dataType="TEXT" defaultValue="UnReachable"
+						templateRow="9" templateColumn="A" rowMergeFrom="47" rowMergeTo="51" columnMergeFrom="A" columnMergeTo="B"/>
+			<DataCell row="47" column="B" dataType="TEXT" templateRow="47" templateColumn="B"/>
+			<DataCell row="48" column="A" dataType="TEXT" templateRow="48" templateColumn="A"/>
 			<DataCell row="48" column="B" dataType="TEXT" templateRow="48" templateColumn="B"/>
 			<DataCell row="49" column="A" dataType="TEXT" templateRow="49" templateColumn="A"/>
 			<DataCell row="49" column="B" dataType="TEXT" templateRow="49" templateColumn="B"/>
 			<DataCell row="50" column="A" dataType="TEXT" templateRow="50" templateColumn="A"/>
 			<DataCell row="50" column="B" dataType="TEXT" templateRow="50" templateColumn="B"/>
-			<DataCell row="51" column="A" dataType="TEXT" templateRow="51" templateColumn="A"/>
-			<DataCell row="51" column="B" dataType="TEXT" templateRow="51" templateColumn="B"/>
-			<DataCell row="52" column="A" dataType="TEXT" templateRow="52" templateColumn="A"/>
-			<DataCell row="52" column="B" dataType="TEXT" templateRow="52" templateColumn="B"/>
+			<DataCell row="51" column="A" dataType="TEXT" templateRow="10" templateColumn="A"/>
+			<DataCell row="51" column="B" dataType="TEXT" templateRow="10" templateColumn="B"/>
 			
-			<DataCell row="48" column="C" dataType="TEXT" defaultValue="IT Clear Lead"
+			<DataCell row="47" column="C" dataType="TEXT" defaultValue="IT Clear Lead"
+						templateRow="47" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
+			<DataCell row="47" column="D" dataType="TEXT" templateRow="47" templateColumn="D"/>
+			<DataCell row="47" column="E" dataType="TEXT" templateRow="47" templateColumn="E"/>
+			
+			<DataCell row="48" column="C" dataType="TEXT" defaultValue="ผู้อื่นรับสายและไม่ต้องการให้โทรมาอีก ( ผู้อื่นรับสาย – เบอร์ถูก )"
 						templateRow="48" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
 			<DataCell row="48" column="D" dataType="TEXT" templateRow="48" templateColumn="D"/>
 			<DataCell row="48" column="E" dataType="TEXT" templateRow="48" templateColumn="E"/>
 			
-			<DataCell row="49" column="C" dataType="TEXT" defaultValue="ผู้อื่นรับสายและไม่ต้องการให้โทรมาอีก ( ผู้อื่นรับสาย – เบอร์ถูก )"
+			<DataCell row="49" column="C" dataType="TEXT" defaultValue="ผู้อื่นรับสายและไม่ต้องการให้โทรมาอีก (ไม่ใช่เจ้าของเบอร์ - เบอร์ผิด)"
 						templateRow="49" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
 			<DataCell row="49" column="D" dataType="TEXT" templateRow="49" templateColumn="D"/>
 			<DataCell row="49" column="E" dataType="TEXT" templateRow="49" templateColumn="E"/>
 			
-			<DataCell row="50" column="C" dataType="TEXT" defaultValue="ผู้อื่นรับสายและไม่ต้องการให้โทรมาอีก (ไม่ใช่เจ้าของเบอร์ - เบอร์ผิด)"
+			<DataCell row="50" column="C" dataType="TEXT" defaultValue="ตามตัวไม่ได้"
 						templateRow="50" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
 			<DataCell row="50" column="D" dataType="TEXT" templateRow="50" templateColumn="D"/>
 			<DataCell row="50" column="E" dataType="TEXT" templateRow="50" templateColumn="E"/>
 			
-			<DataCell row="51" column="C" dataType="TEXT" defaultValue="ตามตัวไม่ได้"
+			<DataCell row="51" column="C" dataType="TEXT" defaultValue=""
 						templateRow="51" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
 			<DataCell row="51" column="D" dataType="TEXT" templateRow="51" templateColumn="D"/>
 			<DataCell row="51" column="E" dataType="TEXT" templateRow="51" templateColumn="E"/>
 			
-			<DataCell row="52" column="C" dataType="TEXT" defaultValue=""
-						templateRow="52" templateColumn="C" columnMergeFrom="C" columnMergeTo="E"/>
-			<DataCell row="52" column="D" dataType="TEXT" templateRow="52" templateColumn="D"/>
-			<DataCell row="52" column="E" dataType="TEXT" templateRow="52" templateColumn="E"/>
-			
-			<DataCell row="53" column="A" dataType="TEXT" defaultValue="Total"
+			<DataCell row="52" column="A" dataType="TEXT" defaultValue="Total"
 						templateRow="53" templateColumn="A" columnMergeFrom="A" columnMergeTo="E"/>
-			<DataCell row="53" column="B" dataType="TEXT" templateRow="53" templateColumn="B"/>
-			<DataCell row="53" column="C" dataType="TEXT" templateRow="53" templateColumn="C"/>
-			<DataCell row="53" column="D" dataType="TEXT" templateRow="53" templateColumn="D"/>
-			<DataCell row="53" column="E" dataType="TEXT" templateRow="53" templateColumn="E"/>
+			<DataCell row="52" column="B" dataType="TEXT" templateRow="53" templateColumn="B"/>
+			<DataCell row="52" column="C" dataType="TEXT" templateRow="53" templateColumn="C"/>
+			<DataCell row="52" column="D" dataType="TEXT" templateRow="53" templateColumn="D"/>
+			<DataCell row="52" column="E" dataType="TEXT" templateRow="53" templateColumn="E"/>
 			<!-- Row Header -->
 			
 			<!-- end header -->
@@ -404,6 +397,8 @@
 			<!-- Data 2 -->
 
 
+			<RowHeight row="7" height="10"/>
+
 			<ColumnWidth column="A" width="5000"/>
 			<ColumnWidth column="B" width="3000"/>
 			<ColumnWidth column="C" width="7000"/>
@@ -417,6 +412,7 @@
 			<ColumnWidth column="K" width="8000"/>
 			<ColumnWidth column="L" width="8000"/>
 			<ColumnWidth column="M" width="8000"/>
+
 		</DataSheet>
 
 	</DataSet>

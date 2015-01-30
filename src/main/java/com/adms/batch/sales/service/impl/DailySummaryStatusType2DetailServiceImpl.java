@@ -41,7 +41,22 @@ public class DailySummaryStatusType2DetailServiceImpl implements DailySummarySta
 				}
 			}
 		}
+
 		return keyCodeList;
+	}
+
+	public String findLotDecriptionByKeyCode(String keyCode)
+			throws Exception
+	{
+		List<DailySummaryStatusType2Detail> dailySummaryStatusType2DetailList  = this.dailySummaryStatusType2DetailDao.findByNamedQuery("findLotDecriptionByKeyCode", keyCode);
+
+		String lotDescription = null;
+		if (CollectionUtils.isNotEmpty(dailySummaryStatusType2DetailList))
+		{
+			lotDescription = dailySummaryStatusType2DetailList.get(0).getLotDescription();
+		}
+
+		return lotDescription;
 	}
 
 }

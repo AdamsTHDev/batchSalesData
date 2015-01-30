@@ -11,8 +11,9 @@ import com.adms.common.domain.BaseDomain;
 
 @Entity
 @Table(name = "V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D")
-@NamedNativeQueries({ @NamedNativeQuery(name = "findByCampaignAndProcessDateAndKeyCode", query = "SELECT * FROM [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateStart like ? and KeyCode like ? order by KeyCode, SortMain, SortSub", resultClass = DailySummaryStatusType2Detail.class),
-	@NamedNativeQuery(name = "findKeyCodeByCampaignAndProcessDate", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Campaign, null as ReasonMain, null as ReasonSub, null as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateStart like ? order by KeyCode ", resultClass = DailySummaryStatusType2Detail.class)})
+@NamedNativeQueries({ @NamedNativeQuery(name = "findByCampaignAndProcessDateAndKeyCode", query = "SELECT * FROM [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateEnd like ? and KeyCode like ? order by KeyCode, SortMain, SortSub", resultClass = DailySummaryStatusType2Detail.class),
+	@NamedNativeQuery(name = "findKeyCodeByCampaignAndProcessDate", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Campaign, null as ReasonMain, null as ReasonSub, null as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateEnd like ? order by KeyCode ", resultClass = DailySummaryStatusType2Detail.class),
+	@NamedNativeQuery(name = "findLotDecriptionByKeyCode", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Campaign, null as ReasonMain, null as ReasonSub, LotDescription + ' (' + KeyCode + ')' as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where KeyCode like ?", resultClass = DailySummaryStatusType2Detail.class)})
 public class DailySummaryStatusType2Detail extends BaseDomain {
 
 	private static final long serialVersionUID = 4640567838018338096L;
