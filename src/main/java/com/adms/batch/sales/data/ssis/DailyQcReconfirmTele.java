@@ -3,8 +3,8 @@ package com.adms.batch.sales.data.ssis;
 import java.io.File;
 import java.io.FilenameFilter;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.support.FileWalker;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 
 public class DailyQcReconfirmTele extends AbstractImportSalesJob {
 

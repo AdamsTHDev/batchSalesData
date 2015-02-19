@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.Tsr;
 

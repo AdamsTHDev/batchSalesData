@@ -17,6 +17,9 @@ public interface SalesProcessService {
 	public SalesProcess findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus(String xReference, Date statusDate, ReconfirmStatus reconfirmStatus)
 			throws Exception;
 
+	public SalesProcess findSalesProcessByXRefferenceAndStatusDateAndPolicyStatus(String xReference, Date statusDate, String policyStatus)
+			throws Exception;
+
 	public List<SalesProcess> findSalesProcessByExample(SalesProcess salesProcess)
 			throws Exception;
 

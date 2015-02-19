@@ -19,9 +19,10 @@
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="tsrFullName" />
 				<DataCell row="1" column="H" dataType="TEXT" autoTrim="TRUE" fieldName="supFullName" />
 				<DataCell row="1" column="I" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="qcStatusDate" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="qcStatusDateText" />
 				<DataCell row="1" column="J" dataType="TEXT" autoTrim="TRUE" fieldName="qcId" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMethod" />
-				<DataCell row="1" column="L" dataType="NUMBER" fieldName="premium" />
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="premium" dataFormat="#"/>
 				<DataCell row="1" column="M" dataType="TEXT" autoTrim="TRUE" fieldName="tsrStatus" />
 				<DataCell row="1" column="N" dataType="TEXT" autoTrim="TRUE" fieldName="qcStatus" />
 				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="reconfirmReason" />

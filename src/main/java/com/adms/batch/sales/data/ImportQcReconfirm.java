@@ -16,7 +16,6 @@ import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.Tsr;
 import com.adms.batch.sales.support.FileWalker;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -27,8 +26,6 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 			throws Exception
 	{
 		log.debug("extractTsrRecord " + qcDataHolder.printValues());
-
-		qcReconfirm.setQcStatusTime((Date) qcDataHolder.get("qcStatusDate").getValue());
 
 		String qcId = qcDataHolder.get("qcId").getStringValue();
 		qcReconfirm.setQcId(qcId);
@@ -95,12 +92,12 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 				throw e;
 			}
 
-//			String xReferenceString = qcDataHolder.get("xReference").getStringValue();
+			String xReferenceString = qcDataHolder.get("xReference").getStringValue();
 			String customerFullName = qcDataHolder.get("customerFullName").getStringValue();
 
 			Sales xReference = null;
 			//disable find by xRef
-			/*if (StringUtils.isNoneBlank(xReferenceString))
+			if (StringUtils.isNotBlank(xReferenceString))
 			{
 				// try search by X-Reference
 				try
@@ -111,7 +108,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 				{
 					e.printStackTrace();
 				}
-			}*/
+			}
 
 			if (xReference == null)
 			{
@@ -122,6 +119,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 				}
 				catch (Exception e)
 				{
+					log.error("customerFullName: " + customerFullName + ", tsr: " + tsr + ", saleDate: " + saleDate);
 					e.printStackTrace();
 					if (xReference == null)
 					{
@@ -135,14 +133,40 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 				throw new Exception("not found SalesRecord for QC Reconfirm: " + qcDataHolder.printValues());
 			}
 
-			QcReconfirm qcReconfirm = getQcReconfirmService().findByxReferenceAndQcStatusTime(xReference.getxReference(), (Date) qcDataHolder.get("qcStatusDate").getValue());
+			QcReconfirm qcReconfirm = null;
+			Date qcStatusDate = (Date) qcDataHolder.get("qcStatusDate").getValue();
+			Date recoveryQcStatusDate = null;
+			try
+			{
+				qcReconfirm = getQcReconfirmService().findByxReferenceAndQcStatusTime(xReference.getxReference(), qcStatusDate);
+			}
+			catch (Exception e)
+			{
+				log.warn("xReference.getxReference(): " + xReference.getxReference());
+				log.warn("qcStatusDate: " + qcStatusDate);
+
+				try
+				{
+					String qcStatusDateText = qcDataHolder.get("qcStatusDateText").getStringValue();
+					log.warn("recovery qcStatusDateText: " + qcStatusDateText);
+					
+					recoveryQcStatusDate = new SimpleDateFormat("MM/dd/yy HH:mm:ss a", Locale.US).parse(qcStatusDateText);
+					log.warn("recoveryQcStatusDate: " + recoveryQcStatusDate);
+					
+					qcReconfirm = getQcReconfirmService().findByxReferenceAndQcStatusTime(xReference.getxReference(), recoveryQcStatusDate);
+				}
+				catch (Exception e2)
+				{
+					throw e2;
+				}
+			}
 
 			boolean newQc = false;
 			if (qcReconfirm == null)
 			{
 				qcReconfirm = new QcReconfirm();
 				qcReconfirm.setxReference(xReference);
-				qcReconfirm.setQcStatusTime((Date) qcDataHolder.get("qcStatusDate").getValue());
+				qcReconfirm.setQcStatusTime(recoveryQcStatusDate != null ? recoveryQcStatusDate : qcStatusDate);
 				newQc = true;
 			}
 			else
@@ -170,7 +194,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 		}
 	}
 
-	private void importFile(File fileFormat, File qcRecordFile, String sheetName) throws Exception
+	private void importFile(File fileFormat, File qcRecordFile) throws Exception
 	{
 		log.info("importFile: " + qcRecordFile.getAbsolutePath());
 		InputStream input = null;
@@ -181,7 +205,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 			input = new FileInputStream(qcRecordFile);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
-			List<DataHolder> qcDataHolderList = fileDataHolder.get(sheetName).getDataList("qcList");
+			List<DataHolder> qcDataHolderList = fileDataHolder.get(fileDataHolder.getSheetNameByIndex(0)).getDataList("qcList");
 
 			importQc(qcDataHolderList);
 		}
@@ -205,105 +229,26 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 			throws Exception
 	{
 		System.out.println("main");
-		
-//		String fileFormat = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_Sydney_QcReconfirm.xml";
-//		String pathInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Reconfirm/QA Reconfirm/QA Reconfirm_Jul 14/";
-//		String fileInput = null;
-//		String sheetName = null;
-//
-//		fileInput = "QA_Reconfirm_MSIG UOB Super Care_31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTI DDOP PA CASH BACK_31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTI Kbank DDOP Safety Care 31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTI POM PA CASH BACK_31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTL KBANK DDOP Health Return Cash_31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTLife Kbank DDOP HIP_31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTLife Kbank POM Cash Back_31 July 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		// Aug
-//		pathInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Reconfirm/QA Reconfirm/QA Reconfirm_Aug 14/";
-//		fileInput = "QA_Reconfirm_MSIG UOB Super Care_30 Aug 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTI DDOP PA CASH BACK_29 August 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTI Kbank DDOP Safety Care 29 August 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTI POM PA CASH BACK_30 August 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTL KBANK DDOP Health Return Cash_29 August 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTLife Kbank DDOP HIP_29 August 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		fileInput = "QA_Reconfirm_MTLife Kbank POM Cash Back_29 August 2014_test.xlsx";
-//		sheetName = "QC_Reconfirm";
-//		new TestQcReconfirmMain(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		pathInput = "D:/Work/Report/Sydney Trip Report/Rawdata 201410/Rawdata_Oct 2014 (Sydney trip)/";
-//		fileInput = "0_qc_reconfirm_all_Oct_14.xlsx";
-//		sheetName = "Sheet1";
-//		new ImportQcReconfirm(false).importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
-//
-//		pathInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Reconfirm/QA Reconfirm/";
-//		fileInput = "test.xlsx";
-//		sheetName = "Sheet1";
-//		new TestQcReconfirmMain().importFile(new File(fileFormat), new File(pathInput + fileInput), sheetName);
 
-
-		String rootPath = "D:/Work/Report/DailyReport/201412";
+		String rootPath = "D:/Work/Report/DailyReport/201501/TELE/MTLKBANK";
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return name.toLowerCase().contains("reconfirm") && (name.toLowerCase().endsWith(".xls") || name.toLowerCase().endsWith(".xlsx"));
+				return !name.contains("~$") && (name.toLowerCase().contains("reconfirm") && (name.toLowerCase().endsWith(".xls") || name.toLowerCase().endsWith(".xlsx")));
 			}
 		});
 
 		ImportQcReconfirm batch = new ImportQcReconfirm();
 		batch.setLogLevel(Logger.INFO);
 
-		String dataSheetName = null;
 		String fileFormatLocation = null;
 		
 		for (String filename : fw.getFileList())
 		{
-//			System.out.println("import file: " + filename);
-
 			if (filename.contains("OTO"))
 			{
-				dataSheetName = "Sheet1";
-				
 				if (filename.contains("FWDTVD"))
 				{
 					int i = filename.indexOf("FWD_TVD_Endowment 15_7_") + 23;
@@ -357,14 +302,13 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 				{
 					fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-TELE.xml";
 				}
-				dataSheetName = "QC_Reconfirm";
 			}
 			else
 			{
 				throw new Exception("file not supported [" + filename + "]");
 			}
 
-			batch.importFile(new File(fileFormatLocation), new File(filename), dataSheetName);
+			batch.importFile(new File(fileFormatLocation), new File(filename));
 		}
 	}
 

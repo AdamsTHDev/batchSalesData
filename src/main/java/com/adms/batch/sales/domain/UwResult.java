@@ -77,6 +77,14 @@ public class UwResult extends BaseAuditDomain {
 	@JoinColumn(name = "COF_STATUS", referencedColumnName = "COF_STATUS")
 	private CofStatus cofStatus;
 
+	@Column(name = "COF_ISSUE_DATE")
+	@Temporal(TemporalType.DATE)
+	private Date cofIssueDate;
+
+	@Column(name = "COF_DUE_DATE")
+	@Temporal(TemporalType.DATE)
+	private Date cofDueDate;
+
 	@Column(name = "COF_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date cofDate;
@@ -181,6 +189,26 @@ public class UwResult extends BaseAuditDomain {
 		this.uwRemark = uwRemark;
 	}
 
+	public Date getCofIssueDate()
+	{
+		return cofIssueDate;
+	}
+
+	public void setCofIssueDate(Date cofIssueDate)
+	{
+		this.cofIssueDate = cofIssueDate;
+	}
+
+	public Date getCofDueDate()
+	{
+		return cofDueDate;
+	}
+
+	public void setCofDueDate(Date cofDueDate)
+	{
+		this.cofDueDate = cofDueDate;
+	}
+
 	public CofStatus getCofStatus()
 	{
 		return cofStatus;
@@ -205,7 +233,7 @@ public class UwResult extends BaseAuditDomain {
 	public String toString()
 	{
 		return "UwResult [id=" + id + ", fileImport=" + fileImport + ", xReference=" + xReference + ", appSubmitDate=" + appSubmitDate + ", itemNo=" + itemNo + ", uwSubmitDate=" + uwSubmitDate + ", uwResultDate=" + uwResultDate + ", uwDecision=" + uwDecision + ", uwStatus=" + uwStatus
-				+ ", uwRemark=" + uwRemark + ", cofStatus=" + cofStatus + ", cofDate=" + cofDate + "]";
+				+ ", uwRemark=" + uwRemark + ", cofStatus=" + cofStatus + ", cofIssueDate=" + cofIssueDate + ", cofDueDate=" + cofDueDate + ", cofDate=" + cofDate + "]";
 	}
 
 }

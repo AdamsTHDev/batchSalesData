@@ -35,6 +35,14 @@ public class BillingResultServiceImpl implements BillingResultService {
 		return this.billingResultDao.find(id);
 	}
 
+	public List<BillingResult> findBillingResultByxReference(String xReference)
+			throws Exception
+	{
+		List<BillingResult> billingResultList = this.billingResultDao.findByNamedQuery("findBillingResultByxReference", xReference);
+
+		return billingResultList.size() > 0 ? billingResultList : null;
+	}
+
 	public BillingResult findBillingResultByxRefAndBillingDate(String xReference, Date billingDate)
 			throws Exception
 	{

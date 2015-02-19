@@ -23,6 +23,7 @@ import com.adms.common.domain.BaseAuditDomain;
 @Entity
 @Table(name = "SALES")
 @NamedNativeQueries({ @NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndTsrAndSaleDate", query = "select sales.* from SALES sales where replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like '%' + ? and sales.TSR_CODE = ? and sales.SALE_DATE = ?", resultClass = Sales.class),
+		@NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndInsurerAndListSource", query = "select s.* from SALES s inner join LIST_LOT l on s.LIST_LOT_CODE = l.LIST_LOT_CODE inner join CAMPAIGN c on l.CAMPAIGN_CODE = c.CAMPAIGN_CODE inner join TSR t on s.TSR_CODE = t.TSR_CODE where replace(replace(s.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like '%' + ? and c.INSURER = ? and c.LIST_SOURCE = ?", resultClass = Sales.class),
 		@NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndSaleDate", query = "select sales.* from SALES sales where replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like '%' + ? and sales.SALE_DATE = ?", resultClass = Sales.class),
 		@NamedNativeQuery(name = "findSalesRecordBySaleMonth", query = "select sales.* from SALES sales where convert(nvarchar(6), sales.SALE_DATE, 112) = ?", resultClass = Sales.class) })
 public class Sales extends BaseAuditDomain {
@@ -40,6 +41,9 @@ public class Sales extends BaseAuditDomain {
 
 	@Column(name = "X_REFERENCE")
 	private String xReference;
+
+	@Column(name = "X_REFERENCE_NEW")
+	private String xReferenceNew;
 
 	@ManyToOne
 	@Fetch(FetchMode.JOIN)
@@ -143,6 +147,16 @@ public class Sales extends BaseAuditDomain {
 	public void setxReference(String xReference)
 	{
 		this.xReference = xReference;
+	}
+
+	public String getxReferenceNew()
+	{
+		return xReferenceNew;
+	}
+
+	public void setxReferenceNew(String xReferenceNew)
+	{
+		this.xReferenceNew = xReferenceNew;
 	}
 
 	public ListLot getListLot()
@@ -348,10 +362,9 @@ public class Sales extends BaseAuditDomain {
 	@Override
 	public String toString()
 	{
-		return "Sales [id=" + id + ", fileImport=" + fileImport + ", xReference=" + xReference + ", listLot=" + listLot + ", tsr=" + tsr + ", supervisor=" + supervisor + ", saleDate=" + saleDate + ", approveDate=" + approveDate + ", itemNo=" + itemNo + ", customerFullName=" + customerFullName
-				+ ", customerTitle=" + customerTitle + ", customerFirstName=" + customerFirstName + ", customerMidName=" + customerMidName + ", customerLastName=" + customerLastName + ", product=" + product + ", premium=" + premium + ", annualFyp=" + annualFyp + ", protectAmount=" + protectAmount + ", paymentMethod="
-				+ paymentMethod + ", paymentFrequency=" + paymentFrequency + ", qaStatus=" + qaStatus + ", qaReason=" + qaReason + ", qaReasonDetail=" + qaReasonDetail + "]";
+		return "Sales [id=" + id + ", fileImport=" + fileImport + ", xReference=" + xReference + ", xReferenceNew=" + xReferenceNew + ", listLot=" + listLot + ", tsr=" + tsr + ", supervisor=" + supervisor + ", saleDate=" + saleDate + ", approveDate=" + approveDate + ", itemNo=" + itemNo
+				+ ", customerFullName=" + customerFullName + ", customerTitle=" + customerTitle + ", customerFirstName=" + customerFirstName + ", customerMidName=" + customerMidName + ", customerLastName=" + customerLastName + ", product=" + product + ", premium=" + premium + ", annualFyp="
+				+ annualFyp + ", protectAmount=" + protectAmount + ", paymentMethod=" + paymentMethod + ", paymentFrequency=" + paymentFrequency + ", qaStatus=" + qaStatus + ", qaReason=" + qaReason + ", qaReasonDetail=" + qaReasonDetail + "]";
 	}
-
 
 }

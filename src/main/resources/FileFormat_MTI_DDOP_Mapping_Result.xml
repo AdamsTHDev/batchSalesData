@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="DDP_MAPPING" fileType="EXCEL" locale="en-US">
+	<DataSet description="DDOP Mapping Result">
+
+		<DataSheet sheetIndex="0">
+
+			<DataRecord listSourceName="dataApproveRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Approve" firstRowAsData="FALSE" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="uniqueId" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="campaignCode" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="keyCode" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="planCode" />
+				<DataCell row="1" column="H" dataType="TEXT" autoTrim="TRUE" fieldName="kbankCampaignCode" />
+				<DataCell row="1" column="I" dataType="TEXT" autoTrim="TRUE" fieldName="tsrCode" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="last4DigitCardNo" />
+				<DataCell row="1" column="J" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="callDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="batchDate" />
+				<DataCell row="1" column="P" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="sendToKbankDate" />
+				<DataCell row="1" column="Q" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="approveDate" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="rejectDate" />
+				<EndRecordCondition column="F" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRejectRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Reject" firstRowAsData="FALSE" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="uniqueId" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="campaignCode" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="keyCode" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="planCode" />
+				<DataCell row="1" column="H" dataType="TEXT" autoTrim="TRUE" fieldName="kbankCampaignCode" />
+				<DataCell row="1" column="I" dataType="TEXT" autoTrim="TRUE" fieldName="tsrCode" />
+				<DataCell row="1" column="O" dataType="TEXT" autoTrim="TRUE" fieldName="last4DigitCardNo" />
+				<DataCell row="1" column="J" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="callDate" />
+				<DataCell row="1" column="M" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="batchDate" />
+				<DataCell row="1" column="P" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="sendToKbankDate" />
+				<DataCell row="1" column="Q" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="approveDate" />
+				<DataCell row="1" column="L" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="rejectDate" />
+				<EndRecordCondition column="F" comparator="BLANK" />
+			</DataRecord>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

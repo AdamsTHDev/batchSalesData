@@ -13,6 +13,9 @@ public interface BillingResultService {
 	public BillingResult findBillingResultById(Long id)
 			throws Exception;
 
+	public List<BillingResult> findBillingResultByxReference(String xReference)
+			throws Exception;
+
 	public BillingResult findBillingResultByxRefAndBillingDate(String xReference, Date billingDate)
 			throws Exception;
 

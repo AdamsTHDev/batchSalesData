@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FileFormat fileName="Update New Staff by month for comm_MMMMM YY_no_pw.xlsx" fileType="EXCEL" locale="en-US">
 	<DataSet description="TSR_Update">
-		<DataSheet sheetName="Data">
+		<DataSheet sheetIndex="0">
 			<DataRecord listSourceName="tsrList" beginRow="1" endRow="99999">
 				<BeginRecordCondition column="C" comparator="EQ" checkValue="Site" firstRowAsData="FALSE" />
 				<DataCell row="1" column="A" dataType="NUMBER" fieldName="no" />
@@ -14,11 +14,11 @@
 				<DataCell row="1" column="K" dataType="DATE" fieldName="effectiveDate" dataFormat="yyyy-MM-dd" />
 				<DataCell row="1" column="L" dataType="DATE" fieldName="resignDate" dataFormat="yyyy-MM-dd" />
 				<DataCell row="1" column="N" dataType="TEXT" fieldName="status" autoTrim="TRUE" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="remark" autoTrim="TRUE" />
 				<!--
 				<DataCell row="1" column="I" dataType="TEXT" fieldName="campaign" autoTrim="TRUE" />
 				<DataCell row="1" column="J" dataType="TEXT" fieldName="campaign" autoTrim="TRUE" />
 				<DataCell row="1" column="M" dataType="TEXT" fieldName="tatalSales" autoTrim="TRUE" />
-				<DataCell row="1" column="O" dataType="TEXT" fieldName="remark" autoTrim="TRUE" />
 				-->
 				<EndRecordCondition column="B" comparator="BLANK" />
 			</DataRecord>

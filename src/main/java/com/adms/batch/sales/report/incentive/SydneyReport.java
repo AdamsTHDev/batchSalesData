@@ -25,13 +25,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.IncentiveComposite;
 import com.adms.batch.sales.domain.IncentiveCriteria;
 import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.Tsr;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.utils.Logger;
 
 public class SydneyReport extends AbstractImportSalesJob {
@@ -97,12 +97,13 @@ public class SydneyReport extends AbstractImportSalesJob {
 				log.debug("QA Status --> " + qaStatus);
 				log.debug("QA Reason --> " + qaReason);
 
-				IncentiveComposite incentiveComposite = getIncentiveCompositeService().findByIncentiveAndCampaignCode("SYDNEY", campaign.getCampaignCode());
 
 				log.debug("start ic");
+				IncentiveComposite incentiveComposite;
 				List<IncentiveCriteria> incentiveCriteriaList;
 				try
 				{
+					incentiveComposite = getIncentiveCompositeService().findByIncentiveAndCampaignCode("SYDNEY", campaign.getCampaignCode());
 					incentiveCriteriaList = getIncentiveCriteriaService().findBySydneyCriteria(campaign.getCampaignCode(), qaStatus.getReconfirmStatus(), qaReason);
 				}
 				catch (Exception e)
@@ -998,7 +999,7 @@ public class SydneyReport extends AbstractImportSalesJob {
 	{
 		SydneyReport batch = new SydneyReport();
 		batch.setLogLevel(Logger.INFO);
-		batch.totalMonth = 6;
+		batch.totalMonth = 7;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}
 

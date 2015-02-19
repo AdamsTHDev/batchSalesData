@@ -22,8 +22,8 @@ import com.adms.common.domain.BaseAuditDomain;
 @Entity
 @Table(name = "SALES_PROCESS")
 @NamedNativeQueries({
-		@NamedNativeQuery(name = "findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus", query = "select salesProcess.* from SALES_PROCESS salesProcess where salesProcess.X_REFERENCE = ? and salesProcess.STATUS_DATE = ? and salesProcess.RECONFIRM_STATUS = ?", resultClass = SalesProcess.class)/*,
-		@NamedNativeQuery(name = "findSalesProcessByXRefferenceAndReconfirmStatus", query = "select salesProcess.* from SALES_PROCESS salesProcess where salesProcess.X_REFERENCE = ? and salesProcess.STATUS_DATE is NULL and salesProcess.RECONFIRM_STATUS = ?", resultClass = SalesProcess.class)*/ })
+		@NamedNativeQuery(name = "findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus", query = "select salesProcess.* from SALES_PROCESS salesProcess where salesProcess.X_REFERENCE = ? and salesProcess.STATUS_DATE = ? and salesProcess.RECONFIRM_STATUS = ?", resultClass = SalesProcess.class),
+		@NamedNativeQuery(name = "findSalesProcessByXRefferenceAndStatusDateAndPolicyStatus", query = "select salesProcess.* from SALES_PROCESS salesProcess where salesProcess.X_REFERENCE = ? and salesProcess.STATUS_DATE = ? and salesProcess.POLICY_STATUS = ?", resultClass = SalesProcess.class) })
 public class SalesProcess extends BaseAuditDomain {
 
 	private static final long serialVersionUID = 7794769129567742338L;
@@ -58,6 +58,9 @@ public class SalesProcess extends BaseAuditDomain {
 	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "UW_STATUS", referencedColumnName = "UW_STATUS")
 	private UwStatus uwStatus;
+
+	@Column(name = "POLICY_STATUS")
+	private String policyStatus;
 
 	public Long getId()
 	{
@@ -129,10 +132,20 @@ public class SalesProcess extends BaseAuditDomain {
 		this.uwStatus = uwStatus;
 	}
 
+	public String getPolicyStatus()
+	{
+		return policyStatus;
+	}
+
+	public void setPolicyStatus(String policyStatus)
+	{
+		this.policyStatus = policyStatus;
+	}
+
 	@Override
 	public String toString()
 	{
-		return "SalesProcess [id=" + id + ", fileImport=" + fileImport + ", batchDate=" + batchDate + ", xReference=" + xReference + ", statusDate=" + statusDate + ", reconfirmStatus=" + reconfirmStatus + ", uwStatus=" + uwStatus + "]";
+		return "SalesProcess [id=" + id + ", fileImport=" + fileImport + ", batchDate=" + batchDate + ", xReference=" + xReference + ", statusDate=" + statusDate + ", reconfirmStatus=" + reconfirmStatus + ", uwStatus=" + uwStatus + ", policyStatus=" + policyStatus + "]";
 	}
 
 }

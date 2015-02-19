@@ -28,24 +28,26 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
 
-
+<!-- 
 		<property name="url"
 			value="jdbc:jtds:sqlserver://aegonsrv03/SALES;integrated security=false" />
 		<property name="username" value="sa" />
 		<property name="password" value="Aegon03" />
-<!-- 
+ -->
+ 
 		<property name="url"
 			value="jdbc:jtds:sqlserver://localhost/SALES;integrated security=false" />
 		<property name="username" value="salesadm" />
 		<property name="password" value="Passw0rd" />
- -->
+
 	</bean>
 
 	<!-- Session Factory Declaration -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-
+		<property name="packagesToScan" value="com.adms.batch.sales.domain"/>
+<!-- 
 		<property name="annotatedClasses">
 			<list>
 				<value>com.adms.batch.sales.domain.TestDomain</value>
@@ -54,9 +56,11 @@
 				<value>com.adms.batch.sales.domain.CallCenter</value>
 				<value>com.adms.batch.sales.domain.Campaign</value>
 				<value>com.adms.batch.sales.domain.CofStatus</value>
-				<!-- <value>com.adms.batch.sales.domain.DailyPerformanceTracking</value> -->
+				<value>com.adms.batch.sales.domain.DailyPerformanceTracking</value>
 				<value>com.adms.batch.sales.domain.DailySummaryStatusType2Detail</value>
 				<value>com.adms.batch.sales.domain.DailySummaryStatusType2Header</value>
+				<value>com.adms.batch.sales.domain.DdopMappingResult</value>
+				<value>com.adms.batch.sales.domain.DdopMappingStatus</value>
 				<value>com.adms.batch.sales.domain.EocCallOutcome</value>
 				<value>com.adms.batch.sales.domain.EocCallOutcomeCount</value>
 				<value>com.adms.batch.sales.domain.FileContent</value>
@@ -85,7 +89,7 @@
 				<value>com.adms.batch.sales.domain.UwStatus</value>
 			</list>
 		</property>
-
+ -->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</prop>

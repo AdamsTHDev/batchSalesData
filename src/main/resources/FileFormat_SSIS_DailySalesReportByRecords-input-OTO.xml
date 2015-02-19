@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FileFormat fileName="Sales_Report_By_Records.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="Sales_Report_By_Records">
+<!-- 
 		<DataSheet sheetName="Sales_Report_By_Records">
+ -->
+		<DataSheet sheetIndex="0">
 
 			<DataCell row="2" column="B" dataType="TEXT" fieldName="campaignName" />
 			<DataCell row="4" column="B" dataType="TEXT" fieldName="listLot" />

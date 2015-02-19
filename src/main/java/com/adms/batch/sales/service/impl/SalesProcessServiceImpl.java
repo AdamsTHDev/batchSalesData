@@ -39,20 +39,24 @@ public class SalesProcessServiceImpl implements SalesProcessService {
 	public SalesProcess findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus(String xReference, Date statusDate, ReconfirmStatus reconfirmStatus)
 			throws Exception
 	{
-		List<SalesProcess> salesProcessList = null;
-
-//		if (statusDate == null)
-//		{
-//			salesProcessList = this.salesProcessDao.findByNamedQuery("findSalesProcessByXRefferenceAndReconfirmStatus", xReference, reconfirmStatus.getReconfirmStatus());
-//		}
-//		else
-//		{
-			salesProcessList = this.salesProcessDao.findByNamedQuery("findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus", xReference, statusDate, reconfirmStatus.getReconfirmStatus());
-//		}
+		List<SalesProcess> salesProcessList = this.salesProcessDao.findByNamedQuery("findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus", xReference, statusDate, reconfirmStatus.getReconfirmStatus());
 
 		if (salesProcessList.size() > 1)
 		{
 			throw new Exception("more that 1 record found for xReference[" + xReference + "] and statusDate[" + statusDate + "] and reconfirmStatus[" + reconfirmStatus.getReconfirmStatus() + "]");
+		}
+
+		return salesProcessList.size() > 0 ? salesProcessList.get(0) : null;
+	}
+
+	public SalesProcess findSalesProcessByXRefferenceAndStatusDateAndPolicyStatus(String xReference, Date statusDate, String policyStatus)
+			throws Exception
+	{
+		List<SalesProcess> salesProcessList = this.salesProcessDao.findByNamedQuery("findSalesProcessByXRefferenceAndStatusDateAndPolicyStatus", xReference, statusDate, policyStatus);
+
+		if (salesProcessList.size() > 1)
+		{
+			throw new Exception("more that 1 record found for xReference[" + xReference + "] and statusDate[" + statusDate + "] and policyStatus[" + policyStatus + "]");
 		}
 
 		return salesProcessList.size() > 0 ? salesProcessList.get(0) : null;

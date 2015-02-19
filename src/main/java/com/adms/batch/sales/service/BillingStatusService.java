@@ -15,7 +15,7 @@ public interface BillingStatusService {
 	public BillingStatus findBillingStatusByStatus(String billingStatus)
 			throws Exception;
 
-	public BillingStatus findBillingStatusByDescription(String uwDescription)
+	public BillingStatus findBillingStatusByDescription(String billingDescription)
 			throws Exception;
 
 	public List<BillingStatus> findBillingStatusByExample(BillingStatus billingStatus)

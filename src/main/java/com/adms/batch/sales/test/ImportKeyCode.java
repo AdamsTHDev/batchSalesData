@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.ListLot;
 import com.adms.imex.excelformat.DataHolder;

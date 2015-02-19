@@ -9,12 +9,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.UwDecision;
 import com.adms.batch.sales.domain.UwResult;
 import com.adms.batch.sales.domain.UwStatus;
 import com.adms.batch.sales.support.FileWalker;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -75,46 +75,63 @@ public class ImportMtlPendingPreUw extends AbstractImportSalesJob {
 		return uwResult;
 	}
 
+	private void importDataHolder(DataHolder uwDataHolder, Sales sales)
+			throws Exception
+	{
+		log.debug("sales: " + sales);
+
+		UwResult uwResult = getUwResultService().findUwResultByxReference(sales.getxReference());
+
+		boolean newUwResult = false;
+		if (uwResult == null)
+		{
+			uwResult = new UwResult();
+			uwResult.setxReference(sales);
+			newUwResult = true;
+		}
+		else
+		{
+			log.debug("found uwResult record [" + uwResult + "]");
+		}
+
+		try
+		{
+			extractUwRecord(uwDataHolder, uwResult);
+
+			if (newUwResult)
+			{
+				getUwResultService().addUwResult(uwResult, BATCH_ID);
+			}
+			else
+			{
+				getUwResultService().updateUwResult(uwResult, BATCH_ID);
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 	private void importUw(List<DataHolder> uwDataHolderList)
 			throws Exception
 	{
+		log.debug("uwDataHolderList size: " + uwDataHolderList.size());
 		for (DataHolder uwDataHolder : uwDataHolderList)
 		{
 			String xReference = uwDataHolder.get("xRef").getStringValue();
+			log.debug("xReference: " + xReference);
+			
 			Sales sales = getSalesService().findSalesRecordByXRefference(xReference);
 
 			if (sales != null)
 			{
-				UwResult uwResult = getUwResultService().findUwResultByxReference(xReference);
-
-				boolean newUwResult = false;
-				if (uwResult == null)
+				importDataHolder(uwDataHolder, sales);
+				
+				if (StringUtils.isNotBlank(sales.getxReferenceNew()))
 				{
-					uwResult = new UwResult();
-					uwResult.setxReference(sales);
-					newUwResult = true;
-				}
-				else
-				{
-					log.debug("found uwResult record [" + uwResult + "]");
-				}
-
-				try
-				{
-					extractUwRecord(uwDataHolder, uwResult);
-
-					if (newUwResult)
-					{
-						getUwResultService().addUwResult(uwResult, BATCH_ID);
-					}
-					else
-					{
-						getUwResultService().updateUwResult(uwResult, BATCH_ID);
-					}
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
+					sales = getSalesService().findSalesRecordByXRefference(sales.getxReferenceNew());
+					importDataHolder(uwDataHolder, sales);
 				}
 			}
 		}
@@ -135,9 +152,11 @@ public class ImportMtlPendingPreUw extends AbstractImportSalesJob {
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
 			List<String> sheetNames = fileDataHolder.getKeyList();
+			log.debug("Total sheet: " + sheetNames.size());
 
 			for (String sheetName : sheetNames)
 			{
+				log.debug("process sheetName: " + sheetName);
 				DataHolder sheet = fileDataHolder.get(sheetName);
 
 				List<DataHolder> uwDataHolderList = sheet.getDataList("uwRecords");
@@ -172,7 +191,6 @@ public class ImportMtlPendingPreUw extends AbstractImportSalesJob {
 			throws Exception
 	{
 		String fileFormatLocation = /* args[0]; */"D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_MTL_Pending_Pre_UW.xml";
-//		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Pending_Pre_UW/ADMS_Pending Pre UW 2014.xls";
 		String rootPath = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Pending_Pre_UW";
 
 		FileWalker fw = new FileWalker();
@@ -180,7 +198,7 @@ public class ImportMtlPendingPreUw extends AbstractImportSalesJob {
 		{
 			public boolean accept(File dir, String name)
 			{
-				return name.contains("ADMS_Pending Pre UW");
+				return name.contains("ADMS_Pending Pre UW 2015.xls") && name.contains(".xls");
 			}
 		});
 
@@ -192,6 +210,5 @@ public class ImportMtlPendingPreUw extends AbstractImportSalesJob {
 		{
 			batch.importFile(new File(fileFormatLocation), new File(filename));
 		}
-		
 	}
 }

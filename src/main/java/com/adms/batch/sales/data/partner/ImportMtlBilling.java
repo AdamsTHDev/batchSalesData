@@ -9,12 +9,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.BillingResult;
 import com.adms.batch.sales.domain.BillingStatus;
 import com.adms.batch.sales.domain.PaymentFrequency;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.support.FileWalker;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -70,6 +70,43 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 		return billingResult;
 	}
 
+	private void importDataHolder(DataHolder dataHolder, Sales sales)
+			throws Exception
+	{
+		Date billingDate = (Date) dataHolder.get("effDate").getValue();
+		BillingResult billingResult = getBillingResultService().findBillingResultByxRefAndBillingDate(sales.getxReference(), billingDate);
+
+		boolean newBillingResult = false;
+		if (billingResult == null)
+		{
+			billingResult = new BillingResult();
+			billingResult.setxReference(sales);
+			newBillingResult = true;
+		}
+		else
+		{
+			log.debug("found billingResult record [" + billingResult + "]");
+		}
+
+		try
+		{
+			extractRecord(dataHolder, billingResult);
+
+			if (newBillingResult)
+			{
+				getBillingResultService().addBillingResult(billingResult, BATCH_ID);
+			}
+			else
+			{
+				getBillingResultService().updateBillingResult(billingResult, BATCH_ID);
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 	private void importDataHolderList(List<DataHolder> dataHolderList)
 			throws Exception
 	{
@@ -80,40 +117,20 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 			if (StringUtils.isNotBlank(xReference))
 			{
 				Sales sales = getSalesService().findSalesRecordByXRefference(xReference);
+				log.debug("xReference: " + xReference + ", sales: " + sales);
 
 				if (sales != null)
 				{
-					Date billingDate = (Date) dataHolder.get("effDate").getValue();
-					BillingResult billingResult = getBillingResultService().findBillingResultByxRefAndBillingDate(xReference, billingDate);
+					importDataHolder(dataHolder, sales);
 
-					boolean newBillingResult = false;
-					if (billingResult == null)
+					if (StringUtils.isNotBlank(sales.getxReferenceNew()))
 					{
-						billingResult = new BillingResult();
-						billingResult.setxReference(sales);
-						newBillingResult = true;
-					}
-					else
-					{
-						log.debug("found billingResult record [" + billingResult + "]");
-					}
+						sales = getSalesService().findSalesRecordByXRefference(sales.getxReferenceNew());
 
-					try
-					{
-						extractRecord(dataHolder, billingResult);
-
-						if (newBillingResult)
+						if (sales != null)
 						{
-							getBillingResultService().addBillingResult(billingResult, BATCH_ID);
+							importDataHolder(dataHolder, sales);
 						}
-						else
-						{
-							getBillingResultService().updateBillingResult(billingResult, BATCH_ID);
-						}
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
 					}
 				}
 			}
@@ -172,8 +189,6 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 			throws Exception
 	{
 		String fileFormatLocation = /* args[0]; */"D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_MTL_Result_1st_Billing.xml";
-//		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing/DDOP_Plan_Post 30_12_2014 report.xls";
-//		String fileDataLocation = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing/ADMS Plan Post 30_12_2014 report.xls";
 		String rootPath = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing";
 
 		FileWalker fw = new FileWalker();
@@ -186,14 +201,12 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 		});
 
 		ImportMtlBilling batch = new ImportMtlBilling();
-		batch.setLogLevel(Logger.INFO);
+		batch.setLogLevel(Logger.DEBUG);
 		batch.setProcessDate(new Date());
 
 		for (String filename : fw.getFileList())
 		{
 			batch.importFile(new File(fileFormatLocation), new File(filename));
 		}
-		
-		
 	}
 }

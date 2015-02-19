@@ -84,6 +84,31 @@ public class SalesServiceImpl implements SalesService {
 		return salesList.get(0);
 	}
 
+	public Sales findSalesRecordByCustomerFullNameAndInsurerAndListSource(String customerFullName, String insurer, String listSource)
+			throws Exception
+	{
+		customerFullName = customerFullName.replaceAll(" ", "");
+
+		List<Sales> salesList = this.salesDao.findByNamedQuery("findSalesRecordByCustomerFullNameAndInsurerAndListSource", customerFullName, insurer, listSource);
+
+		if (salesList.size() == 0)
+		{
+			if (customerFullName.length() > 3)
+			{
+				return findSalesRecordByCustomerFullNameAndInsurerAndListSource(customerFullName.substring(1), insurer, listSource);
+			}
+
+			throw new Exception("not found sales record for customerFullName[" + customerFullName + "] and insurer[" + insurer + "] and listSource[" + listSource + "]");
+		}
+
+		if (salesList.size() > 1)
+		{
+			throw new Exception("more that 1 record found for customerFullName[" + customerFullName + "] and insurer[" + insurer + "] and listSource[" + listSource + "]");
+		}
+
+		return salesList.get(0);
+	}
+
 	public Sales findSalesRecordByCustomerFullNameAndSaleDate(String customerFullName, Date saleDate)
 			throws Exception
 	{

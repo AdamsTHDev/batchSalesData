@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="QC COF" fileType="EXCEL" locale="en-US">
+	<DataSet description="QC COF">
+
+		<DataSheet sheetIndex="0">
+			<DataRecord listSourceName="dataRecords" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="B" comparator="EQ" checkValue="X-Ref" firstRowAsData="FALSE" />
+				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="xReference" />
+				<DataCell row="1" column="L" dataType="TEXT" autoTrim="TRUE" fieldName="cofStatus" />
+				<DataCell row="1" column="J" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="cofIssueDate" />
+				<DataCell row="1" column="K" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="cofDueDate" />
+				<DataCell row="1" column="N" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="cofCallDate" /> <!-- use this field as cof date for comm -->
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

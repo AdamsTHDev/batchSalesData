@@ -12,6 +12,9 @@ public interface CofStatusService {
 	public CofStatus findCofStatusById(Long id)
 			throws Exception;
 
+	public CofStatus findCofStatusByDescription(String description)
+			throws Exception;
+
 	public List<CofStatus> findCofStatusByExample(CofStatus cofStatus)
 			throws Exception;
 

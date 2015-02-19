@@ -1,51 +1,35 @@
 package com.adms.batch.sales.data;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.io.InputStream;
 import java.util.Date;
-import java.util.Locale;
+//import java.util.Locale;
 
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.adms.batch.sales.domain.ListLot;
+import com.adms.batch.sales.domain.PaymentFrequency;
+import com.adms.batch.sales.domain.PaymentMethod;
+import com.adms.batch.sales.domain.ReconfirmStatus;
+import com.adms.batch.sales.domain.Sales;
+import com.adms.batch.sales.domain.SalesProcess;
+import com.adms.batch.sales.domain.Tsr;
 import com.adms.batch.sales.support.FileWalker;
-import com.adms.batch.sales.test.TestSalesMain;
+import com.adms.batch.sales.support.SalesDataHelper;
+import com.adms.imex.excelformat.DataHolder;
+import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
+import com.adms.utils.StringUtil;
 
-public class ImportSalesReportByRecords extends TestSalesMain {
+public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 
-	private String locationDateFormat;
-	private Locale locationDateLocale;
-	private String dataRootLocation;
 	private String fileFormatLocation;
-	private String dataSheetName;
-
-	public String getLocationDateFormat()
-	{
-		return locationDateFormat;
-	}
-
-	public void setLocationDateFormat(String locationDateFormat)
-	{
-		this.locationDateFormat = locationDateFormat;
-	}
-
-	public Locale getLocationDateLocale()
-	{
-		return locationDateLocale;
-	}
-
-	public void setLocationDateLocale(Locale locationDateLocale)
-	{
-		this.locationDateLocale = locationDateLocale;
-	}
-
-	public String getDataRootLocation()
-	{
-		return dataRootLocation;
-	}
-
-	public void setDataRootLocation(String dataRootLocation)
-	{
-		this.dataRootLocation = dataRootLocation;
-	}
 
 	public String getFileFormatLocation()
 	{
@@ -57,189 +41,224 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 		this.fileFormatLocation = fileFormatLocation;
 	}
 
-	public String getDataSheetName()
+	protected void addSalesProcess(Sales sales)
+			throws Exception
 	{
-		return dataSheetName;
-	}
+		Date statusDate = sales.getApproveDate() == null ? sales.getSaleDate() : sales.getApproveDate();
+		SalesProcess salesProcess = getSalesProcessService().findSalesProcessByXRefferenceAndStatusDateAndReconfirmStatus(sales.getxReference(), statusDate, sales.getQaStatus());
 
-	public void setDataSheetName(String dataSheetName)
-	{
-		this.dataSheetName = dataSheetName;
-	}
-
-	/*private String getNextProcessDate(String processDate)
-			throws ParseException
-	{
-		if (processDate.length() == 6)
+		boolean newSalesProcess = false;
+		if (salesProcess == null)
 		{
-			return processDate + "01";
+			salesProcess = new SalesProcess();
+			newSalesProcess = true;
+		}
+
+		salesProcess.setFileImport(null);
+		salesProcess.setBatchDate(getProcessDate());
+		salesProcess.setxReference(sales);
+		salesProcess.setStatusDate(statusDate);
+		salesProcess.setReconfirmStatus(sales.getQaStatus());
+
+		if (newSalesProcess)
+		{
+			getSalesProcessService().addSalesProcess(salesProcess, BATCH_ID);
 		}
 		else
 		{
-			Date date = super.processDateDf.parse(processDate);
+			getSalesProcessService().updateSalesProcess(salesProcess, BATCH_ID);
+		}
+	}
 
-			Calendar c = Calendar.getInstance(PROCESS_DATE_LOCALE);
-			c.setTime(date);
-			c.add(Calendar.DATE, 1);
+	protected Sales extractSalesRecord(DataHolder salesDataHolder, Sales sales)
+			throws Exception
+	{
+		log.debug("extractSalesRecord: " + salesDataHolder.printValues());
 
-			if (c.get(Calendar.DATE) == 1)
+		String listLotText = salesDataHolder.get("listLotName").getStringValue();
+		String listLotCode = SalesDataHelper.extractListLotCode(listLotText);
+		String listLotName = SalesDataHelper.extractListLotName(listLotText);
+		ListLot listLot = getListLotService().findListLotByListLotCode(listLotCode);
+		if (listLot == null)
+		{
+			listLot = new ListLot();
+			listLot.setListLotCode(listLotCode);
+			listLot.setListLotName(listLotName);
+			listLot = getListLotService().addListLot(listLot, BATCH_ID);
+		}
+		sales.setListLot(listLot);
+
+		Tsr tsr = null;
+		String tsrCode = salesDataHolder.get("tsrCode").getStringValue();
+		if (StringUtils.isNotBlank(tsrCode))
+		{
+			tsr = getTsrService().findTsrByTsrCode(tsrCode);
+		}
+		if (tsr == null)
+		{
+			String tsrName = salesDataHolder.get("tsrName").getStringValue();
+			tsr = getTsrService().findTsrByFullName(tsrName, (Date) salesDataHolder.get("saleDate").getValue());
+		}
+		
+		if (tsr == null)
+		{
+			tsr = new Tsr();
+			tsr.setTsrCode(tsrCode);
+			tsr.setTsrPosition(getTsrPositionService().findTsrPositionByPositionCode("DMTSR"));
+			tsr.setTsrStatus(getTsrStatusService().findTsrStatusByStatusCode("AD"));
+			tsr.setRemark("" + sales.getxReference());
+			tsr = getTsrService().addTsr(tsr, BATCH_ID);
+		}
+		sales.setTsr(tsr);
+
+		String supCode = salesDataHolder.get("supCode").getStringValue();
+		Tsr supervisor = getTsrService().findTsrByTsrCode(supCode);
+		sales.setSupervisor(supervisor);
+
+		sales.setSaleDate((Date) salesDataHolder.get("saleDate").getValue());
+		sales.setApproveDate((Date) salesDataHolder.get("approveDate").getValue());
+		sales.setItemNo(salesDataHolder.get("itemNo").getIntValue());
+		sales.setCustomerFullName(StringUtil.removeDoubleSpace(salesDataHolder.get("customerFullName").getStringValue()));
+		sales.setProduct(salesDataHolder.get("product").getStringValue());
+		sales.setPremium(salesDataHolder.get("premium").getDecimalValue());
+		sales.setAnnualFyp(salesDataHolder.get("annualPremium").getDecimalValue());
+		sales.setProtectAmount(salesDataHolder.get("protectAmount").getDecimalValue());
+
+		String paymentDescription = salesDataHolder.get("paymentChannel").getStringValue();
+		PaymentMethod paymentMethod = getPaymentMethodService().findPaymentMethodByDescription(paymentDescription);
+		sales.setPaymentMethod(paymentMethod);
+
+		String frequencyDescription = salesDataHolder.get("paymentFrequency").getStringValue();
+		PaymentFrequency paymentFrequency = getPaymentFrequencyService().findPaymentFrequencyByDescription(frequencyDescription);
+		sales.setPaymentFrequency(paymentFrequency);
+
+		String qaStatusText = salesDataHolder.get("qaStatus").getStringValue();
+		ReconfirmStatus qaStatus = getReconfirmStatusService().findReconfirmStatusByReconfirmStatus(qaStatusText);
+		sales.setQaStatus(qaStatus);
+
+		sales.setQaReason(salesDataHolder.get("qaReason").getStringValue());
+		sales.setQaReasonDetail(salesDataHolder.get("qaReasonDetail").getStringValue());
+
+		return sales;
+	}
+
+	protected void importSalesRecord(List<DataHolder> salesDataHolderList)
+			throws Exception
+	{
+		log.debug("importSalesRecord...");
+
+		if (getProcessDate() == null)
+		{
+			throw new Exception("processDate cannot be null");
+		}
+
+		for (DataHolder salesDataHolder : salesDataHolderList)
+		{
+			Sales sales = null;
+			try
 			{
-				return null;
+				String xReference = salesDataHolder.get("xRefference").getStringValue();
+				sales = getSalesService().findSalesRecordByXRefference(xReference);
+
+				boolean newSales = false;
+				if (sales == null)
+				{
+					sales = new Sales();
+					sales.setxReference(xReference);
+					newSales = true;
+				}
+
+				extractSalesRecord(salesDataHolder, sales);
+
+				if (newSales)
+				{
+					sales = getSalesService().addSalesRecord(sales, BATCH_ID);
+				}
+				else
+				{
+					sales = getSalesService().updateSalesRecord(sales, BATCH_ID);
+				}
+
+				addSalesProcess(sales);
 			}
-			else
+			catch (Exception e)
 			{
-				return super.processDateDf.format(c.getTime());
+				System.err.println("error on: " + salesDataHolder.printValues());
+				System.err.println("error on: " + sales);
+				e.printStackTrace();
 			}
 		}
 	}
 
-	private boolean isFileExist(String dataLocation)
+	protected void importFile(File fileFormat, File salesRecordFile/*, String sheetName*/)
+			throws FileNotFoundException
 	{
-		FileInputStream test = null;
+		log.info("importFile: " + salesRecordFile.getAbsolutePath());
+		InputStream input = null;
 		try
 		{
-			test = new FileInputStream(dataLocation);
-			return true;
+			ExcelFormat excelFormat = new ExcelFormat(fileFormat);
+
+			input = new FileInputStream(salesRecordFile);
+			DataHolder fileDataHolder = excelFormat.readExcel(input);
+
+			List<DataHolder> salesDataHolderList = fileDataHolder.get(/*sheetName*/ fileDataHolder.getSheetNameByIndex(0)).getDataList("salesRecord");
+
+			importSalesRecord(salesDataHolderList);
+		}
+		catch (FileNotFoundException e)
+		{
+			throw e;
 		}
 		catch (Exception e)
 		{
-			System.err.println("file not found: " + dataLocation);
-			return false;
+			e.printStackTrace();
 		}
 		finally
 		{
 			try
 			{
-				test.close();
+				input.close();
 			}
 			catch (Exception e)
 			{
 			}
-			test = null;
 		}
 	}
-
-	private void importByMonth(String yyyyMM)
-			throws ParseException
-	{
-		SimpleDateFormat df = new SimpleDateFormat(getLocationDateFormat(), getLocationDateLocale());
-
-		int counter = 0;
-		String processDate = getNextProcessDate(yyyyMM);
-		while (processDate != null)
-		{
-			setProcessDate(super.processDateDf.parse(processDate));
-
-			String dataLocation = getDataRootLocation().replace("[LOCATION_MONTH]", yyyyMM).replace("[LOCATION_DATE]", df.format(getProcessDate()));
-
-			if (isFileExist(dataLocation))
-			{
-				System.out.println("import file: " + dataLocation);
-				importFile(new File(getFileFormatLocation()), new File(dataLocation), getDataSheetName());
-				counter++;
-			}
-
-			processDate = getNextProcessDate(processDate);
-		}
-		
-		System.out.println("end: " + counter + " files imported");
-	}*/
 
 	public static void main(String[] args)
 			throws Exception
 	{
 		System.out.println("main");
 
-		ImportSalesReportByRecords batch = null;
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("ddMMyyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MTLKBANK/Health Return Cash_[LOCATION_DATE]/Sales_Report_By_Records.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords.xml");
-//		batch.importByMonth("201410");
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("ddMMyyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MTLKBANK/HIP_DDOP_[LOCATION_DATE]/Sales_Report_By_Records.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords.xml");
-//		batch.importByMonth("201410");
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("dd.MM.yyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MTLKBANK/POM_PA_Cash_Back_[LOCATION_DATE]/Sales_Report_By_Records.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords.xml");
-//		batch.importByMonth("201410");
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("ddMMyyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MTIKBANK/KBANK DDOP -PA Cash Back_[LOCATION_DATE]/Sales_Report_By_Records.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords.xml");
-//		batch.importByMonth("201410");
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("ddMMyyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MTIKBANK/KBANK DDOP -POM PA Cash Back_[LOCATION_DATE]/Sales_Report_By_Records.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords.xml");
-//		batch.importByMonth("201410");
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("ddMMyyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MTIKBANK/MTI-KBank_[LOCATION_DATE]/Sales_Report_By_Records.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords.xml");
-//		batch.importByMonth("201410");
-
-//		batch = new ImportSalesReportByRecords(false);
-//		batch.setLocationDateFormat("ddMMyyyy");
-//		batch.setLocationDateLocale(Locale.US);
-//		batch.setDataSheetName("Sales_Report_By_Records_Pending");
-//		batch.setDataRootLocation("D:/Work/ADAMS/Report/DailyReport/[LOCATION_MONTH]/TELE/MSIGUOB/MSIG UOB_[LOCATION_DATE]/Sales_Report_By_Records_Pending.xls");
-//		batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SalesReportByRecords-MSIG.xml");
-//		batch.importByMonth("201410");
-		
-		
-
-		String rootPath = "D:/Work/Report/DailyReport/201412";
+		String rootPath = "D:/Work/Report/DailyReport/201502/OTO/MSIGBL";
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx");
+				return !name.contains("~$") && (name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx"));
 			}
 		});
 
-		batch = new ImportSalesReportByRecords();
+		ImportSalesReportByRecords batch = new ImportSalesReportByRecords();
 		batch.setLogLevel(Logger.INFO);
 		batch.setProcessDate(new Date());
 		for (String filename : fw.getFileList())
 		{
-//			System.out.println("import file: " + filename);
-
 			if (filename.contains("MSIGUOB"))
 			{
-				batch.setDataSheetName("Sales_Report_By_Records_Pending");
+//				batch.setDataSheetName("Sales_Report_By_Records_Pending");
 				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-MSIGUOB.xml");
 			}
 			else if (filename.contains("OTO"))
 			{
-				batch.setDataSheetName("Sales_Report_By_Records");
+//				batch.setDataSheetName("Sales_Report_By_Records");
 				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-OTO.xml");
 			}
 			else if (filename.contains("TELE") && !filename.contains("MSIGUOB"))
 			{
-				batch.setDataSheetName("Sales_Report_By_Records");
+//				batch.setDataSheetName("Sales_Report_By_Records");
 				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-TELE.xml");
 			}
 			else
@@ -247,7 +266,7 @@ public class ImportSalesReportByRecords extends TestSalesMain {
 				throw new Exception("file not supported");
 			}
 
-			batch.importFile(new File(batch.getFileFormatLocation()), new File(filename), batch.getDataSheetName());
+			batch.importFile(new File(batch.getFileFormatLocation()), new File(filename)/*, batch.getDataSheetName()*/);
 		}
 	}
 }

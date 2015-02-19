@@ -1,5 +1,7 @@
 package com.adms.batch.sales.test;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
+
 public class DailySalesImport extends AbstractImportSalesJob {
 
 	private void importTsrTracking()

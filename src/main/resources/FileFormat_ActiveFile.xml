@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Sales_Report_By_Records.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="Sales_Report_By_Records">
+
+		<DataSheet sheetName="Active">
+
+			<DataCell row="1" column="A" dataType="TEXT" defaultValue="campaignName" />
+			<DataCell row="1" column="B" dataType="TEXT" defaultValue="campaignCode" />
+			<DataCell row="1" column="C" dataType="TEXT" defaultValue="listLotName" />
+			<DataCell row="1" column="D" dataType="TEXT" defaultValue="approveDate" />
+			<DataCell row="1" column="E" dataType="TEXT" defaultValue="xReference" />
+			<DataCell row="1" column="F" dataType="TEXT" defaultValue="itemNo" />
+			<DataCell row="1" column="G" dataType="TEXT" defaultValue="customerFullName" />
+			<DataCell row="1" column="H" dataType="TEXT" defaultValue="product" />
+			<DataCell row="1" column="I" dataType="TEXT" defaultValue="premium" />
+			<DataCell row="1" column="J" dataType="TEXT" defaultValue="annualPremium" />
+			<DataCell row="1" column="K" dataType="TEXT" defaultValue="protectAmount" />
+			<DataCell row="1" column="L" dataType="TEXT" defaultValue="paymentChannel" />
+			<DataCell row="1" column="M" dataType="TEXT" defaultValue="paymentFrequency" />
+			<DataCell row="1" column="N" dataType="TEXT" defaultValue="saleDate" />
+			<DataCell row="1" column="O" dataType="TEXT" defaultValue="tsrCode" />
+			<DataCell row="1" column="P" dataType="TEXT" defaultValue="tsrFullName" />
+			<DataCell row="1" column="Q" dataType="TEXT" defaultValue="supCode" />
+			<DataCell row="1" column="R" dataType="TEXT" defaultValue="supFullName" />
+			<DataCell row="1" column="S" dataType="TEXT" defaultValue="qaStatus" />
+			<DataCell row="1" column="T" dataType="TEXT" defaultValue="qaReasonStatus" />
+
+			<DataRecord listSourceName="activeList" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="listLotName" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="approveDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="xReference" />
+				<DataCell row="1" column="F" dataType="NUMBER" dataFormat="0" fieldName="itemNo" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="customerFullName" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="product" />
+				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
+				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="annualPremium" />
+				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="protectAmount" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentChannel" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentFrequency" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="saleDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="O" dataType="TEXT" fieldName="tsrCode" />
+				<DataCell row="1" column="P" dataType="TEXT" fieldName="tsrFullName" />
+				<DataCell row="1" column="Q" dataType="TEXT" fieldName="supCode" />
+				<DataCell row="1" column="R" dataType="TEXT" fieldName="supFullName" />
+				<DataCell row="1" column="S" dataType="TEXT" fieldName="qaStatus" />
+				<DataCell row="1" column="T" dataType="TEXT" fieldName="qaReasonStatus" />
+			</DataRecord>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

@@ -9,7 +9,6 @@ import java.util.List;
 import com.adms.batch.sales.domain.Tsr;
 import com.adms.batch.sales.domain.TsrPosition;
 import com.adms.batch.sales.domain.TsrStatus;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -39,7 +38,7 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 		
 		tsr.setEffectiveDate((Date) tsrDataHolder.get("effectiveDate").getValue());
 		tsr.setResignDate((Date) tsrDataHolder.get("resignDate").getValue());
-//		tsr.setRemark(tsrDataHolder.get("remark").getStringValue());
+		tsr.setRemark(tsrDataHolder.get("remark").getStringValue());
 
 		return tsr;
 	}
@@ -75,7 +74,7 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 		}
 	}
 
-	private void importFile(File fileFormat, File tsrRecordFile, String sheetName)
+	private void importFile(File fileFormat, File tsrRecordFile)
 	{
 		log.info("importFile: " + tsrRecordFile.getAbsolutePath());
 		InputStream input = null;
@@ -86,7 +85,7 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 			input = new FileInputStream(tsrRecordFile);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
-			List<DataHolder> tsrDataHolderList = fileDataHolder.get(sheetName).getDataList("tsrList");
+			List<DataHolder> tsrDataHolderList = fileDataHolder.get(fileDataHolder.getSheetNameByIndex(0)).getDataList("tsrList");
 			log.debug("found " + tsrDataHolderList.size() + " record(s)");
 			
 			importTsr(tsrDataHolderList);
@@ -111,20 +110,12 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 			throws Exception
 	{
 		String fileFormat = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_TSR_Update_Monthly.xml";
-//		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_September 14_no_pw.xlsx";
-//		String fileInput = "D:/Work/ADAMS/Report/TSR Update/Update New Staff by month for comm_October 14_no_pw.xlsx";
-//		String fileInput = "D:/Work/ADAMS/Report/TSR Update/test.xlsx";
-//		String fileInput = "D:/Work/Report/TSR Update/Employees_OCT_for_batch.xlsx";
-//		String fileInput = "D:/Work/Report/TSR Update/Employees_Nov_for_batch.xlsx";
-		String fileInput = "D:/Work/Report/TSR Update/Employees_201412_for_batch.xlsx";
-		String sheetName = "Data";
-//		String processDate = "";
-//		String rerun = "";
-//
+		String fileInput = "D:/Work/Report/TSR Update/Employees_201502_for_batch.xlsx";
+
 		System.out.println("main");
 		ImportTsrMonthly batch = new ImportTsrMonthly();
 		batch.setLogLevel(Logger.DEBUG);
-		batch.importFile(new File(fileFormat), new File(fileInput), sheetName);
+		batch.importFile(new File(fileFormat), new File(fileInput));
 	}
 
 }

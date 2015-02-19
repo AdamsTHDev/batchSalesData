@@ -13,9 +13,9 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.DailySummaryStatusType2Detail;
 import com.adms.batch.sales.service.DailySummaryStatusType2DetailService;
-import com.adms.batch.sales.test.AbstractImportSalesJob;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.imex.excelformat.SimpleMapDataHolder;

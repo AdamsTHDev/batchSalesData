@@ -10,6 +10,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 
+
+import com.adms.batch.sales.data.AbstractImportSalesJob;
 //import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.ListLot;
 import com.adms.batch.sales.domain.PaymentFrequency;
@@ -25,11 +27,11 @@ import com.adms.utils.StringUtil;
 
 public class TestSalesMain extends AbstractImportSalesJob {
 
-	protected Sales findSaleRecord(String xRefference)
-			throws Exception
-	{
-		return getSalesService().findSalesRecordByXRefference(xRefference);
-	}
+//	protected Sales findSaleRecord(String xRefference)
+//			throws Exception
+//	{
+//		return getSalesService().findSalesRecordByXRefference(xRefference);
+//	}
 
 	protected Sales extractSalesRecord(DataHolder salesDataHolder, Sales sales)
 			throws Exception
@@ -176,12 +178,11 @@ public class TestSalesMain extends AbstractImportSalesJob {
 				System.err.println("error on: " + salesDataHolder.printValues());
 				System.err.println("error on: " + sales);
 				e.printStackTrace();
-//				throw e;
 			}
 		}
 	}
 
-	protected void importFile(File fileFormat, File salesRecordFile, String sheetName)
+	protected void importFile(File fileFormat, File salesRecordFile/*, String sheetName*/)
 			throws FileNotFoundException
 	{
 		log.info("importFile: " + salesRecordFile.getAbsolutePath());
@@ -193,7 +194,7 @@ public class TestSalesMain extends AbstractImportSalesJob {
 			input = new FileInputStream(salesRecordFile);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
-			List<DataHolder> salesDataHolderList = fileDataHolder.get(sheetName).getDataList("salesRecord");
+			List<DataHolder> salesDataHolderList = fileDataHolder.get(/*sheetName*/ fileDataHolder.getSheetNameByIndex(0)).getDataList("salesRecord");
 
 			importSalesRecord(salesDataHolderList);
 		}
@@ -216,91 +217,4 @@ public class TestSalesMain extends AbstractImportSalesJob {
 			}
 		}
 	}
-
-	public static void main(String[] args)
-			throws Exception
-	{
-		System.out.println("main");
-
-		String fileFormat = "D:/Eclipse/Workspace/ADAMS/batch-sales-data/src/main/resources/FileFormat_SalesReportByRecords-sydney.xml";
-
-		String fileInput = null;
-		String sheetName = null;
-		// String processDate = "";
-		// String rerun = "";
-
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/1_MTLife Kbank_HIP_Jun-Aug 2014 (Sydney trip).xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/2_MTLife Kbank_HRC_Jun-Aug 2014 (Sydney trip).xls";
-		// sheetName = "Jul-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/3_MTLife Kbank_POM_Jun-Aug 2014 (Sydney trip).xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/4_MTLife BL HIP_Jun-Aug 2014 (Sydney trip).xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/5_MTLife BL & MSIG BL POM_Jun-Aug 2014 (Sydney trip)_test.xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/6_MSIG BL_Jun-Aug 2014 (Sydney trip)_test.xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-
-		// TODO file 7 why had Approve Date (pending) column, resigned SUP
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/7_MSIG UOB_Jun-Aug 2014 (Sydney trip)_test.xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/8_MTI SC_Jun-Aug 2014 (Sydney trip).xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/9_MTI PA CB_Jun-Aug 2014 (Sydney trip)_test.xls";
-		// sheetName = "Jun-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/10_MTI POM_Jun-Aug 2014 (Sydney trip).xls";
-		// sheetName = "Jul-Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		// fileInput =
-		// "D:/Work/ADAMS/Report/Sydney Trip Report/Raw data Sydney trip 2014/11_FWD_Raw Data_Aug 2014 (Sydney trip)_test.xls";
-		// sheetName = "Aug";
-		// new TestSalesMain().importFile(new File(fileFormat), new
-		// File(fileInput), sheetName);
-		//
-		fileInput = "D:/Work/ADAMS/Report/Sydney Trip Report/Sydney_trip_rawdata_Sep_2014/Rawdata_Sep 2014 (Sydney trip)/0_ALL.xls";
-		sheetName = "Sep";
-		TestSalesMain batch = new TestSalesMain();
-		batch.importFile(new File(fileFormat), new File(fileInput), sheetName);
-
-	}
-
 }

@@ -1,4 +1,4 @@
-package com.adms.batch.sales.test;
+package com.adms.batch.sales.data;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,6 +13,8 @@ import com.adms.batch.sales.service.BillingStatusService;
 import com.adms.batch.sales.service.CallCenterService;
 import com.adms.batch.sales.service.CampaignService;
 import com.adms.batch.sales.service.CofStatusService;
+import com.adms.batch.sales.service.DdopMappingResultService;
+import com.adms.batch.sales.service.DdopMappingStatusService;
 import com.adms.batch.sales.service.EocCallOutcomeService;
 import com.adms.batch.sales.service.IncentiveCompositeService;
 import com.adms.batch.sales.service.IncentiveCriteriaService;
@@ -32,6 +34,7 @@ import com.adms.batch.sales.service.TsrStatusService;
 import com.adms.batch.sales.service.UwDecisionService;
 import com.adms.batch.sales.service.UwResultService;
 import com.adms.batch.sales.service.UwStatusService;
+import com.adms.batch.sales.service.VSalesCommService;
 import com.adms.utils.Logger;
 
 public class AbstractImportSalesJob {
@@ -189,6 +192,21 @@ public class AbstractImportSalesJob {
 	protected BillingResultService getBillingResultService()
 	{
 		return (BillingResultService) getBean("billingResultService");
+	}
+
+	protected DdopMappingStatusService getDdopMappingStatusService()
+	{
+		return (DdopMappingStatusService) getBean("ddopMappingStatusService");
+	}
+
+	protected DdopMappingResultService getDdopMappingResultService()
+	{
+		return (DdopMappingResultService) getBean("ddopMappingResultService");
+	}
+
+	protected VSalesCommService getVSalesCommService()
+	{
+		return (VSalesCommService) getBean("vSalesCommService");
 	}
 
 }

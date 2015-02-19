@@ -20,6 +20,9 @@ public interface SalesService {
 	public Sales findSalesRecordByCustomerFullNameAndTsrAndSaleDate(String customerFullName, Tsr tsr, Date saleDate)
 			throws Exception;
 
+	public Sales findSalesRecordByCustomerFullNameAndInsurerAndListSource(String customerFullName, String insurer, String listSource)
+			throws Exception;
+
 	public Sales findSalesRecordByCustomerFullNameAndSaleDate(String customerFullName, Date saleDate)
 			throws Exception;
 

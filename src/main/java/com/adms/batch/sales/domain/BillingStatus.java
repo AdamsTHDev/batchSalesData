@@ -1,6 +1,5 @@
 package com.adms.batch.sales.domain;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,7 +9,6 @@ import com.adms.common.domain.BaseDomain;
 
 @Entity
 @Table(name = "BILLING_STATUS")
-@Cacheable
 public class BillingStatus extends BaseDomain {
 
 	private static final long serialVersionUID = -1754931890204719077L;
