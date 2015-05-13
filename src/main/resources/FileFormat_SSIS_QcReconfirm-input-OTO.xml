@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="QC Reconfirm">
+
 		<DataSheet sheetIndex="0">
 			<DataRecord listSourceName="dataHeader" beginRow="2" endRow="99999">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Date: " firstRowAsData="TRUE" />
@@ -8,17 +9,25 @@
 				<DataCell row="1" column="B" dataType="DATE" dataFormat="MM/dd/yyyy" fieldName="printDate" />
 				<EndRecordCondition column="A" comparator="NE" checkValue="Date: " />
 			</DataRecord>
-			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999">
+
+			<DataRecord listSourceName="dataSummary" beginRow="2" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="QCStatus" firstRowAsData="FALSE" />
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="qcStatus" />
+				<DataCell row="1" column="B" dataType="NUMBER" dataFormat="#" fieldName="qcStatusCount" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Campaign"/>
+			</DataRecord>
+
+			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999" skipWhenNull="TRUE">
 				<BeginRecordCondition column="C" comparator="EQ" checkValue="X-Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" autoTrim="TRUE" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" autoTrim="TRUE" fieldName="listLotName" />
 				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="xReference" />
-				<DataCell row="1" column="D" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="saleDate" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="saleDate" />
 				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="customerFullName" />
 				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="tsrCode" />
 				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="tsrFullName" />
 				<DataCell row="1" column="H" dataType="TEXT" autoTrim="TRUE" fieldName="supFullName" />
-				<DataCell row="1" column="I" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="qcStatusDate" />
+				<DataCell row="1" column="I" dataType="TEXT" autoTrim="TRUE"  fieldName="qcStatusDate" />
 				<DataCell row="1" column="I" dataType="TEXT" fieldName="qcStatusDateText" />
 				<DataCell row="1" column="J" dataType="TEXT" autoTrim="TRUE" fieldName="qcId" />
 				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="paymentMethod" />
@@ -32,5 +41,6 @@
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>
+
 	</DataSet>
 </FileFormat>

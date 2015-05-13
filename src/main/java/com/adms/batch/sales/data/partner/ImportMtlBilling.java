@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.net.URLClassLoader;
 import java.util.Date;
 import java.util.List;
 
@@ -133,22 +134,26 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 						}
 					}
 				}
+				else
+				{
+					log.warn("sales record not found [xReference: " + xReference + "]");
+				}
 			}
 		}
 	}
 
-	private void importFile(File fileFormat, File dataFile)
+	private void importFile(String fileFormatFileName, String dataFileLocation)
 			throws Exception
 	{
-		log.info("importFile: " + dataFile.getAbsolutePath());
+		log.info("importFile: " + dataFileLocation);
 		InputStream format = null;
 		InputStream input = null;
 		try
 		{
-			format = new FileInputStream(fileFormat);
+			format = URLClassLoader.getSystemResourceAsStream(fileFormatFileName);
 			ExcelFormat excelFormat = new ExcelFormat(format);
 
-			input = new FileInputStream(dataFile);
+			input = new FileInputStream(dataFileLocation);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
 			List<String> sheetNames = fileDataHolder.getKeyList();
@@ -188,25 +193,25 @@ public class ImportMtlBilling extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		String fileFormatLocation = /* args[0]; */"D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_MTL_Result_1st_Billing.xml";
-		String rootPath = /* args[1]; */"D:/Work/Report/DailyReport/MTL_Billing";
+		String fileFormatFileName = "fileformat/salesdb/FileFormat_MTL_Result_1st_Billing.xml";
+		String rootPath = args[0] /* "D:/Work/Report/DailyReport/MTL_Billing" */;
 
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return name.contains(".xls");
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && name.contains(".xls");
 			}
 		});
 
 		ImportMtlBilling batch = new ImportMtlBilling();
-		batch.setLogLevel(Logger.DEBUG);
+		batch.setLogLevel(Logger.INFO);
 		batch.setProcessDate(new Date());
 
 		for (String filename : fw.getFileList())
 		{
-			batch.importFile(new File(fileFormatLocation), new File(filename));
+			batch.importFile(fileFormatFileName, filename);
 		}
 	}
 }

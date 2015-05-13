@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="ADMS_Pending Pre UW 2014.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="ADMS_Pending Pre UW 2014">
+
+		<DataSheet sheetName="KB2-AG_HIP">
+			<DataRecord listSourceName="uwRecords" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="appSubmitDate" />
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="itemNo" />
+				<DataCell row="1" column="C" dataType="TEXT" autoTrim="TRUE" fieldName="xRef" />
+				<DataCell row="1" column="D" dataType="TEXT" autoTrim="TRUE" fieldName="customerFullName" />
+				<DataCell row="1" column="E" dataType="TEXT" autoTrim="TRUE" fieldName="customerAge" />
+				<DataCell row="1" column="F" dataType="TEXT" autoTrim="TRUE" fieldName="product" />
+				<DataCell row="1" column="G" dataType="TEXT" autoTrim="TRUE" fieldName="plan" />
+				<DataCell row="1" column="H" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premiun" />
+				<DataCell row="1" column="I" dataType="TEXT" autoTrim="TRUE" fieldName="acceptFlag" />
+				<DataCell row="1" column="J" dataType="TEXT" autoTrim="TRUE" fieldName="declineFlag" />
+				<DataCell row="1" column="K" dataType="TEXT" autoTrim="TRUE" fieldName="cancelFlag" />
+				<DataCell row="1" column="L" dataType="TEXT" autoTrim="TRUE" fieldName="uwStatus" />
+				<DataCell row="1" column="M" dataType="TEXT" autoTrim="TRUE" fieldName="remark" />
+				<DataCell row="1" column="O" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwSubmitDate" />
+				<DataCell row="1" column="P" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwResultDate" />
+				<EndRecordCondition column="C" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="AD_HIP">
+			<DataRecord listSourceName="uwRecords" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="appSubmitDate" />
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="itemNo" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="xRef" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="customerFullName" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="customerAge" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="product" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="plan" />
+				<DataCell row="1" column="H" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premiun" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="acceptFlag" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="declineFlag" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="cancelFlag" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="uwStatus" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="remark" />
+				<DataCell row="1" column="O" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwSubmitDate" />
+				<DataCell row="1" column="P" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwResultDate" />
+				<EndRecordCondition column="C" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+		<DataSheet sheetName="Health Return Cash">
+			<DataRecord listSourceName="uwRecords" beginRow="2" endRow="99999">
+				<DataCell row="1" column="A" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="appSubmitDate" />
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="itemNo" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="xRef" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="customerFullName" />
+				<DataCell row="1" column="E" dataType="TEXT" fieldName="customerAge" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="product" />
+				<DataCell row="1" column="G" dataType="TEXT" fieldName="plan" />
+				<DataCell row="1" column="H" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premiun" />
+				<DataCell row="1" column="I" dataType="TEXT" fieldName="acceptFlag" />
+				<DataCell row="1" column="J" dataType="TEXT" fieldName="declineFlag" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="cancelFlag" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="uwStatus" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="remark" />
+				<DataCell row="1" column="N" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwSubmitDate" />
+				<DataCell row="1" column="O" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwResultDate" />
+				<EndRecordCondition column="C" comparator="BLANK" />
+			</DataRecord>
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

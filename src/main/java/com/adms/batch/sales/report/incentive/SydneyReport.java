@@ -29,6 +29,7 @@ import com.adms.batch.sales.data.AbstractImportSalesJob;
 import com.adms.batch.sales.domain.Campaign;
 import com.adms.batch.sales.domain.IncentiveComposite;
 import com.adms.batch.sales.domain.IncentiveCriteria;
+import com.adms.batch.sales.domain.KeyFloatValueBean;
 import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.Tsr;
@@ -78,10 +79,11 @@ public class SydneyReport extends AbstractImportSalesJob {
 			
 			// Double TARP (TARPx2) for Nov & Dec
 			BigDecimal multiplicand = BigDecimal.valueOf(1);
-			if (monthQuery.equals("201411") || monthQuery.equals("201412"))
-			{
-				multiplicand = BigDecimal.valueOf(2);
-			}
+// cancel this rule
+//			if (monthQuery.equals("201411") || monthQuery.equals("201412"))
+//			{
+//				multiplicand = BigDecimal.valueOf(2);
+//			}
 
 			System.out.println(salesList.size());
 			for (Sales sales : salesList)
@@ -105,6 +107,7 @@ public class SydneyReport extends AbstractImportSalesJob {
 				{
 					incentiveComposite = getIncentiveCompositeService().findByIncentiveAndCampaignCode("SYDNEY", campaign.getCampaignCode());
 					incentiveCriteriaList = getIncentiveCriteriaService().findBySydneyCriteria(campaign.getCampaignCode(), qaStatus.getReconfirmStatus(), qaReason);
+					// incentiveCriteriaList = getIncentiveCriteriaService().findBySydneyFloorCriteria(campaign.getCampaignCode(), qaStatus.getReconfirmStatus(), qaReason);
 				}
 				catch (Exception e)
 				{
@@ -193,6 +196,19 @@ public class SydneyReport extends AbstractImportSalesJob {
 
 			sortData(campaignMap.get("TSR"));
 			sortData(campaignMap.get("SUP"));
+			
+			//set LC by sup
+			Map<String, ProductionByTsr> allSupMap = campaignMap.get("SUP");
+			for (String supCode : allSupMap.keySet())
+			{
+				ProductionByTsr supProd = allSupMap.get(supCode);
+				KeyFloatValueBean lc = getKeyFloatValueBeanService().findListConversionBySupCodeAndLotEffectiveDate(supCode, getStartDate());
+				if (lc != null && lc.getValue() != null)
+				{
+					supProd.getTotal().setListConv(new BigDecimal(lc.getValue()));
+				}
+			}
+			
 		}
 
 		return map;
@@ -764,7 +780,6 @@ public class SydneyReport extends AbstractImportSalesJob {
 
 					sumProdBySup.getTotal().setSales(sumProdBySup.getTotal().getSales() + supProd.getTotal().getSales());
 					sumProdBySup.getTotal().setReconfirm(sumProdBySup.getTotal().getReconfirm() + supProd.getTotal().getReconfirm());
-					// sumProdBySup.getTotal().setListConv(listConv); // TODO
 					sumProdBySup.getTotal().setTarp(sumProdBySup.getTotal().getTarp().add(supProd.getTotal().getTarp()));
 				}
 
@@ -831,8 +846,8 @@ public class SydneyReport extends AbstractImportSalesJob {
 
 				supSumTotalSalesCell.setCellValue(sumProdBySup.getTotal().getSales());
 				supSumTotalReconfirmCell.setCellValue(sumProdBySup.getTotal().getReconfirm());
-				// supSumTotalListConvCell.setCellValue(sumProdBySup.getTotal().getListConv());
-				// TODO
+				//TODO
+//				supSumTotalListConvCell.setCellValue(sumProdBySup.getTotal().getListConv().doubleValue());
 				supSumTotalTarpCell.setCellValue(sumProdBySup.getTotal().getTarp().doubleValue());
 				
 				
@@ -884,7 +899,8 @@ public class SydneyReport extends AbstractImportSalesJob {
 	private Date getStartDate()
 	{
 		Calendar c = Calendar.getInstance(Locale.US);
-		c.set(2014, 5, 1);
+		c.set(2014, 5, 1, 0, 0, 0);
+		c.add(Calendar.MILLISECOND, -c.get(Calendar.MILLISECOND));
 		return c.getTime();
 	}
 
@@ -999,7 +1015,7 @@ public class SydneyReport extends AbstractImportSalesJob {
 	{
 		SydneyReport batch = new SydneyReport();
 		batch.setLogLevel(Logger.INFO);
-		batch.totalMonth = 7;
+		batch.totalMonth = 10;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}
 

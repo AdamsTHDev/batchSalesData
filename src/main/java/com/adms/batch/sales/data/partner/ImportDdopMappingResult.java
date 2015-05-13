@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.net.URLClassLoader;
 import java.util.Date;
 import java.util.List;
 
@@ -86,18 +87,25 @@ public class ImportDdopMappingResult extends AbstractImportSalesJob {
 					e.printStackTrace();
 				}
 			}
+			else
+			{
+				log.warn("sales record not found [xRef: " + xReferenceString + "]");
+			}
 		}
 	}
 
-	private void importFile(File fileFormat, File qcRecordFile) throws Exception
+	private void importFile(String fileFormatFileName, String dataFileLocation)
+			throws Exception
 	{
-		log.info("importFile: " + qcRecordFile.getAbsolutePath());
+		log.info("importFile: " + dataFileLocation);
+		InputStream format = null;
 		InputStream input = null;
 		try
 		{
-			ExcelFormat excelFormat = new ExcelFormat(fileFormat);
+			format = URLClassLoader.getSystemResourceAsStream(fileFormatFileName);
+			ExcelFormat excelFormat = new ExcelFormat(format);
 
-			input = new FileInputStream(qcRecordFile);
+			input = new FileInputStream(dataFileLocation);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
 			List<DataHolder> approveDataHolderList = fileDataHolder.get(fileDataHolder.getSheetNameByIndex(0)).getDataList("dataApproveRecords");
@@ -114,6 +122,13 @@ public class ImportDdopMappingResult extends AbstractImportSalesJob {
 		{
 			try
 			{
+				format.close();
+			}
+			catch (Exception e)
+			{
+			}
+			try
+			{
 				input.close();
 			}
 			catch (Exception e)
@@ -127,24 +142,25 @@ public class ImportDdopMappingResult extends AbstractImportSalesJob {
 	{
 		System.out.println("main");
 
-		String rootPath = "D:/Work/Report/DailyReport/MTI_DDOP_Mapping";
+		String fileFormatFileName = "fileformat/salesdb/FileFormat_MTI_DDOP_Mapping_Result.xml";
+		String rootPath = args[0] /* "D:/Work/Report/DailyReport/MTI_DDOP_Mapping" */;
+
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return !name.contains("~$") && name.toUpperCase().contains("DDP_MAPPING") && name.toLowerCase().endsWith(".xls");
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && name.toUpperCase().contains("DDP_MAPPING") && name.toLowerCase().endsWith(".xls");
 			}
 		});
 
 		ImportDdopMappingResult batch = new ImportDdopMappingResult();
-		batch.setLogLevel(Logger.DEBUG);
+		batch.setLogLevel(Logger.INFO);
 
-		String fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_MTI_DDOP_Mapping_Result.xml";
 
 		for (String filename : fw.getFileList())
 		{
-			batch.importFile(new File(fileFormatLocation), new File(filename));
+			batch.importFile(fileFormatFileName, filename);
 		}
 	}
 

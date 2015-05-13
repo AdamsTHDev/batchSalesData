@@ -23,7 +23,7 @@
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="product" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
 				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="annualPremium" />
-				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="protectAmount" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="protectAmount" />
 				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentChannel" />
 				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentFrequency" />
 				<DataCell row="1" column="N" dataType="TEXT" fieldName="qaStatus" />

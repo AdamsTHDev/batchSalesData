@@ -22,9 +22,10 @@ import com.adms.common.domain.BaseAuditDomain;
 
 @Entity
 @Table(name = "SALES")
-@NamedNativeQueries({ @NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndTsrAndSaleDate", query = "select sales.* from SALES sales where replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like '%' + ? and sales.TSR_CODE = ? and sales.SALE_DATE = ?", resultClass = Sales.class),
-		@NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndInsurerAndListSource", query = "select s.* from SALES s inner join LIST_LOT l on s.LIST_LOT_CODE = l.LIST_LOT_CODE inner join CAMPAIGN c on l.CAMPAIGN_CODE = c.CAMPAIGN_CODE inner join TSR t on s.TSR_CODE = t.TSR_CODE where replace(replace(s.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like '%' + ? and c.INSURER = ? and c.LIST_SOURCE = ?", resultClass = Sales.class),
-		@NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndSaleDate", query = "select sales.* from SALES sales where replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like '%' + ? and sales.SALE_DATE = ?", resultClass = Sales.class),
+@NamedNativeQueries({ @NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndTsrAndSaleDate", query = "select sales.* from SALES sales where replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like N'%' + ? and sales.TSR_CODE = ? and sales.SALE_DATE = ?", resultClass = Sales.class),
+	@NamedNativeQuery(name = "findSalesRecordForxRefChanged", query = "select sales.* from SALES sales where X_REFERENCE <> ? and replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like N'%' + ? and sales.TSR_CODE = ? and sales.SALE_DATE = ? order by sales.ITEM_NO", resultClass = Sales.class),
+		@NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndInsurerAndListSource", query = "select s.* from SALES s inner join LIST_LOT l on s.LIST_LOT_CODE = l.LIST_LOT_CODE inner join CAMPAIGN c on l.CAMPAIGN_CODE = c.CAMPAIGN_CODE inner join TSR t on s.TSR_CODE = t.TSR_CODE where replace(replace(s.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like N'%' + ? and c.INSURER = ? and c.LIST_SOURCE = ?", resultClass = Sales.class),
+		@NamedNativeQuery(name = "findSalesRecordByCustomerFullNameAndSaleDate", query = "select sales.* from SALES sales where replace(replace(sales.CUSTOMER_FULL_NAME, ' ', ''), ' ', '') like N'%' + ? and sales.SALE_DATE = ?", resultClass = Sales.class),
 		@NamedNativeQuery(name = "findSalesRecordBySaleMonth", query = "select sales.* from SALES sales where convert(nvarchar(6), sales.SALE_DATE, 112) = ?", resultClass = Sales.class) })
 public class Sales extends BaseAuditDomain {
 
@@ -68,6 +69,10 @@ public class Sales extends BaseAuditDomain {
 	@Temporal(TemporalType.DATE)
 	private Date approveDate;
 
+	@Column(name = "APPROVE_DATE_PENDING")
+	@Temporal(TemporalType.DATE)
+	private Date approveDatePending;
+
 	@Column(name = "ITEM_NO")
 	private Integer itemNo;
 
@@ -96,7 +101,7 @@ public class Sales extends BaseAuditDomain {
 	private BigDecimal annualFyp;
 
 	@Column(name = "PROTECT_AMOUNT")
-	private BigDecimal protectAmount;
+	private String protectAmount;
 
 	@ManyToOne
 	@Fetch(FetchMode.JOIN)
@@ -209,6 +214,16 @@ public class Sales extends BaseAuditDomain {
 		this.approveDate = approveDate;
 	}
 
+	public Date getApproveDatePending()
+	{
+		return approveDatePending;
+	}
+
+	public void setApproveDatePending(Date approveDatePending)
+	{
+		this.approveDatePending = approveDatePending;
+	}
+
 	public Integer getItemNo()
 	{
 		return itemNo;
@@ -299,12 +314,12 @@ public class Sales extends BaseAuditDomain {
 		this.annualFyp = annualFyp;
 	}
 
-	public BigDecimal getProtectAmount()
+	public String getProtectAmount()
 	{
 		return protectAmount;
 	}
 
-	public void setProtectAmount(BigDecimal protectAmount)
+	public void setProtectAmount(String protectAmount)
 	{
 		this.protectAmount = protectAmount;
 	}
@@ -362,9 +377,9 @@ public class Sales extends BaseAuditDomain {
 	@Override
 	public String toString()
 	{
-		return "Sales [id=" + id + ", fileImport=" + fileImport + ", xReference=" + xReference + ", xReferenceNew=" + xReferenceNew + ", listLot=" + listLot + ", tsr=" + tsr + ", supervisor=" + supervisor + ", saleDate=" + saleDate + ", approveDate=" + approveDate + ", itemNo=" + itemNo
-				+ ", customerFullName=" + customerFullName + ", customerTitle=" + customerTitle + ", customerFirstName=" + customerFirstName + ", customerMidName=" + customerMidName + ", customerLastName=" + customerLastName + ", product=" + product + ", premium=" + premium + ", annualFyp="
-				+ annualFyp + ", protectAmount=" + protectAmount + ", paymentMethod=" + paymentMethod + ", paymentFrequency=" + paymentFrequency + ", qaStatus=" + qaStatus + ", qaReason=" + qaReason + ", qaReasonDetail=" + qaReasonDetail + "]";
+		return "Sales [id=" + id + ", fileImport=" + fileImport + ", xReference=" + xReference + ", xReferenceNew=" + xReferenceNew + ", listLot=" + listLot + ", tsr=" + tsr + ", supervisor=" + supervisor + ", saleDate=" + saleDate + ", approveDate=" + approveDate + ", approveDatePending="
+				+ approveDatePending + ", itemNo=" + itemNo + ", customerFullName=" + customerFullName + ", customerTitle=" + customerTitle + ", customerFirstName=" + customerFirstName + ", customerMidName=" + customerMidName + ", customerLastName=" + customerLastName + ", product=" + product
+				+ ", premium=" + premium + ", annualFyp=" + annualFyp + ", protectAmount=" + protectAmount + ", paymentMethod=" + paymentMethod + ", paymentFrequency=" + paymentFrequency + ", qaStatus=" + qaStatus + ", qaReason=" + qaReason + ", qaReasonDetail=" + qaReasonDetail + "]";
 	}
 
 }

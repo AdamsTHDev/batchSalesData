@@ -17,13 +17,14 @@
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
 				<DataCell row="1" column="C" dataType="TEXT" fieldName="listLotName" />
 				<DataCell row="1" column="D" dataType="DATE" fieldName="approveDate" dataFormat="yyyy-MM-dd" />
+				<DataCell row="1" column="E" dataType="DATE" fieldName="approveDatePending" dataFormat="yyyy-MM-dd" />
 				<DataCell row="1" column="F" dataType="TEXT" fieldName="xRefference" />
 				<DataCell row="1" column="G" dataType="NUMBER" fieldName="itemNo" dataFormat="0" /><!--  -->
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="customerFullName" />
 				<DataCell row="1" column="I" dataType="TEXT" fieldName="product" />
 				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
 				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="annualPremium" />
-				<DataCell row="1" column="L" dataType="NUMBER" dataFormat="#,##0.00" fieldName="protectAmount" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="protectAmount" />
 				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentChannel" />
 				<DataCell row="1" column="N" dataType="TEXT" fieldName="paymentFrequency" />
 				<DataCell row="1" column="O" dataType="TEXT" fieldName="qaStatus" />

@@ -37,12 +37,13 @@
 			<DataCell row="1" column="AE" dataType="TEXT" fieldName="fieldAE" defaultValue="Max. Talk Time (Min.)" />
 			<DataCell row="1" column="AF" dataType="TEXT" fieldName="fieldAF" defaultValue="DMC Talk Time (Hr.)" />
 			<DataCell row="1" column="AG" dataType="TEXT" fieldName="fieldAG" defaultValue="Total Talk Time (Hr.)" />
-			<DataCell row="1" column="AH" dataType="TEXT" fieldName="fieldAH" defaultValue="Key Code" />
-			<DataCell row="1" column="AI" dataType="TEXT" fieldName="fieldAI" defaultValue="Period" />
-			<DataCell row="1" column="AJ" dataType="TEXT" fieldName="fieldAJ" defaultValue="Print Date" />
+			<DataCell row="1" column="AH" dataType="TEXT" fieldName="fieldAH" defaultValue="Campaign" />
+			<DataCell row="1" column="AI" dataType="TEXT" fieldName="fieldAI" defaultValue="Key Code" />
+			<DataCell row="1" column="AJ" dataType="TEXT" fieldName="fieldAJ" defaultValue="Period" />
+			<DataCell row="1" column="AK" dataType="TEXT" fieldName="fieldAK" defaultValue="Print Date" />
 			<!-- end column name -->
 
-			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999">
+			<DataRecord listSourceName="dataRecord" beginRow="2" endRow="99999" skipWhenNull="TRUE">
 				<DataCell row="1" column="A" dataType="NUMBER" fieldName="No."/>
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="Name" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Work Days" />
@@ -76,9 +77,10 @@
 				<DataCell row="1" column="AE" dataType="NUMBER" fieldName="Max. Talk Time (Min.)" />
 				<DataCell row="1" column="AF" dataType="NUMBER" fieldName="DMC Talk Time (Hr.)" />
 				<DataCell row="1" column="AG" dataType="NUMBER" fieldName="Total Talk Time (Hr.)" />
-				<DataCell row="1" column="AH" dataType="TEXT" fieldName="Key Code" />
-				<DataCell row="1" column="AI" dataType="DATE" fieldName="Period" dataFormat="dd/MM/yyyy"/>
-				<DataCell row="1" column="AJ" dataType="DATE" fieldName="Print Date" dataFormat="dd/MM/yyyy"/>
+				<DataCell row="1" column="AH" dataType="TEXT" fieldName="Campaign" />
+				<DataCell row="1" column="AI" dataType="TEXT" fieldName="Key Code" />
+				<DataCell row="1" column="AJ" dataType="TEXT" fieldName="Period"/>
+				<DataCell row="1" column="AK" dataType="TEXT" fieldName="Print Date"/>
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>

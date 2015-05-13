@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLClassLoader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,12 +29,13 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 	{
 		String campaignName = args[0];
 		String processDate = args[1];
-		String outputFileName = args[2] + "/DailySummaryStatusType2_" + new SimpleDateFormat("yyyyMMdd_HHmmssSSS", Locale.US).format(new Date()) + ".xls";
+		//yyyyMMdd_HHmmssSSS
+		String outputFileName = args[2] + "/Summary_Status_Type_2_" + new SimpleDateFormat("yyyyMMdd", Locale.US).format(new Date()) + ".xls";
 		
 		new File(args[2]).mkdirs();
 
-		campaignName = "AEGON FWD-ENDOWMENT";
-		processDate = "20150105";
+//		campaignName = "AEGON FWD-ENDOWMENT";
+		processDate = "20150130";
 //		String outputFileName = args[2] 
 		
 		DailySummaryStatusType2Report batch = new DailySummaryStatusType2Report();
@@ -56,7 +58,7 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 		OutputStream output = null;
 		try
 		{
-			fileFormat = URLClassLoader.getSystemResourceAsStream("FileFormat_Partner_DailySummaryStatusType2-output-OTO.xml");
+			fileFormat = URLClassLoader.getSystemResourceAsStream("FileFormat_Partner_DailySummaryStatusType2-output-TELE.xml");
 			output = new FileOutputStream(outputFileName);
 			new ExcelFormat(fileFormat).writeExcel(output, fileDataHolder);
 		}
@@ -86,6 +88,7 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 		
 		List<String> keyCodeList = service.findKeyCodeByCampaignAndProcessDate(campaignName, processDate);
 
+		boolean setHeader = false;
 		int i = 1;
 		for (String keyCode : keyCodeList)
 		{
@@ -107,6 +110,10 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 			Integer totalSub = 0;
 			for (DailySummaryStatusType2Detail detail : dailySummaryStatusType2DetailList)
 			{
+				if (!setHeader){
+					setHeader = setHeaderValue(sheetDataHolder, detail);
+				}
+
 				if (StringUtils.isBlank(reasonMainCheck))
 				{
 					reasonMainCheck = detail.getReasonMain();
@@ -153,6 +160,41 @@ public class DailySummaryStatusType2Report extends AbstractImportSalesJob {
 
 			i++;
 		}
+	}
+
+	private boolean setHeaderValue(DataHolder sheetDataHolder, DailySummaryStatusType2Detail detail) throws ParseException
+	{
+		DataHolder dataHolder = null;
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(detail.getProject());
+		sheetDataHolder.put("project", dataHolder);
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(detail.getListLot());
+		sheetDataHolder.put("listLot", dataHolder);
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(new SimpleDateFormat("dd/MM/yyyy", Locale.US).format(new SimpleDateFormat("yyyyMMdd", Locale.US).parseObject(detail.getDateStart())));
+		sheetDataHolder.put("dateStart", dataHolder);
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(new SimpleDateFormat("dd/MM/yyyy", Locale.US).format(new SimpleDateFormat("yyyyMMdd", Locale.US).parseObject(detail.getPrintDate())));
+		sheetDataHolder.put("printDate", dataHolder);
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(detail.getCampaign());
+		sheetDataHolder.put("campaign", dataHolder);
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(detail.getStatus());
+		sheetDataHolder.put("status", dataHolder);
+
+		dataHolder = new SimpleMapDataHolder();
+		dataHolder.setValue(new SimpleDateFormat("dd/MM/yyyy", Locale.US).format(new SimpleDateFormat("yyyyMMdd", Locale.US).parseObject(detail.getDateEnd())));
+		sheetDataHolder.put("dateEnd", dataHolder);
+
+		return true;
 	}
 
 }

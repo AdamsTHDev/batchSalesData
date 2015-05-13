@@ -16,25 +16,25 @@
 			<DataCell row="5" column="A" dataType="TEXT" defaultValue="Date Start:"  templateRow="5" templateColumn="A"/>
 			<DataCell row="6" column="A" dataType="TEXT" defaultValue="Print Date :" templateRow="6" templateColumn="A"/>
 			
-			<DataCell row="3" column="B" dataType="TEXT" templateRow="3" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
-			<DataCell row="3" column="C" dataType="TEXT" templateRow="3" templateColumn="C"/>
-			<DataCell row="4" column="B" dataType="TEXT" templateRow="4" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
-			<DataCell row="4" column="C" dataType="TEXT" templateRow="4" templateColumn="C"/>
-			<DataCell row="5" column="B" dataType="TEXT" templateRow="5" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
-			<DataCell row="5" column="C" dataType="TEXT" templateRow="5" templateColumn="C"/>
-			<DataCell row="6" column="B" dataType="TEXT" templateRow="6" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
-			<DataCell row="6" column="C" dataType="TEXT" templateRow="6" templateColumn="C"/>
+			<DataCell row="3" column="B" dataType="TEXT" fieldName="project"         templateRow="3" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="3" column="C" dataType="TEXT" templateRow="3"             templateColumn="C"/>
+			<DataCell row="4" column="B" dataType="TEXT" fieldName="listLot"         templateRow="4" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="4" column="C" dataType="TEXT" templateRow="4"             templateColumn="C"/>
+			<DataCell row="5" column="B" dataType="TEXT" fieldName="dateStart"       templateRow="5" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="5" column="C" dataType="TEXT" templateRow="5"             templateColumn="C"/>
+			<DataCell row="6" column="B" dataType="TEXT" fieldName="printDate"       templateRow="6" templateColumn="B" columnMergeFrom="B" columnMergeTo="C"/>
+			<DataCell row="6" column="C" dataType="TEXT" templateRow="6"             templateColumn="C"/>
 			
-			<DataCell row="3" column="D" dataType="TEXT" defaultValue="Campaign :" templateRow="3" templateColumn="D"/>
-			<DataCell row="4" column="D" dataType="TEXT" defaultValue="Status :"   templateRow="4" templateColumn="D"/>
-			<DataCell row="5" column="D" dataType="TEXT" defaultValue="Date End :" templateRow="5" templateColumn="D"/>
+			<DataCell row="3" column="D" dataType="TEXT" defaultValue="Campaign :"   templateRow="3" templateColumn="D"/>
+			<DataCell row="4" column="D" dataType="TEXT" defaultValue="Status :"     templateRow="4" templateColumn="D"/>
+			<DataCell row="5" column="D" dataType="TEXT" defaultValue="Date End :"   templateRow="5" templateColumn="D"/>
 
-			<DataCell row="3" column="E" dataType="TEXT" templateRow="3" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
-			<DataCell row="3" column="F" dataType="TEXT" templateRow="3" templateColumn="F"/>
-			<DataCell row="4" column="E" dataType="TEXT" templateRow="4" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
-			<DataCell row="4" column="F" dataType="TEXT" templateRow="4" templateColumn="F"/>
-			<DataCell row="5" column="E" dataType="TEXT" templateRow="5" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
-			<DataCell row="5" column="F" dataType="TEXT" templateRow="5" templateColumn="F"/>
+			<DataCell row="3" column="E" dataType="TEXT" fieldName="campaign"        templateRow="3" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
+			<DataCell row="3" column="F" dataType="TEXT" templateRow="3"             templateColumn="F"/>
+			<DataCell row="4" column="E" dataType="TEXT" fieldName="status"          templateRow="4" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
+			<DataCell row="4" column="F" dataType="TEXT" templateRow="4"             templateColumn="F"/>
+			<DataCell row="5" column="E" dataType="TEXT" fieldName="dateEnd"         templateRow="5" templateColumn="E" columnMergeFrom="E" columnMergeTo="F"/>
+			<DataCell row="5" column="F" dataType="TEXT" templateRow="5"             templateColumn="F"/>
 			
 			<DataCell row="7" column="A" dataType="TEXT" defaultValue="Status and Reason"
 						templateRow="7" templateColumn="A" rowMergeFrom="7" rowMergeTo="8" columnMergeFrom="A" columnMergeTo="E"/>
@@ -379,11 +379,11 @@
 			
 			<!-- end header -->
 
-			<!-- Data 1 -->
+			<!-- Data 1 (F) -->
 			<DataRecord listSourceName="headerRecord1" beginRow="7" endRow="8">
 				<DataCell row="1" column="F" dataType="TEXT"   templateRow="7" templateColumn="F" fieldName="LotDescription"
 						rowMergeFrom="7" rowMergeTo="8"/>
-				<DataCell row="8" column="F" dataType="TEXT"   templateRow="8" templateColumn="F"/>
+				<DataCell row="2" column="F" dataType="TEXT"   templateRow="8" templateColumn="F"/>
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord1" beginRow="9" endRow="99999">
@@ -391,11 +391,11 @@
 			</DataRecord>
 			<!-- Data 1 -->
 
-			<!-- Data 2 -->
+			<!-- Data 2 (G) -->
 			<DataRecord listSourceName="headerRecord2" beginRow="7" endRow="8" skipWhenNull="TRUE">
 				<DataCell row="1" column="G" dataType="TEXT"   templateRow="7" templateColumn="F" fieldName="LotDescription"
 						rowMergeFrom="7" rowMergeTo="8"/>
-				<DataCell row="8" column="G" dataType="TEXT"   templateRow="8" templateColumn="F"/>
+				<DataCell row="2" column="G" dataType="TEXT"   templateRow="8" templateColumn="F"/>
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord2" beginRow="9" endRow="99999" skipWhenNull="TRUE">
@@ -417,6 +417,7 @@
 			<ColumnWidth column="K" width="8000"/>
 			<ColumnWidth column="L" width="8000"/>
 			<ColumnWidth column="M" width="8000"/>
+
 		</DataSheet>
 
 	</DataSet>

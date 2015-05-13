@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Sales_Report_By_Records.xls" fileType="EXCEL" locale="en-US"
+			templateFile="template/TSR_Production.xls"
+			templateSheetName="TSR_Production_Template"
+			removeTemplateAfterComplete="TRUE">
+
+	<DataSet description="TSR Production">
+
+		<DataSheet sheetIndex="1" displayGridlines="FALSE">
+
+			<DataCell row="1" column="A" dataType="TEXT" templateRow="1" templateColumn="A" defaultValue="TSR PRODUCTION REPORT" columnMergeFrom="A" columnMergeTo="N"/>
+			<DataCell row="3" column="A" dataType="TEXT" templateRow="3" templateColumn="A" defaultValue="Campaign Type :"/>
+			<DataCell row="4" column="A" dataType="TEXT" templateRow="4" templateColumn="A" defaultValue="Campaign Number :"/>
+			<DataCell row="5" column="A" dataType="TEXT" templateRow="5" templateColumn="A" defaultValue="TM Agency :"/>
+			<DataCell row="6" column="A" dataType="TEXT" templateRow="6" templateColumn="A" defaultValue="Period :"/>
+			<DataCell row="7" column="A" dataType="TEXT" templateRow="7" templateColumn="A" defaultValue="Print Date :"/>
+
+			<DataCell row="3" column="B" dataType="TEXT" templateRow="3" templateColumn="B" columnMergeFrom="B" columnMergeTo="N" fieldName="campaignName"/>
+			<DataCell row="4" column="B" dataType="TEXT" templateRow="4" templateColumn="B" columnMergeFrom="B" columnMergeTo="N" fieldName="campaignCode"/>
+			<DataCell row="5" column="B" dataType="TEXT" templateRow="5" templateColumn="B" columnMergeFrom="B" columnMergeTo="N" fieldName="callCenter"/>
+			<DataCell row="6" column="B" dataType="TEXT" templateRow="6" templateColumn="B" columnMergeFrom="B" columnMergeTo="N" fieldName="period"/>
+			<DataCell row="7" column="B" dataType="TEXT" templateRow="7" templateColumn="B" columnMergeFrom="B" columnMergeTo="N" fieldName="printDate"/>
+
+			<DataCell row="10" column="A" dataType="TEXT" templateRow="10" templateColumn="A" defaultValue="Week Ending" />
+			<DataCell row="10" column="B" dataType="TEXT" templateRow="10" templateColumn="B" defaultValue="" />
+			<DataCell row="10" column="C" dataType="TEXT" templateRow="10" templateColumn="C" defaultValue="" />
+			<DataCell row="10" column="D" dataType="TEXT" templateRow="10" templateColumn="D" defaultValue="" />
+			<DataCell row="10" column="E" dataType="TEXT" templateRow="10" templateColumn="E" defaultValue="" />
+			<DataCell row="10" column="F" dataType="TEXT" templateRow="10" templateColumn="F" defaultValue="" />
+			<DataCell row="10" column="G" dataType="TEXT" templateRow="10" templateColumn="G" defaultValue="" />
+			<DataCell row="10" column="H" dataType="TEXT" templateRow="10" templateColumn="H" defaultValue="" />
+			<DataCell row="10" column="I" dataType="TEXT" templateRow="10" templateColumn="I" defaultValue="" />
+			<DataCell row="10" column="J" dataType="TEXT" templateRow="10" templateColumn="J" defaultValue="" />
+			<DataCell row="10" column="K" dataType="TEXT" templateRow="10" templateColumn="K" defaultValue="" />
+			<DataCell row="10" column="L" dataType="TEXT" templateRow="10" templateColumn="L" defaultValue="" />
+			<DataCell row="10" column="M" dataType="TEXT" templateRow="10" templateColumn="M" defaultValue="" />
+			<DataCell row="10" column="N" dataType="TEXT" templateRow="10" templateColumn="N" defaultValue="" />
+
+			<DataCell row="11" column="A" dataType="TEXT" templateRow="11" templateColumn="A" defaultValue="Employee Name" />
+			<DataCell row="11" column="B" dataType="TEXT" templateRow="11" templateColumn="B" defaultValue="Working Day" />
+			<DataCell row="11" column="C" dataType="TEXT" templateRow="11" templateColumn="C" defaultValue="Hours" />
+			<DataCell row="11" column="D" dataType="TEXT" templateRow="11" templateColumn="D" defaultValue="Completed" />
+			<DataCell row="11" column="E" dataType="TEXT" templateRow="11" templateColumn="E" defaultValue="Contacts" />
+			<DataCell row="11" column="F" dataType="TEXT" templateRow="11" templateColumn="F" defaultValue="Sales" />
+			<DataCell row="11" column="G" dataType="TEXT" templateRow="11" templateColumn="G" defaultValue="Compl./Hours" />
+			<DataCell row="11" column="H" dataType="TEXT" templateRow="11" templateColumn="H" defaultValue="CPH" />
+			<DataCell row="11" column="I" dataType="TEXT" templateRow="11" templateColumn="I" defaultValue="SPH" />
+			<DataCell row="11" column="J" dataType="TEXT" templateRow="11" templateColumn="J" defaultValue="SPC" />
+			<DataCell row="11" column="K" dataType="TEXT" templateRow="11" templateColumn="K" defaultValue="SPL" />
+			<DataCell row="11" column="L" dataType="TEXT" templateRow="11" templateColumn="L" defaultValue="AMP	" />
+			<DataCell row="11" column="M" dataType="TEXT" templateRow="11" templateColumn="M" defaultValue="TMP" />
+			<DataCell row="11" column="N" dataType="TEXT" templateRow="11" templateColumn="N" defaultValue="Total API" />
+
+			<DataRecord listSourceName="dataRecord" beginRow="12" endRow="99999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT"   templateRow="12" templateColumn="A" fieldName="tsrFullName" />
+				<DataCell row="1" column="B" dataType="NUMBER" templateRow="12" templateColumn="B" dataFormat="0" fieldName="workingDay" />
+				<DataCell row="1" column="C" dataType="NUMBER" templateRow="12" templateColumn="C" dataFormat="0" fieldName="hours" />
+				<DataCell row="1" column="D" dataType="NUMBER" templateRow="12" templateColumn="D" dataFormat="0" fieldName="completed" />
+				<DataCell row="1" column="E" dataType="NUMBER" templateRow="12" templateColumn="E" dataFormat="0" fieldName="contacts" />
+				<DataCell row="1" column="F" dataType="NUMBER" templateRow="12" templateColumn="F" dataFormat="0" fieldName="sales" />
+				<DataCell row="1" column="G" dataType="NUMBER" templateRow="12" templateColumn="G" dataFormat="0" fieldName="completedPerHours" />
+				<DataCell row="1" column="H" dataType="NUMBER" templateRow="12" templateColumn="H" dataFormat="0" fieldName="cph" />
+				<DataCell row="1" column="I" dataType="NUMBER" templateRow="12" templateColumn="I" dataFormat="0" fieldName="sph" />
+				<DataCell row="1" column="J" dataType="NUMBER" templateRow="12" templateColumn="J" dataFormat="0" fieldName="spc" />
+				<DataCell row="1" column="K" dataType="NUMBER" templateRow="12" templateColumn="K" dataFormat="0" fieldName="spl" />
+				<DataCell row="1" column="L" dataType="NUMBER" templateRow="12" templateColumn="L" dataFormat="0" fieldName="amp" />
+				<DataCell row="1" column="M" dataType="NUMBER" templateRow="12" templateColumn="M" dataFormat="0" fieldName="tmp" />
+				<DataCell row="1" column="N" dataType="NUMBER" templateRow="12" templateColumn="N" dataFormat="0" fieldName="totalApi" />
+			</DataRecord>
+
+			<DataRecord listSourceName="blankRecord" offsetRow="0" offsetFrom="dataRecord" endRow="99999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT" templateRow="30" templateColumn="A" defaultValue="" />
+				<DataCell row="1" column="B" dataType="TEXT" templateRow="30" templateColumn="B" defaultValue="" />
+				<DataCell row="1" column="C" dataType="TEXT" templateRow="30" templateColumn="C" defaultValue="" />
+				<DataCell row="1" column="D" dataType="TEXT" templateRow="30" templateColumn="D" defaultValue="" />
+				<DataCell row="1" column="E" dataType="TEXT" templateRow="30" templateColumn="E" defaultValue="" />
+				<DataCell row="1" column="F" dataType="TEXT" templateRow="30" templateColumn="F" defaultValue="" />
+				<DataCell row="1" column="G" dataType="TEXT" templateRow="30" templateColumn="G" defaultValue="" />
+				<DataCell row="1" column="H" dataType="TEXT" templateRow="30" templateColumn="H" defaultValue="" />
+				<DataCell row="1" column="I" dataType="TEXT" templateRow="30" templateColumn="I" defaultValue="" />
+				<DataCell row="1" column="J" dataType="TEXT" templateRow="30" templateColumn="J" defaultValue="" />
+				<DataCell row="1" column="K" dataType="TEXT" templateRow="30" templateColumn="K" defaultValue="" />
+				<DataCell row="1" column="L" dataType="TEXT" templateRow="30" templateColumn="L" defaultValue="" />
+				<DataCell row="1" column="M" dataType="TEXT" templateRow="30" templateColumn="M" defaultValue="" />
+				<DataCell row="1" column="N" dataType="TEXT" templateRow="30" templateColumn="N" defaultValue="" />
+			</DataRecord>
+
+			<DataRecord listSourceName="headerTotalRecord" offsetRow="0" offsetFrom="blankRecord" endRow="99999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT" templateRow="31" templateColumn="A" defaultValue="Grand Total" />
+				<DataCell row="1" column="B" dataType="TEXT" templateRow="31" templateColumn="B" defaultValue="Working Day" />
+				<DataCell row="1" column="C" dataType="TEXT" templateRow="31" templateColumn="C" defaultValue="Hours" />
+				<DataCell row="1" column="D" dataType="TEXT" templateRow="31" templateColumn="D" defaultValue="Completed" />
+				<DataCell row="1" column="E" dataType="TEXT" templateRow="31" templateColumn="E" defaultValue="Contacts" />
+				<DataCell row="1" column="F" dataType="TEXT" templateRow="31" templateColumn="F" defaultValue="Sales" />
+				<DataCell row="1" column="G" dataType="TEXT" templateRow="31" templateColumn="G" defaultValue="Compl./Hours" />
+				<DataCell row="1" column="H" dataType="TEXT" templateRow="31" templateColumn="H" defaultValue="CPH" />
+				<DataCell row="1" column="I" dataType="TEXT" templateRow="31" templateColumn="I" defaultValue="SPH" />
+				<DataCell row="1" column="J" dataType="TEXT" templateRow="31" templateColumn="J" defaultValue="SPC" />
+				<DataCell row="1" column="K" dataType="TEXT" templateRow="31" templateColumn="K" defaultValue="SPL" />
+				<DataCell row="1" column="L" dataType="TEXT" templateRow="31" templateColumn="L" defaultValue="AMP	" />
+				<DataCell row="1" column="M" dataType="TEXT" templateRow="31" templateColumn="M" defaultValue="TMP" />
+				<DataCell row="1" column="N" dataType="TEXT" templateRow="31" templateColumn="N" defaultValue="Total API" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataTotalRecord" offsetRow="0" offsetFrom="headerTotalRecord" endRow="99999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT"   templateRow="32" templateColumn="A" fieldName="tsrFullName" />
+				<DataCell row="1" column="B" dataType="NUMBER" templateRow="32" templateColumn="B" dataFormat="0" fieldName="workingDay" />
+				<DataCell row="1" column="C" dataType="NUMBER" templateRow="32" templateColumn="C" dataFormat="0" fieldName="hours" />
+				<DataCell row="1" column="D" dataType="NUMBER" templateRow="32" templateColumn="D" dataFormat="0" fieldName="completed" />
+				<DataCell row="1" column="E" dataType="NUMBER" templateRow="32" templateColumn="E" dataFormat="0" fieldName="contacts" />
+				<DataCell row="1" column="F" dataType="NUMBER" templateRow="32" templateColumn="F" dataFormat="0" fieldName="sales" />
+				<DataCell row="1" column="G" dataType="NUMBER" templateRow="32" templateColumn="G" dataFormat="0" fieldName="completedPerHours" />
+				<DataCell row="1" column="H" dataType="NUMBER" templateRow="32" templateColumn="H" dataFormat="0" fieldName="cph" />
+				<DataCell row="1" column="I" dataType="NUMBER" templateRow="32" templateColumn="I" dataFormat="0" fieldName="sph" />
+				<DataCell row="1" column="J" dataType="NUMBER" templateRow="32" templateColumn="J" dataFormat="0" fieldName="spc" />
+				<DataCell row="1" column="K" dataType="NUMBER" templateRow="32" templateColumn="K" dataFormat="0" fieldName="spl" />
+				<DataCell row="1" column="L" dataType="NUMBER" templateRow="32" templateColumn="L" dataFormat="0" fieldName="amp" />
+				<DataCell row="1" column="M" dataType="NUMBER" templateRow="32" templateColumn="M" dataFormat="0" fieldName="tmp" />
+				<DataCell row="1" column="N" dataType="NUMBER" templateRow="32" templateColumn="N" dataFormat="0" fieldName="totalApi" />
+			</DataRecord>
+
+			<RowHeight row="1" height="500"/>
+			<RowHeight row="2" height="100"/>
+			<RowHeight row="3" height="350"/>
+			<RowHeight row="4" height="350"/>
+			<RowHeight row="5" height="350"/>
+			<RowHeight row="6" height="350"/>
+			<RowHeight row="7" height="350"/>
+			<RowHeight row="8" height="0"/>
+			<RowHeight row="9" height="350"/>
+
+			<ColumnWidth column="A" width="7000"/>
+			<ColumnWidth column="B" width="3500"/>
+			<ColumnWidth column="C" width="3500"/>
+			<ColumnWidth column="D" width="3500"/>
+			<ColumnWidth column="E" width="3500"/>
+			<ColumnWidth column="F" width="3500"/>
+			<ColumnWidth column="G" width="3500"/>
+			<ColumnWidth column="H" width="3500"/>
+			<ColumnWidth column="I" width="3500"/>
+			<ColumnWidth column="J" width="3500"/>
+			<ColumnWidth column="K" width="3500"/>
+			<ColumnWidth column="L" width="3500"/>
+			<ColumnWidth column="M" width="3500"/>
+			<ColumnWidth column="N" width="3500"/>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

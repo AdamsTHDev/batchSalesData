@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="QC Reconfirm">
+
 		<DataSheet sheetIndex="0">
 			<DataRecord listSourceName="dataHeader" beginRow="2" endRow="99999">
 				<BeginRecordCondition column="A" comparator="EQ" checkValue="Date: " firstRowAsData="TRUE" />
@@ -8,7 +9,15 @@
 				<DataCell row="1" column="C" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="printDate" />
 				<EndRecordCondition column="A" comparator="NE" checkValue="Date: " />
 			</DataRecord>
-			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999">
+
+			<DataRecord listSourceName="dataSummary" beginRow="2" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="QCStatus" firstRowAsData="FALSE" />
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="qcStatus" />
+				<DataCell row="1" column="C" dataType="NUMBER" dataFormat="#" fieldName="qcStatusCount" />
+				<EndRecordCondition column="A" comparator="EQ" checkValue="Total" />
+			</DataRecord>
+
+			<DataRecord listSourceName="qcList" beginRow="2" endRow="99999" skipWhenNull="TRUE">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="listLotName" />
@@ -31,5 +40,6 @@
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>
+
 	</DataSet>
 </FileFormat>

@@ -33,7 +33,7 @@ public class TestSalesMain extends AbstractImportSalesJob {
 //		return getSalesService().findSalesRecordByXRefference(xRefference);
 //	}
 
-	protected Sales extractSalesRecord(DataHolder salesDataHolder, Sales sales)
+	private Sales extractSalesRecord(DataHolder salesDataHolder, Sales sales)
 			throws Exception
 	{
 		log.debug("extractSalesRecord: " + salesDataHolder.printValues());
@@ -85,7 +85,7 @@ public class TestSalesMain extends AbstractImportSalesJob {
 		sales.setProduct(salesDataHolder.get("product").getStringValue());
 		sales.setPremium(salesDataHolder.get("premium").getDecimalValue());
 		sales.setAnnualFyp(salesDataHolder.get("annualPremium").getDecimalValue());
-		sales.setProtectAmount(salesDataHolder.get("protectAmount").getDecimalValue());
+		sales.setProtectAmount(salesDataHolder.get("protectAmount").getStringValue());
 
 		String paymentDescription = salesDataHolder.get("paymentChannel").getStringValue();
 		PaymentMethod paymentMethod = getPaymentMethodService().findPaymentMethodByDescription(paymentDescription);

@@ -11,9 +11,9 @@ public class DailySummaryStatusType2Oto extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201410");
-		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201411");
-		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201412");
+//		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201410");
+//		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201411");
+//		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201412");
 		new DailySummaryStatusType2Oto().test("D:/Work/Report/DailyReport/201501");
 //		new DailySummaryStatusType2Tele().test(args[0]);
 	}

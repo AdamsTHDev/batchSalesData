@@ -40,6 +40,12 @@ public class IncentiveCriteriaServiceImpl implements IncentiveCriteriaService {
 		return this.incentiveCriteriaDao.findByNamedQuery("findBySydneyCriteria", campaignCode, qaStatus, qaReason);
 	}
 
+	public List<IncentiveCriteria> findBySydneyFloorCriteria(String campaignCode, String qaStatus, String qaReason)
+			throws Exception
+	{
+		return this.incentiveCriteriaDao.findByNamedQuery("findBySydneyFloorCriteria", campaignCode, qaStatus);
+	}
+
 	public List<IncentiveCriteria> findIncentiveCriteriaByExample(IncentiveCriteria incentiveCriteria)
 			throws Exception
 	{

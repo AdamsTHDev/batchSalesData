@@ -13,6 +13,12 @@ import com.adms.batch.sales.service.BillingStatusService;
 import com.adms.batch.sales.service.CallCenterService;
 import com.adms.batch.sales.service.CampaignService;
 import com.adms.batch.sales.service.CofStatusService;
+import com.adms.batch.sales.service.DailyQcReconfirmRecordService;
+import com.adms.batch.sales.service.DailyQcReconfirmSummaryService;
+import com.adms.batch.sales.service.DailySalesReportByRecordService;
+import com.adms.batch.sales.service.DailyTsrProductionInfoService;
+import com.adms.batch.sales.service.DailyTsrProductionRecordService;
+import com.adms.batch.sales.service.DailyTsrTrackingRecordService;
 import com.adms.batch.sales.service.DdopMappingResultService;
 import com.adms.batch.sales.service.DdopMappingStatusService;
 import com.adms.batch.sales.service.EocCallOutcomeService;
@@ -20,10 +26,13 @@ import com.adms.batch.sales.service.IncentiveCompositeService;
 import com.adms.batch.sales.service.IncentiveCriteriaService;
 import com.adms.batch.sales.service.IncentiveInfoService;
 import com.adms.batch.sales.service.InsurerService;
+import com.adms.batch.sales.service.KeyFloatValueBeanService;
+import com.adms.batch.sales.service.KeyValueBeanService;
 import com.adms.batch.sales.service.ListLotService;
 import com.adms.batch.sales.service.ListSourceService;
 import com.adms.batch.sales.service.PaymentFrequencyService;
 import com.adms.batch.sales.service.PaymentMethodService;
+import com.adms.batch.sales.service.ProductionByLotService;
 import com.adms.batch.sales.service.QcReconfirmService;
 import com.adms.batch.sales.service.ReconfirmStatusService;
 import com.adms.batch.sales.service.SalesProcessService;
@@ -207,6 +216,52 @@ public class AbstractImportSalesJob {
 	protected VSalesCommService getVSalesCommService()
 	{
 		return (VSalesCommService) getBean("vSalesCommService");
+	}
+
+	protected ProductionByLotService getProductionByLotService()
+	{
+		return (ProductionByLotService) getBean("productionByLotService");
+	}
+
+	protected KeyValueBeanService getKeyValueBeanService()
+	{
+		return (KeyValueBeanService) getBean("keyValueBeanService");
+	}
+
+
+	protected KeyFloatValueBeanService getKeyFloatValueBeanService()
+	{
+		return (KeyFloatValueBeanService) getBean("keyFloatValueBeanService");
+	}
+
+	protected DailyQcReconfirmSummaryService getDailyQcReconfirmSummaryService()
+	{
+		return (DailyQcReconfirmSummaryService) getBean("dailyQcReconfirmSummaryService");
+	}
+
+	protected DailyQcReconfirmRecordService getDailyQcReconfirmRecordService()
+	{
+		return (DailyQcReconfirmRecordService) getBean("dailyQcReconfirmRecordService");
+	}
+
+	protected DailyTsrTrackingRecordService getDailyTsrTrackingRecordService()
+	{
+		return (DailyTsrTrackingRecordService) getBean("dailyTsrTrackingRecordService");
+	}
+
+	protected DailyTsrProductionInfoService getDailyTsrProductionInfoService()
+	{
+		return (DailyTsrProductionInfoService) getBean("dailyTsrProductionInfoService");
+	}
+
+	protected DailyTsrProductionRecordService getDailyTsrProductionRecordService()
+	{
+		return (DailyTsrProductionRecordService) getBean("dailyTsrProductionRecordService");
+	}
+
+	protected DailySalesReportByRecordService getDailySalesReportByRecordService()
+	{
+		return (DailySalesReportByRecordService) getBean("dailySalesReportByRecordService");
 	}
 
 }

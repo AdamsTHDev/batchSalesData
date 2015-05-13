@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.net.URLClassLoader;
 import java.util.Date;
 import java.util.List;
 
@@ -58,18 +59,25 @@ public class ImportCof extends AbstractImportSalesJob {
 					e.printStackTrace();
 				}
 			}
+			else
+			{
+				log.warn("UW Result not found [xReference: " + xReferenceString + "]");
+			}
 		}
 	}
 
-	private void importFile(File fileFormat, File qcRecordFile) throws Exception
+	private void importFile(String fileFormatFileName, String dataFileLocation)
+			throws Exception
 	{
-		log.info("importFile: " + qcRecordFile.getAbsolutePath());
+		log.info("importFile: " + dataFileLocation);
+		InputStream format = null;
 		InputStream input = null;
 		try
 		{
-			ExcelFormat excelFormat = new ExcelFormat(fileFormat);
+			format = URLClassLoader.getSystemResourceAsStream(fileFormatFileName);
+			ExcelFormat excelFormat = new ExcelFormat(format);
 
-			input = new FileInputStream(qcRecordFile);
+			input = new FileInputStream(dataFileLocation);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
 			List<DataHolder> cofDataHolderList = fileDataHolder.get(fileDataHolder.getSheetNameByIndex(0)).getDataList("dataRecords");
@@ -82,6 +90,13 @@ public class ImportCof extends AbstractImportSalesJob {
 		}
 		finally
 		{
+			try
+			{
+				format.close();
+			}
+			catch (Exception e)
+			{
+			}
 			try
 			{
 				input.close();
@@ -97,24 +112,24 @@ public class ImportCof extends AbstractImportSalesJob {
 	{
 		System.out.println("main");
 
-		String rootPath = "D:/Work/Report/DailyReport/QA_COF";
+		String fileFormatFileName = "fileformat/salesdb/FileFormat_QC_COF.xml";
+		String rootPath = args[0] /* "D:/Work/Report/DailyReport/QA_COF" */;
+
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return name.toUpperCase().contains("ADMS ") && name.toLowerCase().endsWith(".xls");
+				return !name.contains("~$") && dir.getAbsolutePath().contains("2015") && name.toUpperCase().contains("ADMS ") && name.toLowerCase().endsWith(".xls");
 			}
 		});
 
 		ImportCof batch = new ImportCof();
-		batch.setLogLevel(Logger.DEBUG);
+		batch.setLogLevel(Logger.INFO);
 
-		String fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_QC_COF.xml";
-		
 		for (String filename : fw.getFileList())
 		{
-			batch.importFile(new File(fileFormatLocation), new File(filename));
+			batch.importFile(fileFormatFileName, filename);
 		}
 	}
 

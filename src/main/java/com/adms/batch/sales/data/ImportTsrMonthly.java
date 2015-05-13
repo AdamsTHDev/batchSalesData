@@ -1,8 +1,8 @@
 package com.adms.batch.sales.data;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URLClassLoader;
 import java.util.Date;
 import java.util.List;
 
@@ -65,24 +65,26 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 
 			if (newTsr)
 			{
-				getTsrService().addTsr(tsr, "batchId");
+				getTsrService().addTsr(tsr, BATCH_ID);
 			}
 			else
 			{
-				getTsrService().updateTsr(tsr, "batchId");
+				getTsrService().updateTsr(tsr, BATCH_ID);
 			}
 		}
 	}
 
-	private void importFile(File fileFormat, File tsrRecordFile)
+	private void importFile(String fileFormatFileName, String dataFileLocation)
 	{
-		log.info("importFile: " + tsrRecordFile.getAbsolutePath());
+		log.info("importFile: " + dataFileLocation);
+		InputStream format = null;
 		InputStream input = null;
 		try
 		{
-			ExcelFormat excelFormat = new ExcelFormat(fileFormat);
+			format = URLClassLoader.getSystemResourceAsStream(fileFormatFileName);
+			ExcelFormat excelFormat = new ExcelFormat(format);
 
-			input = new FileInputStream(tsrRecordFile);
+			input = new FileInputStream(dataFileLocation);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
 			List<DataHolder> tsrDataHolderList = fileDataHolder.get(fileDataHolder.getSheetNameByIndex(0)).getDataList("tsrList");
@@ -98,6 +100,13 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 		{
 			try
 			{
+				format.close();
+			}
+			catch (Exception e)
+			{
+			}
+			try
+			{
 				input.close();
 			}
 			catch (Exception e)
@@ -109,13 +118,13 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		String fileFormat = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_TSR_Update_Monthly.xml";
-		String fileInput = "D:/Work/Report/TSR Update/Employees_201502_for_batch.xlsx";
+		String fileFormatFileName = "fileformat/salesdb/FileFormat_TSR_Update_Monthly.xml";
+		String dataFileLocation = args[0] /* "D:/Work/Report/TSR Update/Employees_201503_for_batch.xlsx" */;
 
 		System.out.println("main");
 		ImportTsrMonthly batch = new ImportTsrMonthly();
 		batch.setLogLevel(Logger.DEBUG);
-		batch.importFile(new File(fileFormat), new File(fileInput));
+		batch.importFile(fileFormatFileName, dataFileLocation);
 	}
 
 }

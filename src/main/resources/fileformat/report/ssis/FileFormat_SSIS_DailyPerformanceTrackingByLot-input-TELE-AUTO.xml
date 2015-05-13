@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Daily_Performance_Tracking_ByLot.xls" fileType="EXCEL" locale="en-US">
+	<DataSet description="Daily Performance Tracking">
+
+		<DataSheet sheetIndex="0">
+
+			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="DateHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="J" comparator="EQ" checkValue="From Date :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="dateInfo" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="LeadHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Leads Loaded :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="lead1Info" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="lead2Info" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRecord" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="C" comparator="EQ" checkValue="New Lead Used / TSR" />
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Callback / Nocontact / Follow Used" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Total Lead Used" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Callback/ Nocontact (Remaining)" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Follow up (Remaining)" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Total Completed" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Contact" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="Sale" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="BP CR%" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="SPC" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="List Conv." />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="TYP" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="AMP" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="AYP" dataFormat="0.00" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+		</DataSheet>
+
+
+		<DataSheet sheetIndex="1" skipWhenNull="TRUE">
+
+			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="DateHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="J" comparator="EQ" checkValue="From Date :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="dateInfo" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="LeadHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Leads Loaded :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="lead1Info" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="lead2Info" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRecord" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Date" />
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Callback / Nocontact / Follow Used" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Total Lead Used" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Callback/ Nocontact (Remaining)" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Follow up (Remaining)" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Total Completed" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Contact" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="Sale" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="BP CR%" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="SPC" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="List Conv." />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="TYP" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="AMP" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="AYP" dataFormat="0.00" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+		</DataSheet>
+
+
+		<DataSheet sheetIndex="2" skipWhenNull="TRUE">
+
+			<DataRecord listSourceName="CampaignHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Campaign" firstRowAsData="TRUE" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="bpName" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="campaignInfo" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="DateHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="J" comparator="EQ" checkValue="From Date :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="dateInfo" />
+				<EndRecordCondition column="J" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="LeadHeader" beginRow="1" endRow="9">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Leads Loaded :" firstRowAsData="TRUE" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="lead1Info" />
+				<DataCell row="1" column="H" dataType="TEXT" fieldName="lead2Info" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataRecord" beginRow="1" endRow="99999">
+				<BeginRecordCondition column="A" comparator="EQ" checkValue="Date" />
+				<DataCell row="1" column="A" dataType="DATE" fieldName="Date" dataFormat="dd/MM/yyyy" recoveryType="TEXT"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="TSR No" />
+				<DataCell row="1" column="C" dataType="NUMBER" fieldName="New Lead Used / TSR" />
+				<DataCell row="1" column="D" dataType="NUMBER" fieldName="New Lead Used" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="Callback / Nocontact / Follow Used" />
+				<DataCell row="1" column="F" dataType="NUMBER" fieldName="Total Lead Used" />
+				<DataCell row="1" column="G" dataType="NUMBER" fieldName="Callback/ Nocontact (Remaining)" />
+				<DataCell row="1" column="H" dataType="NUMBER" fieldName="Follow up (Remaining)" />
+				<DataCell row="1" column="I" dataType="NUMBER" fieldName="Total Completed" />
+				<DataCell row="1" column="J" dataType="NUMBER" fieldName="Contact" />
+				<DataCell row="1" column="K" dataType="NUMBER" fieldName="Sale" />
+				<DataCell row="1" column="L" dataType="TEXT" fieldName="BP CR%" />
+				<DataCell row="1" column="M" dataType="TEXT" fieldName="SPC" />
+				<DataCell row="1" column="N" dataType="TEXT" fieldName="List Conv." />
+				<DataCell row="1" column="O" dataType="NUMBER" fieldName="TYP" dataFormat="0.00" />
+				<DataCell row="1" column="P" dataType="NUMBER" fieldName="AMP" dataFormat="0.00" />
+				<DataCell row="1" column="Q" dataType="NUMBER" fieldName="AYP" dataFormat="0.00" />
+				<EndRecordCondition column="A" comparator="BLANK" />
+			</DataRecord>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

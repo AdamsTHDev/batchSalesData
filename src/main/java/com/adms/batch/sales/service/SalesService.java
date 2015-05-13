@@ -26,6 +26,9 @@ public interface SalesService {
 	public Sales findSalesRecordByCustomerFullNameAndSaleDate(String customerFullName, Date saleDate)
 			throws Exception;
 
+	public List<Sales> findSalesRecordForxRefChanged(String xReference, String customerFullName, String tsrCode, Date saleDate)
+			throws Exception;
+
 	public List<Sales> findSalesRecordBySaleMonth(String saleMonth)
 			throws Exception;
 

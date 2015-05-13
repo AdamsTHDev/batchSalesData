@@ -23,11 +23,23 @@ public class Campaign extends BaseAuditDomain {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "CAMPAIGN_YEAR")
+	private String campaignYear;
+
 	@Column(name = "CAMPAIGN_CODE")
 	private String campaignCode;
 
 	@Column(name = "CAMPAIGN_NAME")
 	private String campaignName;
+
+	@Column(name = "CAMPAIGN_NAME_COMM")
+	private String campaignNameComm;
+
+	@Column(name = "CAMPAIGN_NAME_MGL")
+	private String campaignNameMgl;
+
+	@Column(name = "REPORT_NAME")
+	private String reportName;
 
 	@ManyToOne
 	@JoinColumn(name = "CALL_CENTER", referencedColumnName = "CALL_CENTER_ABBR")
@@ -60,6 +72,16 @@ public class Campaign extends BaseAuditDomain {
 		this.id = id;
 	}
 
+	public String getCampaignYear()
+	{
+		return campaignYear;
+	}
+
+	public void setCampaignYear(String campaignYear)
+	{
+		this.campaignYear = campaignYear;
+	}
+
 	public String getCampaignCode()
 	{
 		return campaignCode;
@@ -78,6 +100,36 @@ public class Campaign extends BaseAuditDomain {
 	public void setCampaignName(String campaignName)
 	{
 		this.campaignName = campaignName;
+	}
+
+	public String getCampaignNameComm()
+	{
+		return campaignNameComm;
+	}
+
+	public void setCampaignNameComm(String campaignNameComm)
+	{
+		this.campaignNameComm = campaignNameComm;
+	}
+
+	public String getCampaignNameMgl()
+	{
+		return campaignNameMgl;
+	}
+
+	public void setCampaignNameMgl(String campaignNameMgl)
+	{
+		this.campaignNameMgl = campaignNameMgl;
+	}
+
+	public String getReportName()
+	{
+		return reportName;
+	}
+
+	public void setReportName(String reportName)
+	{
+		this.reportName = reportName;
 	}
 
 	public CallCenter getCallCenter()
@@ -143,7 +195,8 @@ public class Campaign extends BaseAuditDomain {
 	@Override
 	public String toString()
 	{
-		return "Campaign [id=" + id + ", campaignCode=" + campaignCode + ", campaignName=" + campaignName + ", callCenter=" + callCenter + ", listSource=" + listSource + ", insurer=" + insurer + ", productCode=" + productCode + ", productName=" + productName + ", isActive=" + isActive + "]";
+		return "Campaign [id=" + id + ", campaignYear=" + campaignYear + ", campaignCode=" + campaignCode + ", campaignName=" + campaignName + ", campaignNameComm=" + campaignNameComm + ", campaignNameMgl=" + campaignNameMgl + ", reportName=" + reportName + ", callCenter=" + callCenter
+				+ ", listSource=" + listSource + ", insurer=" + insurer + ", productCode=" + productCode + ", productName=" + productName + ", isActive=" + isActive + "]";
 	}
 
 }

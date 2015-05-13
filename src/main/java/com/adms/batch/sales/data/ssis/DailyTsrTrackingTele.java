@@ -14,6 +14,7 @@ public class DailyTsrTrackingTele {
 //		test("D:/Work/Report/DailyReport/201411");
 //		test("D:/Work/Report/DailyReport/201412");
 //		test("D:/Work/Report/DailyReport/201501");
+//		test("D:/Work/Report/DailyReport/201502");
 		test(args[0]);
 	}
 
@@ -25,7 +26,7 @@ public class DailyTsrTrackingTele {
 		{
 			public boolean accept(File dir, String name)
 			{
-				return dir.getAbsolutePath().contains("TELE") && name.toUpperCase().contains("TSR") && name.toUpperCase().contains("TRACKING");
+				return !name.contains("~$") && (dir.getAbsolutePath().contains("TELE") && name.toUpperCase().contains("TSR") && name.toUpperCase().contains("TRACKING"));
 			}
 		});
 
@@ -43,7 +44,7 @@ public class DailyTsrTrackingTele {
 			}
 
 			System.out.println(fileName + " --> " + outputFileNameSsis);
-			new DailyTsrProductionFileTransform().transform("FileFormat_SSIS_DailyTsrTracking-input-TELE.xml", new File(fileName), "FileFormat_SSIS_DailyTsrTracking-output.xml", new File(outputFileNameSsis));
+			new DailyTsrTrackingFileTransform().transform("FileFormat_SSIS_DailyTsrTracking-input-TELE.xml", new File(fileName), "FileFormat_SSIS_DailyTsrTracking-output.xml", new File(outputFileNameSsis));
 		}
 	}
 

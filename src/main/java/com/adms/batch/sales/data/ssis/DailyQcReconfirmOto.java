@@ -11,11 +11,13 @@ public class DailyQcReconfirmOto extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201410");
-		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201411");
-		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201412");
-		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201501");
-//		new DailyQcReconfirmOto().test(args[0]);
+//		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201410");
+//		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201411");
+//		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201412");
+//		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201501");
+//		new DailyQcReconfirmOto().test("D:/Work/Report/DailyReport/201502");
+		new DailyQcReconfirmOto().test(args[0]);
+		
 	}
 
 	public void test(String sInputPath)
@@ -27,7 +29,7 @@ public class DailyQcReconfirmOto extends AbstractImportSalesJob {
 
 			public boolean accept(File dir, String name)
 			{
-				return dir.getAbsolutePath().contains("OTO") && (name.contains("_Reconfirm") && name.contains(".xls"));
+				return !name.contains("~$") && !name.contains("Total") && (dir.getAbsolutePath().contains("OTO") && (name.contains("_Reconfirm") && name.contains(".xls")));
 			}
 		});
 

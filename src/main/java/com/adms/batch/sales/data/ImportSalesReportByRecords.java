@@ -5,12 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.net.URLClassLoader;
 import java.util.Date;
 //import java.util.Locale;
 
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.adms.batch.sales.domain.ListLot;
@@ -96,11 +98,13 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		}
 		if (tsr == null)
 		{
-			String tsrName = salesDataHolder.get("tsrName").getStringValue();
-			tsr = getTsrService().findTsrByFullName(tsrName, (Date) salesDataHolder.get("saleDate").getValue());
+//			String tsrName = salesDataHolder.get("tsrName").getStringValue();
+//			tsr = getTsrService().findTsrByFullName(tsrName, (Date) salesDataHolder.get("saleDate").getValue());
+			log.error("TSR not found [TSR Code: " + tsrCode + "]");
+			throw new Exception("Error!!! TSR not found [TSR Code: " + tsrCode + "]");
 		}
 		
-		if (tsr == null)
+		/*if (tsr == null)
 		{
 			tsr = new Tsr();
 			tsr.setTsrCode(tsrCode);
@@ -108,7 +112,7 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 			tsr.setTsrStatus(getTsrStatusService().findTsrStatusByStatusCode("AD"));
 			tsr.setRemark("" + sales.getxReference());
 			tsr = getTsrService().addTsr(tsr, BATCH_ID);
-		}
+		}*/
 		sales.setTsr(tsr);
 
 		String supCode = salesDataHolder.get("supCode").getStringValue();
@@ -117,12 +121,16 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 
 		sales.setSaleDate((Date) salesDataHolder.get("saleDate").getValue());
 		sales.setApproveDate((Date) salesDataHolder.get("approveDate").getValue());
+		if (salesDataHolder.get("approveDatePending") != null)
+		{
+			sales.setApproveDatePending((Date) salesDataHolder.get("approveDatePending").getValue());
+		}
 		sales.setItemNo(salesDataHolder.get("itemNo").getIntValue());
 		sales.setCustomerFullName(StringUtil.removeDoubleSpace(salesDataHolder.get("customerFullName").getStringValue()));
 		sales.setProduct(salesDataHolder.get("product").getStringValue());
 		sales.setPremium(salesDataHolder.get("premium").getDecimalValue());
 		sales.setAnnualFyp(salesDataHolder.get("annualPremium").getDecimalValue());
-		sales.setProtectAmount(salesDataHolder.get("protectAmount").getDecimalValue());
+		sales.setProtectAmount(salesDataHolder.get("protectAmount").getStringValue());
 
 		String paymentDescription = salesDataHolder.get("paymentChannel").getStringValue();
 		PaymentMethod paymentMethod = getPaymentMethodService().findPaymentMethodByDescription(paymentDescription);
@@ -179,6 +187,21 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 					sales = getSalesService().updateSalesRecord(sales, BATCH_ID);
 				}
 
+				// check change x-ref
+				List<Sales> salesList = getSalesService().findSalesRecordForxRefChanged(sales.getxReference(), sales.getCustomerFullName(), sales.getTsr().getTsrCode(), sales.getSaleDate());
+				if (CollectionUtils.isNotEmpty(salesList))
+				{
+					for (Sales salesOldxRef : salesList)
+					{
+						if (salesOldxRef.getItemNo() < sales.getItemNo())
+						{
+							salesOldxRef.setxReferenceNew(sales.getxReference());
+
+							getSalesService().updateSalesRecord(salesOldxRef, BATCH_ID);
+						}
+					}
+				}
+
 				addSalesProcess(sales);
 			}
 			catch (Exception e)
@@ -190,19 +213,21 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		}
 	}
 
-	protected void importFile(File fileFormat, File salesRecordFile/*, String sheetName*/)
+	protected void importFile(String fileFormatFileName, String dataFileLocation)
 			throws FileNotFoundException
 	{
-		log.info("importFile: " + salesRecordFile.getAbsolutePath());
+		log.info("importFile: " + dataFileLocation);
+		InputStream format = null;
 		InputStream input = null;
 		try
 		{
-			ExcelFormat excelFormat = new ExcelFormat(fileFormat);
+			format = URLClassLoader.getSystemResourceAsStream(fileFormatFileName);
+			ExcelFormat excelFormat = new ExcelFormat(format);
 
-			input = new FileInputStream(salesRecordFile);
+			input = new FileInputStream(dataFileLocation);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
-			List<DataHolder> salesDataHolderList = fileDataHolder.get(/*sheetName*/ fileDataHolder.getSheetNameByIndex(0)).getDataList("salesRecord");
+			List<DataHolder> salesDataHolderList = fileDataHolder.get(fileDataHolder.getSheetNameByIndex(0)).getDataList("salesRecord");
 
 			importSalesRecord(salesDataHolderList);
 		}
@@ -218,6 +243,13 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		{
 			try
 			{
+				format.close();
+			}
+			catch (Exception e)
+			{
+			}
+			try
+			{
 				input.close();
 			}
 			catch (Exception e)
@@ -230,14 +262,14 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 			throws Exception
 	{
 		System.out.println("main");
+		String rootPath = args[0]/*"D:/Work/Report/DailyReport/201503"*/;
 
-		String rootPath = "D:/Work/Report/DailyReport/201502/OTO/MSIGBL";
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return !name.contains("~$") && (name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx"));
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && /*dir.getAbsolutePath().contains("MTI-KBank") &&*/ (name.contains("_SALESR_") || name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx"));
 			}
 		});
 
@@ -248,25 +280,23 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		{
 			if (filename.contains("MSIGUOB"))
 			{
-//				batch.setDataSheetName("Sales_Report_By_Records_Pending");
-				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-MSIGUOB.xml");
+				batch.setFileFormatLocation("FileFormat_SSIS_DailySalesReportByRecords-input-MSIGUOB.xml");
 			}
 			else if (filename.contains("OTO"))
 			{
-//				batch.setDataSheetName("Sales_Report_By_Records");
-				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-OTO.xml");
+				batch.setFileFormatLocation("FileFormat_SSIS_DailySalesReportByRecords-input-OTO.xml");
 			}
 			else if (filename.contains("TELE") && !filename.contains("MSIGUOB"))
 			{
-//				batch.setDataSheetName("Sales_Report_By_Records");
-				batch.setFileFormatLocation("D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_DailySalesReportByRecords-input-TELE.xml");
+				batch.setFileFormatLocation("FileFormat_SSIS_DailySalesReportByRecords-input-TELE.xml");
 			}
 			else
 			{
+				//D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/
 				throw new Exception("file not supported");
 			}
 
-			batch.importFile(new File(batch.getFileFormatLocation()), new File(filename)/*, batch.getDataSheetName()*/);
+			batch.importFile(batch.getFileFormatLocation(), filename);
 		}
 	}
 }

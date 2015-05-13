@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.Tsr;
 import com.adms.batch.sales.support.FileWalker;
+import com.adms.batch.sales.support.SalesDataHelper;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
@@ -65,11 +67,30 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 		log.info("importQc");
 		for (DataHolder qcDataHolder : qcDataHolderList)
 		{
-//			QcReconfirm example = new QcReconfirm();
+			log.debug("import QC: " + qcDataHolder.printValues());
 
-			Date saleDate = (Date) qcDataHolder.get("saleDate").getValue();
+			Date saleDate = null;
 			SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy");
-			saleDate = df.parse(df.format(saleDate));
+			SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+			if (qcDataHolder.get("saleDate").getValue() instanceof BigDecimal)
+			{
+				String s = SalesDataHelper.recoveryExcelDate(qcDataHolder.get("saleDate").getDecimalValue().doubleValue(), "ddMMyyyy");
+				saleDate = df.parse(s);
+			}
+			else if (qcDataHolder.get("saleDate").getValue() instanceof Date)
+			{
+				saleDate = (Date) qcDataHolder.get("saleDate").getValue();
+				saleDate = df.parse(df.format(saleDate));
+			}
+			else if (qcDataHolder.get("saleDate").getValue() instanceof String)
+			{
+				saleDate = df2.parse(qcDataHolder.get("saleDate").getStringValue());
+			}
+			else
+			{
+				log.error(qcDataHolder.get("saleDate").getValue());
+				throw new Exception();
+			}
 
 			String tsrCode = qcDataHolder.get("tsrCode") == null ? null : qcDataHolder.get("tsrCode").getStringValue();
 			String fullName = qcDataHolder.get("tsrFullName").getStringValue();
@@ -92,7 +113,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 				throw e;
 			}
 
-			String xReferenceString = qcDataHolder.get("xReference").getStringValue();
+			String xReferenceString = qcDataHolder.get("xReference") != null ? qcDataHolder.get("xReference").getStringValue() : null;
 			String customerFullName = qcDataHolder.get("customerFullName").getStringValue();
 
 			Sales xReference = null;
@@ -134,7 +155,27 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 			}
 
 			QcReconfirm qcReconfirm = null;
-			Date qcStatusDate = (Date) qcDataHolder.get("qcStatusDate").getValue();
+			Date qcStatusDate = null;
+			if (qcDataHolder.get("qcStatusDate").getValue() instanceof BigDecimal)
+			{
+				String s = SalesDataHelper.recoveryExcelDate(qcDataHolder.get("qcStatusDate").getDecimalValue().doubleValue(), "ddMMyyyy");
+				qcStatusDate = df.parse(s);
+			}
+			else if (qcDataHolder.get("qcStatusDate").getValue() instanceof Date)
+			{
+				qcStatusDate = (Date) qcDataHolder.get("qcStatusDate").getValue();
+				qcStatusDate = df.parse(df.format(qcStatusDate));
+			}
+			else if (qcDataHolder.get("qcStatusDate").getValue() instanceof String)
+			{
+				qcStatusDate = df2.parse(qcDataHolder.get("qcStatusDate").getStringValue());
+			}
+			else
+			{
+				log.error(qcDataHolder.get("qcStatusDate").getValue());
+				throw new Exception();
+			}
+			
 			Date recoveryQcStatusDate = null;
 			try
 			{
@@ -230,13 +271,14 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 	{
 		System.out.println("main");
 
-		String rootPath = "D:/Work/Report/DailyReport/201501/TELE/MTLKBANK";
+		String rootPath = args[0]/*"D:/Work/Report/DailyReport/201502/TELE/MTLKBANK"*/;
+		
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return !name.contains("~$") && (name.toLowerCase().contains("reconfirm") && (name.toLowerCase().endsWith(".xls") || name.toLowerCase().endsWith(".xlsx")));
+				return !name.contains("~$") && ((name.toLowerCase().contains("reconfirm") || (name.toUpperCase().contains("_QCRECO_") && name.toUpperCase().contains("_CTD_ALL"))) && (name.toLowerCase().endsWith(".xls") || name.toLowerCase().endsWith(".xlsx")));
 			}
 		});
 
@@ -249,7 +291,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 		{
 			if (filename.contains("OTO"))
 			{
-				if (filename.contains("FWDTVD"))
+				/*if (filename.contains("FWDTVD"))
 				{
 					int i = filename.indexOf("FWD_TVD_Endowment 15_7_") + 23;
 					Date date = new SimpleDateFormat("yyyyMMdd", Locale.US).parse(filename.substring(i, i + 8));
@@ -290,18 +332,20 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 					{
 						fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-OTO.xml";
 					}
-				}
+				}*/
+				fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-OTO.xml";
 			}
 			else if (filename.contains("TELE"))
 			{
-				if (filename.contains("MSIGUOB"))
+				/*if (filename.contains("MSIGUOB"))
 				{
 					fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-MSIGUOB.xml";
 				}
 				else
 				{
 					fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-TELE.xml";
-				}
+				}*/
+				fileFormatLocation = "D:/Eclipse/Workspace/ADAMS/batchSalesData/src/main/resources/FileFormat_SSIS_QcReconfirm-input-TELE.xml";
 			}
 			else
 			{

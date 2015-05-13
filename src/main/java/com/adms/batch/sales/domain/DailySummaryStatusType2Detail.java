@@ -12,8 +12,8 @@ import com.adms.common.domain.BaseDomain;
 @Entity
 @Table(name = "V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D")
 @NamedNativeQueries({ @NamedNativeQuery(name = "findByCampaignAndProcessDateAndKeyCode", query = "SELECT * FROM [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateEnd like ? and KeyCode like ? order by KeyCode, SortMain, SortSub", resultClass = DailySummaryStatusType2Detail.class),
-	@NamedNativeQuery(name = "findKeyCodeByCampaignAndProcessDate", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Campaign, null as ReasonMain, null as ReasonSub, null as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateEnd like ? order by KeyCode ", resultClass = DailySummaryStatusType2Detail.class),
-	@NamedNativeQuery(name = "findLotDecriptionByKeyCode", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Campaign, null as ReasonMain, null as ReasonSub, LotDescription + ' (' + KeyCode + ')' as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where KeyCode like ?", resultClass = DailySummaryStatusType2Detail.class)})
+	@NamedNativeQuery(name = "findKeyCodeByCampaignAndProcessDate", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Project, null as Campaign, null as ListLot, null as Status, null as ReasonMain, null as ReasonSub, null as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where Campaign like ? and DateEnd like ? order by KeyCode ", resultClass = DailySummaryStatusType2Detail.class),
+	@NamedNativeQuery(name = "findLotDecriptionByKeyCode", query = "select distinct KeyCode as RecordId, KeyCode as KeyCode, null as Project, null as Campaign, null as ListLot, null as Status, null as ReasonMain, null as ReasonSub, LotDescription + ' (' + KeyCode + ')' as LotDescription, null as NoOfRecord, null as DateStart, null as DateEnd, null as PrintDate from [SALES].[dbo].[V_RPT_DAILY_SUMMARY_STATUS_TYPE_2_D] where KeyCode like ?", resultClass = DailySummaryStatusType2Detail.class)})
 public class DailySummaryStatusType2Detail extends BaseDomain {
 
 	private static final long serialVersionUID = 4640567838018338096L;
@@ -31,6 +31,9 @@ public class DailySummaryStatusType2Detail extends BaseDomain {
 	@Column(name = "LotDescription")
 	private String lotDescription;
 
+	@Column(name = "Campaign")
+	private String campaign;
+
 	@Column(name = "KeyCode")
 	private String keyCode;
 
@@ -45,6 +48,15 @@ public class DailySummaryStatusType2Detail extends BaseDomain {
 
 	@Column(name = "PrintDate")
 	private String printDate;
+
+	@Column(name = "Status")
+	private String status;
+
+	@Column(name = "Project")
+	private String project;
+
+	@Column(name = "ListLot")
+	private String listLot;
 
 	public String getRecordId()
 	{
@@ -84,6 +96,16 @@ public class DailySummaryStatusType2Detail extends BaseDomain {
 	public void setLotDescription(String lotDescription)
 	{
 		this.lotDescription = lotDescription;
+	}
+
+	public String getCampaign()
+	{
+		return campaign;
+	}
+
+	public void setCampaign(String campaign)
+	{
+		this.campaign = campaign;
 	}
 
 	public String getKeyCode()
@@ -136,11 +158,41 @@ public class DailySummaryStatusType2Detail extends BaseDomain {
 		this.printDate = printDate;
 	}
 
+	public String getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(String status)
+	{
+		this.status = status;
+	}
+
+	public String getProject()
+	{
+		return project;
+	}
+
+	public void setProject(String project)
+	{
+		this.project = project;
+	}
+
+	public String getListLot()
+	{
+		return listLot;
+	}
+
+	public void setListLot(String listLot)
+	{
+		this.listLot = listLot;
+	}
+
 	@Override
 	public String toString()
 	{
-		return "DailySummaryStatusType2Detail [recordId=" + recordId + ", reasonMain=" + reasonMain + ", reasonSub=" + reasonSub + ", lotDescription=" + lotDescription + ", keyCode=" + keyCode + ", noOfRecord=" + noOfRecord + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", printDate="
-				+ printDate + "]";
+		return "DailySummaryStatusType2Detail [recordId=" + recordId + ", reasonMain=" + reasonMain + ", reasonSub=" + reasonSub + ", lotDescription=" + lotDescription + ", campaign=" + campaign + ", keyCode=" + keyCode + ", noOfRecord=" + noOfRecord + ", dateStart=" + dateStart + ", dateEnd="
+				+ dateEnd + ", printDate=" + printDate + ", status=" + status + ", project=" + project + ", listLot=" + listLot + "]";
 	}
 
 }

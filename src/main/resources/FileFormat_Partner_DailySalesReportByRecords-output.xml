@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="Sales_Report_By_Records.xls" fileType="EXCEL" locale="en-US"
+			templateFile="template/Sales_Report_By_Records.xls"
+			templateSheetName="Sales_Report_By_Records TP"
+			removeTemplateAfterComplete="TRUE">
+
+	<DataSet description="Sales_Report_By_Records">
+
+		<DataSheet sheetIndex="1" displayGridlines="FALSE">
+
+			<DataCell row="1" column="A" dataType="TEXT" templateRow="1" templateColumn="A" defaultValue="Sales_ReportByRecords" columnMergeFrom="A" columnMergeTo="U"/>
+			<DataCell row="2" column="A" dataType="TEXT" templateRow="2" templateColumn="A" defaultValue="Campaign :"/>
+			<DataCell row="3" column="A" dataType="TEXT" templateRow="3" templateColumn="A" defaultValue="ListLot :"/>
+			<DataCell row="4" column="A" dataType="TEXT" templateRow="4" templateColumn="A" defaultValue="Period :"/>
+			<DataCell row="5" column="A" dataType="TEXT" templateRow="5" templateColumn="A" defaultValue="Print Date :"/>
+			
+			<DataCell row="2" column="B" dataType="TEXT" templateRow="2" templateColumn="B" fieldName="campaignName" columnMergeFrom="B" columnMergeTo="U"/>
+			<DataCell row="3" column="B" dataType="TEXT" templateRow="3" templateColumn="B" fieldName="listLot" columnMergeFrom="B" columnMergeTo="U"/>
+			<DataCell row="4" column="B" dataType="TEXT" templateRow="4" templateColumn="B" fieldName="period" columnMergeFrom="B" columnMergeTo="U"/>
+			<DataCell row="5" column="B" dataType="DATE" templateRow="5" templateColumn="B" fieldName="printDate" dataFormat="dd/MM/yyyy" columnMergeFrom="B" columnMergeTo="U"/>
+			
+			<DataCell row="6" column="A" dataType="TEXT" templateRow="6" templateColumn="A" defaultValue="CampaignName" />
+			<DataCell row="6" column="B" dataType="TEXT" templateRow="6" templateColumn="B" defaultValue="CampaignCode" />
+			<DataCell row="6" column="C" dataType="TEXT" templateRow="6" templateColumn="C" defaultValue="ListlotName" />
+			<DataCell row="6" column="D" dataType="TEXT" templateRow="6" templateColumn="D" defaultValue="Approve Date" />
+			<DataCell row="6" column="E" dataType="TEXT" templateRow="6" templateColumn="E" defaultValue="X-Ref" />
+			<DataCell row="6" column="F" dataType="TEXT" templateRow="6" templateColumn="F" defaultValue="No" />
+			<DataCell row="6" column="G" dataType="TEXT" templateRow="6" templateColumn="G" defaultValue="Customer" />
+			<DataCell row="6" column="H" dataType="TEXT" templateRow="6" templateColumn="H" defaultValue="Product" />
+			<DataCell row="6" column="I" dataType="TEXT" templateRow="6" templateColumn="I" defaultValue="Premium" />
+			<DataCell row="6" column="J" dataType="TEXT" templateRow="6" templateColumn="J" defaultValue="AFYP" />
+			<DataCell row="6" column="K" dataType="TEXT" templateRow="6" templateColumn="K" defaultValue="ProtectAmount" />
+			<DataCell row="6" column="L" dataType="TEXT" templateRow="6" templateColumn="L" defaultValue="Payment Channel" />
+			<DataCell row="6" column="M" dataType="TEXT" templateRow="6" templateColumn="M" defaultValue="Mode Of Payment" />
+			<DataCell row="6" column="N" dataType="TEXT" templateRow="6" templateColumn="N" defaultValue="QA Status" />
+			<DataCell row="6" column="O" dataType="TEXT" templateRow="6" templateColumn="O" defaultValue="QA Reason Status" />
+			<DataCell row="6" column="P" dataType="TEXT" templateRow="6" templateColumn="P" defaultValue="Sale Date" />
+			<DataCell row="6" column="Q" dataType="TEXT" templateRow="6" templateColumn="Q" defaultValue="TMR Code" />
+			<DataCell row="6" column="R" dataType="TEXT" templateRow="6" templateColumn="R" defaultValue="TSR" />
+			<DataCell row="6" column="S" dataType="TEXT" templateRow="6" templateColumn="S" defaultValue="TMR Code Manager" />
+			<DataCell row="6" column="T" dataType="TEXT" templateRow="6" templateColumn="T" defaultValue="Manager Name" />
+			<DataCell row="6" column="U" dataType="TEXT" templateRow="6" templateColumn="U" defaultValue="Reason Detail" />
+
+			<DataRecord listSourceName="dataRecord" beginRow="7" endRow="99999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT" templateRow="7" templateColumn="A" fieldName="campaignName" />
+				<DataCell row="1" column="B" dataType="TEXT" templateRow="7" templateColumn="B" fieldName="campaignCode" />
+				<DataCell row="1" column="C" dataType="TEXT" templateRow="7" templateColumn="C" fieldName="listLotName" />
+				<DataCell row="1" column="D" dataType="TEXT" templateRow="7" templateColumn="D" fieldName="approveDate" />
+				<DataCell row="1" column="E" dataType="TEXT" templateRow="7" templateColumn="E" fieldName="xReference" />
+				<DataCell row="1" column="F" dataType="NUMBER" templateRow="7" templateColumn="F" fieldName="itemNo" dataFormat="0" />
+				<DataCell row="1" column="G" dataType="TEXT" templateRow="7" templateColumn="G" fieldName="customerFullName" />
+				<DataCell row="1" column="H" dataType="TEXT" templateRow="7" templateColumn="H" fieldName="product" />
+				<DataCell row="1" column="I" dataType="NUMBER" templateRow="7" templateColumn="I" dataFormat="#,##0.00" fieldName="premium" />
+				<DataCell row="1" column="J" dataType="NUMBER" templateRow="7" templateColumn="J" dataFormat="#,##0.00" fieldName="annualPremium" />
+				<DataCell row="1" column="K" dataType="TEXT" templateRow="7" templateColumn="K" fieldName="protectAmount" />
+				<DataCell row="1" column="L" dataType="TEXT" templateRow="7" templateColumn="L" fieldName="paymentChannel" />
+				<DataCell row="1" column="M" dataType="TEXT" templateRow="7" templateColumn="M" fieldName="paymentFrequency" />
+				<DataCell row="1" column="N" dataType="TEXT" templateRow="7" templateColumn="N" fieldName="qaStatus" />
+				<DataCell row="1" column="O" dataType="TEXT" templateRow="7" templateColumn="O" fieldName="qaReason" />
+				<DataCell row="1" column="P" dataType="TEXT" templateRow="7" templateColumn="P" fieldName="saleDate" />
+				<DataCell row="1" column="Q" dataType="TEXT" templateRow="7" templateColumn="Q" fieldName="tsrCode" />
+				<DataCell row="1" column="R" dataType="TEXT" templateRow="7" templateColumn="R" fieldName="tsrFullName" />
+				<DataCell row="1" column="S" dataType="TEXT" templateRow="7" templateColumn="S" fieldName="supCode" />
+				<DataCell row="1" column="T" dataType="TEXT" templateRow="7" templateColumn="T" fieldName="supFullName	" />
+				<DataCell row="1" column="U" dataType="TEXT" templateRow="7" templateColumn="U" fieldName="qaReasonDetail" />
+			</DataRecord>
+
+			<DataRecord listSourceName="dataTotalRecord" offsetRow="0" offsetFrom="dataRecord" endRow="99999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT" templateRow="111" templateColumn="A" defaultValue="" />
+				<DataCell row="1" column="B" dataType="TEXT" templateRow="111" templateColumn="B" defaultValue="" />
+				<DataCell row="1" column="C" dataType="TEXT" templateRow="111" templateColumn="C" defaultValue="" />
+				<DataCell row="1" column="D" dataType="TEXT" templateRow="111" templateColumn="D" defaultValue="" />
+				<DataCell row="1" column="E" dataType="TEXT" templateRow="111" templateColumn="E" defaultValue="" />
+				<DataCell row="1" column="F" dataType="NUMBER" templateRow="111" templateColumn="F" defaultValue="" />
+				<DataCell row="1" column="G" dataType="TEXT" templateRow="111" templateColumn="G" defaultValue="" />
+				<DataCell row="1" column="H" dataType="TEXT" templateRow="111" templateColumn="H" defaultValue="Total" />
+				<DataCell row="1" column="I" dataType="NUMBER" templateRow="111" templateColumn="I" dataFormat="#,##0.00" fieldName="premium" />
+				<DataCell row="1" column="J" dataType="NUMBER" templateRow="111" templateColumn="J" dataFormat="#,##0.00" fieldName="annualPremium" />
+				<DataCell row="1" column="K" dataType="TEXT" templateRow="111" templateColumn="K" defaultValue="" />
+				<DataCell row="1" column="L" dataType="TEXT" templateRow="111" templateColumn="L" defaultValue="" />
+				<DataCell row="1" column="M" dataType="TEXT" templateRow="111" templateColumn="M" defaultValue="" />
+				<DataCell row="1" column="N" dataType="TEXT" templateRow="111" templateColumn="N" defaultValue="" />
+				<DataCell row="1" column="O" dataType="TEXT" templateRow="111" templateColumn="O" defaultValue="" />
+				<DataCell row="1" column="P" dataType="TEXT" templateRow="111" templateColumn="P" defaultValue="" />
+				<DataCell row="1" column="Q" dataType="TEXT" templateRow="111" templateColumn="Q" defaultValue="" />
+				<DataCell row="1" column="R" dataType="TEXT" templateRow="111" templateColumn="R" defaultValue="" />
+				<DataCell row="1" column="S" dataType="TEXT" templateRow="111" templateColumn="S" defaultValue="" />
+				<DataCell row="1" column="T" dataType="TEXT" templateRow="111" templateColumn="T" defaultValue="" />
+				<DataCell row="1" column="U" dataType="TEXT" templateRow="111" templateColumn="U" defaultValue="" />
+			</DataRecord>
+
+			<RowHeight row="1" height="500"/>
+			<RowHeight row="2" height="350"/>
+			<RowHeight row="3" height="350"/>
+			<RowHeight row="4" height="350"/>
+			<RowHeight row="5" height="350"/>
+
+			<ColumnWidth column="A" width="7000"/>
+			<ColumnWidth column="B" width="6000"/>
+			<ColumnWidth column="C" width="6000"/>
+			<ColumnWidth column="D" width="4000"/>
+			<ColumnWidth column="E" width="5000"/>
+			<ColumnWidth column="F" width="2500"/>
+			<ColumnWidth column="G" width="7000"/>
+			<ColumnWidth column="H" width="5000"/>
+			<ColumnWidth column="I" width="5000"/>
+			<ColumnWidth column="J" width="5000"/>
+			<ColumnWidth column="K" width="5000"/>
+			<ColumnWidth column="L" width="5000"/>
+			<ColumnWidth column="M" width="5000"/>
+			<ColumnWidth column="N" width="5000"/>
+			<ColumnWidth column="O" width="5000"/>
+			<ColumnWidth column="P" width="5000"/>
+			<ColumnWidth column="Q" width="5000"/>
+			<ColumnWidth column="R" width="7000"/>
+			<ColumnWidth column="S" width="5000"/>
+			<ColumnWidth column="T" width="7000"/>
+			<ColumnWidth column="U" width="9000"/>
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

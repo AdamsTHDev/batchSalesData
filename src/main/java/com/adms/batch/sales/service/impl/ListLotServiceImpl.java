@@ -40,7 +40,7 @@ public class ListLotServiceImpl implements ListLotService {
 		ListLot example = new ListLot();
 		example.setListLotCode(listLotCode);
 
-		List<ListLot> listLotList = this.listLotDao.findByExamplePaging(example, null);
+		List<ListLot> listLotList = this.listLotDao.find(example);
 
 		if (listLotList.size() == 0)
 		{
@@ -59,7 +59,7 @@ public class ListLotServiceImpl implements ListLotService {
 	public List<ListLot> findListLotByExample(ListLot listLot)
 			throws Exception
 	{
-		return this.listLotDao.findByExamplePaging(listLot, null);
+		return this.listLotDao.find(listLot);
 	}
 
 	public List<ListLot> searchListLotByExample(ListLot listLot)

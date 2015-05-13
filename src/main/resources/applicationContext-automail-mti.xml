@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<context:component-scan base-package="com.adms.notification, com.adms.batch.sales" />
+	<context:annotation-config />
+	<context:spring-configured />
+	<aop:aspectj-autoproxy />
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="kampon8@gmail.com" />
+		<property name="password" value="xyP0orishk" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="templateMailMessage" class="org.springframework.mail.SimpleMailMessage">
+		<!-- <property name="from" value="sender@gmail.com" /> <property name="to" 
+			value="receiver@gmail.com" /> -->
+		<property name="from" value="kampon8@gmail.com" />
+		<property name="to" value="kampon8@gmail.com" />
+		<property name="subject" value="Hello" />
+		<property name="text">
+			<value>
+        <![CDATA[
+           Dear %s,
+           Mail Content : %s
+        ]]>
+			</value>
+		</property>
+	</bean>
+
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean"
+		p:resourceLoaderPath="classpath:/template/velocity/automail"
+		p:preferFileSystemAccess="false" />
+
+	<!-- Data Source -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:jtds:sqlserver://10.0.1.6/SALES;integrated security=false" />
+		<property name="username" value="sa01" />
+		<property name="password" value="Aegon03" />
+	</bean>
+
+	<!-- Session Factory Declaration -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.adms.batch.sales.domain"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+
+				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> -->
+
+				<!-- For singleton factory -->
+				<!--  -->
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+
+				<!-- enable second level cache and query cache -->
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">/ehcache.xml</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

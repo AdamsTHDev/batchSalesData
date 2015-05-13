@@ -97,21 +97,25 @@ public class ImportFwdDailyProductionReport  extends AbstractImportSalesJob {
 			{
 				importDataHolder(dataHolder, sales);
 			}
+			else
+			{
+				log.warn("sales record not found [insuredName: " + insuredName + "]");
+			}
 		}
 	}
 
-	private void importFile(File fileFormat, File dataFile)
+	private void importFile(String fileFormatFileName, String dataFileLocation)
 			throws Exception
 	{
-		log.info("importFile: " + dataFile.getAbsolutePath());
+		log.info("importFile: " + dataFileLocation);
 		InputStream format = null;
 		InputStream input = null;
 		try
 		{
-			format = new FileInputStream(fileFormat);
+			format = URLClassLoader.getSystemResourceAsStream(fileFormatFileName);
 			ExcelFormat excelFormat = new ExcelFormat(format);
 
-			input = new FileInputStream(dataFile);
+			input = new FileInputStream(dataFileLocation);
 			DataHolder fileDataHolder = excelFormat.readExcel(input);
 
 			List<String> sheetNames = fileDataHolder.getKeyList();
@@ -153,25 +157,25 @@ public class ImportFwdDailyProductionReport  extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		String fileFormatLocation = /* args[0]; */ "FileFormat_FWD_Daily_Production_Report.xml";
-		String rootPath = /* args[1]; */ "D:/Work/Report/DailyReport/FWD_Daily_Production/201502";
+		String fileFormatLocation = "fileformat/salesdb/FileFormat_FWD_Daily_Production_Report.xml";
+		String rootPath = args[0] /* "D:/Work/Report/DailyReport/FWD_Daily_Production" */;
 
 		FileWalker fw = new FileWalker();
 		fw.walk(rootPath, new FilenameFilter()
 		{
 			public boolean accept(File dir, String name)
 			{
-				return !name.contains("~$") && name.contains("ADAMS - TVD Daily Report") && name.contains(".xls");
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && name.contains("ADAMS - TVD Daily Report") && name.contains(".xls");
 			}
 		});
 
 		ImportFwdDailyProductionReport batch = new ImportFwdDailyProductionReport();
-		batch.setLogLevel(Logger.DEBUG);
+		batch.setLogLevel(Logger.INFO);
 		batch.setProcessDate(new Date());
 
 		for (String filename : fw.getFileList())
 		{
-			batch.importFile(new File(URLClassLoader.getSystemResource(fileFormatLocation).getPath()), new File(filename));
+			batch.importFile(fileFormatLocation, filename);
 		}
 	}
 }

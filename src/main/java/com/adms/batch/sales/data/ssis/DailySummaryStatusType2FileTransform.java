@@ -49,7 +49,7 @@ public class DailySummaryStatusType2FileTransform implements DialyFileTransform 
 		sampleOutput.close();
 	}
 
-	private void processSheet(DataHolder fileDataHolder, String sheetName, List<DataHolder> newDataRecordList)
+	private void processSheet(DataHolder fileDataHolder, String sheetName, List<DataHolder> newDataRecordList) throws Exception
 	{
 		DataHolder sheetDataHolder = fileDataHolder.get(sheetName);
 		processDataList(sheetDataHolder, sheetDataHolder.getDataList("dataRecord1"), "List_lot1", newDataRecordList);
@@ -61,7 +61,7 @@ public class DailySummaryStatusType2FileTransform implements DialyFileTransform 
 		fileDataHolder.remove(sheetName);
 	}
 
-	private void processDataList(DataHolder sheetDataHolder, List<DataHolder> dataRecordList, String listLot, List<DataHolder> newDataRecordList)
+	private void processDataList(DataHolder sheetDataHolder, List<DataHolder> dataRecordList, String listLot, List<DataHolder> newDataRecordList) throws Exception
 	{
 		if (StringUtils.isNoneBlank(sheetDataHolder.get(listLot).getStringValue()))
 		{

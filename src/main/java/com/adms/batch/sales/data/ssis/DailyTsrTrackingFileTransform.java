@@ -23,6 +23,7 @@ public class DailyTsrTrackingFileTransform implements DialyFileTransform {
 		InputStream fileFormat = null;
 		InputStream sampleReport = null;
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+		SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd", Locale.US);
 
 		fileFormat = URLClassLoader.getSystemResourceAsStream(inputFileFormat);
 		sampleReport = new FileInputStream(inputFile);
@@ -35,7 +36,7 @@ public class DailyTsrTrackingFileTransform implements DialyFileTransform {
 		{
 			DataHolder sheetDataHolder = fileDataHolder.get(sheetName);
 
-			String keyCode = null;
+			String campaignInfo = null;
 			String period = null;
 			String printDate = null;
 			List<DataHolder> dataHeader = sheetDataHolder.getDataList("dataHeader");
@@ -45,7 +46,7 @@ public class DailyTsrTrackingFileTransform implements DialyFileTransform {
 //				System.out.println(d.printValues());
 				switch (i) {
 				case 0:
-					keyCode = d.get("dataInfo").getStringValue();
+					campaignInfo = d.get("dataInfo").getStringValue();
 					break;
 				case 1:
 					period = d.get("dataInfo").getStringValue();
@@ -61,17 +62,10 @@ public class DailyTsrTrackingFileTransform implements DialyFileTransform {
 //			System.out.println(dataRecordList.size());
 			for (DataHolder dataRecord : dataRecordList)
 			{
-				DataHolder dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(SalesDataHelper.extractListLotCode(keyCode));
-				dataRecord.put("Key Code", dataHolder);
-
-				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(dateFormat.parse(period));
-				dataRecord.put("Period", dataHolder);
-
-				dataHolder = new SimpleMapDataHolder();
-				dataHolder.setValue(dateFormat.parse(printDate.substring(0, 10)));
-				dataRecord.put("Print Date", dataHolder);
+				dataRecord.put("Campaign", new SimpleMapDataHolder().setValue(campaignInfo));
+				dataRecord.put("Key Code", new SimpleMapDataHolder().setValue(SalesDataHelper.extractListLotCode(campaignInfo)));
+				dataRecord.put("Period", new SimpleMapDataHolder().setValue(period));
+				dataRecord.put("Print Date", new SimpleMapDataHolder().setValue(yyyyMMdd.format(dateFormat.parse(SalesDataHelper.recoveryExcelDate(printDate.substring(0, 10), "dd/MM/yyyy")))));
 
 //				System.out.println(dataRecord.printValues());
 			}

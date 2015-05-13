@@ -1,0 +1,10 @@
+<html>
+	<body>
+		<p>Dear all,</p>
+		<br/>
+		<p style="text-indent: 2em;">Please kindly see the attached for <b><u>KBank-MTI Daily Performance Report as of ${mailContent}</u></b></p>
+		<br/>
+		<br/>
+		<p>This is an automatically generated email, please do not reply. Thank you.</p>
+	</body>
+</html>

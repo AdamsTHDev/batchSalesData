@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileWalker {
-	private List<String> fileList;
+	private List<String> fileList = new ArrayList<String>();
 
 	public List<String> getFileList()
 	{
@@ -34,10 +34,10 @@ public class FileWalker {
 				
 				if (filter.accept(f.getParentFile(), f.getName()))
 				{
-					if (this.fileList == null)
+					/*if (this.fileList == null)
 					{
 						this.fileList = new ArrayList<String>();
-					}
+					}*/
 					
 					this.fileList.add(f.getAbsolutePath());
 				}

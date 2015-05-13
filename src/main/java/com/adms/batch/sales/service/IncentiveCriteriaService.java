@@ -15,6 +15,9 @@ public interface IncentiveCriteriaService {
 	public List<IncentiveCriteria> findBySydneyCriteria(String campaignCode, String qaStatus, String qaReason)
 			throws Exception;
 
+	public List<IncentiveCriteria> findBySydneyFloorCriteria(String campaignCode, String qaStatus, String qaReason)
+			throws Exception;
+
 	public List<IncentiveCriteria> findIncentiveCriteriaByExample(IncentiveCriteria incentiveCriteria)
 			throws Exception;
 

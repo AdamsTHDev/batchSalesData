@@ -16,7 +16,20 @@ import com.adms.common.domain.BaseDomain;
 @Entity
 @Table(name = "INCENTIVE_CRITERIA")
 @Cacheable
-@NamedNativeQueries({ @NamedNativeQuery(name = "findBySydneyCriteria", query = "select ic.* from INCENTIVE_CRITERIA ic where ic.CAMPAIGN_CODE = ? and ic.QA_STATUS = ? and (ic.QA_REASON = ? or ic.QA_REASON is null) ", resultClass = IncentiveCriteria.class) })
+@NamedNativeQueries({ @NamedNativeQuery(name = "findBySydneyCriteria", query = "select ic.* from INCENTIVE_CRITERIA ic where ic.CAMPAIGN_CODE = ? and ic.QA_STATUS = ? and (ic.QA_REASON = ? or ic.QA_REASON is null) ", resultClass = IncentiveCriteria.class),
+	@NamedNativeQuery(name = "findBySydneyFloorCriteria", query = ""
+			+ "select ABS(CAST(CAST(NEWID() AS VARBINARY) AS INT)) AS ID, 'SYDNEY' AS INCENTIVE_CODE, a.*"
+			+ "  from ("
+			+ "       select distinct l.CAMPAIGN_CODE, s.QA_STATUS, NULL AS QA_REASON, 'Y' AS IS_COUNT"
+			+ "         from SALES s"
+			+ "         left outer join LIST_LOT l on s.LIST_LOT_CODE = l.LIST_LOT_CODE"
+			+ "         left outer join INCENTIVE_CRITERIA c on l.CAMPAIGN_CODE = c.CAMPAIGN_CODE and s.QA_STATUS = c.QA_STATUS"
+			+ "        where l.CAMPAIGN_CODE = ?  and s.QA_STATUS = ?"
+			+ "       ) a"
+			+ " order by a.CAMPAIGN_CODE, a.QA_STATUS"
+			+ ""
+			, resultClass = IncentiveCriteria.class)
+})
 public class IncentiveCriteria extends BaseDomain {
 
 	private static final long serialVersionUID = 5897569210741467139L;

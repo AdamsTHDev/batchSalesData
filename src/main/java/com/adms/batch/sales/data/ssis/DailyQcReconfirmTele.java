@@ -11,11 +11,13 @@ public class DailyQcReconfirmTele extends AbstractImportSalesJob {
 	public static void main(String[] args)
 			throws Exception
 	{
-		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201410");
-		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201411");
-		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201412");
-		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201501");
-//		new DailyQcReconfirmTele().test(args[0]);
+//		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201410");
+//		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201411");
+//		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201412");
+//		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201501");
+//		new DailyQcReconfirmTele().test("D:/Work/Report/DailyReport/201502");
+		new DailyQcReconfirmTele().test(args[0]);
+		
 	}
 
 	public void test(String sInputPath)
@@ -27,7 +29,7 @@ public class DailyQcReconfirmTele extends AbstractImportSalesJob {
 
 			public boolean accept(File dir, String name)
 			{
-				return dir.getAbsolutePath().contains("TELE") && (name.contains("QC_Reconfirm.xls") || (name.contains("QC_Reconfirm") && name.contains(".xls")));
+				return !name.contains("~$") && (dir.getAbsolutePath().contains("TELE") && (name.contains("QC_Reconfirm.xls") || (name.contains("QC_Reconfirm") && name.contains(".xls"))));
 			}
 		});
 

@@ -71,7 +71,6 @@ public class SalesServiceImpl implements SalesService {
 				return findSalesRecordByCustomerFullNameAndTsrAndSaleDate(customerFullName.substring(1), tsr, saleDate);
 			}
 
-//			return findSalesRecordByCustomerFullNameAndSaleDate(customerFullName, saleDate);
 			throw new Exception("not found sales record for customerFullName[" + customerFullName + "] and tsr[" + tsr + "] and saleDate[" + saleDate + "]");
 		}
 
@@ -80,7 +79,6 @@ public class SalesServiceImpl implements SalesService {
 			throw new Exception("more that 1 record found for customerFullName[" + customerFullName + "] and tsr[" + tsr + "] and saleDate[" + saleDate + "]");
 		}
 
-//		System.out.println("found sales " + salesList.get(0));
 		return salesList.get(0);
 	}
 
@@ -133,6 +131,13 @@ public class SalesServiceImpl implements SalesService {
 
 		System.out.println("found sales " + salesList.get(0));
 		return salesList.get(0);
+	}
+
+	public List<Sales> findSalesRecordForxRefChanged(String xReference, String customerFullName, String tsrCode, Date saleDate)
+			throws Exception
+	{
+		customerFullName = customerFullName.replaceAll(" ", "");
+		return this.salesDao.findByNamedQuery("findSalesRecordForxRefChanged", xReference, customerFullName, tsrCode, saleDate);
 	}
 
 	public List<Sales> findSalesRecordBySaleMonth(String saleMonth)

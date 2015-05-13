@@ -33,12 +33,12 @@
 			<DataCell row="2" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="ListlotName" />
 			<DataCell row="2" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="Approve Date" />
 			<DataCell row="2" column="E" dataType="TEXT" fieldName="fieldE" defaultValue="X-Ref" />
-			<DataCell row="2" column="F" dataType="TEXT" fieldName="fieldF" defaultValue="No" />
+			<DataCell row="2" column="F" dataType="NUMBER" fieldName="fieldF" defaultValue="0" />
 			<DataCell row="2" column="G" dataType="TEXT" fieldName="fieldG" defaultValue="Customer" />
 			<DataCell row="2" column="H" dataType="TEXT" fieldName="fieldH" defaultValue="Product" />
-			<DataCell row="2" column="I" dataType="TEXT" fieldName="fieldI" defaultValue="Premium" />
-			<DataCell row="2" column="J" dataType="TEXT" fieldName="fieldJ" defaultValue="AFYP" />
-			<DataCell row="2" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="ProtectAmount" />
+			<DataCell row="2" column="I" dataType="NUMBER" fieldName="fieldI" defaultValue="0.0" />
+			<DataCell row="2" column="J" dataType="NUMBER" fieldName="fieldJ" defaultValue="0.0" />
+			<DataCell row="2" column="K" dataType="TEXT" fieldName="fieldK" defaultValue="TXT" />
 			<DataCell row="2" column="L" dataType="TEXT" fieldName="fieldL" defaultValue="Payment Channel" />
 			<DataCell row="2" column="M" dataType="TEXT" fieldName="fieldM" defaultValue="Mode Of Payment" />
 			<DataCell row="2" column="N" dataType="TEXT" fieldName="fieldN" defaultValue="QA Status" />
@@ -54,7 +54,7 @@
 			<DataCell row="2" column="X" dataType="TEXT" fieldName="fieldX" defaultValue="Period" />
 			<DataCell row="2" column="Y" dataType="TEXT" fieldName="fieldY" defaultValue="Print Date" />
 			
-			<DataRecord listSourceName="salesRecord" beginRow="3" endRow="99999">
+			<DataRecord listSourceName="salesRecord" beginRow="3" endRow="99999" skipWhenNull="TRUE">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X-Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="campaignCode" />
@@ -66,7 +66,7 @@
 				<DataCell row="1" column="H" dataType="TEXT" fieldName="product" />
 				<DataCell row="1" column="I" dataType="NUMBER" dataFormat="#,##0.00" fieldName="premium" />
 				<DataCell row="1" column="J" dataType="NUMBER" dataFormat="#,##0.00" fieldName="annualPremium" />
-				<DataCell row="1" column="K" dataType="NUMBER" dataFormat="#,##0.00" fieldName="protectAmount" />
+				<DataCell row="1" column="K" dataType="TEXT" fieldName="protectAmount" />
 				<DataCell row="1" column="L" dataType="TEXT" fieldName="paymentChannel" />
 				<DataCell row="1" column="M" dataType="TEXT" fieldName="paymentFrequency" />
 				<DataCell row="1" column="N" dataType="TEXT" fieldName="qaStatus" />

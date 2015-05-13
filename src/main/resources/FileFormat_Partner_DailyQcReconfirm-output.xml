@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US"
+			templateFile="template/QC_Reconfirm.xls"
+			templateSheetName="QC Reconfirm Template"
+			removeTemplateAfterComplete="TRUE">
+
+	<DataSet description="QC Reconfirm">
+
+		<DataSheet sheetIndex="1" displayGridlines="FALSE">
+			<!-- begin header -->
+			<DataCell row="1" column="A" dataType="TEXT" defaultValue="QC Reconfirm Report"
+						templateRow="1" templateColumn="A" rowMergeFrom="1" rowMergeTo="1" columnMergeFrom="A" columnMergeTo="R"/>
+
+			<DataCell row="3" column="A" dataType="TEXT" defaultValue="Date:"    templateRow="3" templateColumn="A"/>
+			<DataCell row="3" column="B" dataType="TEXT" fieldName="printDate"   templateRow="3" templateColumn="B"/>
+
+			<DataCell row="5" column="A" dataType="TEXT" defaultValue="QCStatus" templateRow="5" templateColumn="A"/>
+			<DataCell row="5" column="B" dataType="TEXT" defaultValue="No."      templateRow="5" templateColumn="B"/>
+
+			<DataRecord listSourceName="dataSummary" beginRow="6" endRow="99" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT"   fieldName="qaStatus"      templateRow="7" templateColumn="A"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="qaStatusCount" templateRow="7" templateColumn="B"/>
+			</DataRecord>
+
+			<DataRecord listSourceName="dataSummaryTotal" offsetRow="0" offsetFrom="dataSummary" endRow="99" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT"   fieldName="qaStatus"      templateRow="9" templateColumn="A"/>
+				<DataCell row="1" column="B" dataType="NUMBER" fieldName="qaStatusCount" templateRow="9" templateColumn="B"/>
+			</DataRecord>
+
+			<!-- Header Column Begin -->
+			<DataRecord listSourceName="qcListHeader" offsetRow="1" offsetFrom="dataSummaryTotal" endRow="99" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT"   fieldName="campaignName"     templateRow="11" templateColumn="A"/>
+				<DataCell row="1" column="B" dataType="TEXT"   fieldName="listLotName"      templateRow="11" templateColumn="B"/>
+				<DataCell row="1" column="C" dataType="TEXT"   fieldName="xReference"       templateRow="11" templateColumn="C"/>
+				<DataCell row="1" column="D" dataType="TEXT"   fieldName="saleDate"         templateRow="11" templateColumn="D"/>
+				<DataCell row="1" column="E" dataType="TEXT"   fieldName="customerFullName" templateRow="11" templateColumn="E"/>
+				<DataCell row="1" column="F" dataType="TEXT"   fieldName="tsrCode"          templateRow="11" templateColumn="F"/>
+				<DataCell row="1" column="G" dataType="TEXT"   fieldName="tsrFullName"      templateRow="11" templateColumn="G"/>
+				<DataCell row="1" column="H" dataType="TEXT"   fieldName="supFullName"      templateRow="11" templateColumn="H"/>
+				<DataCell row="1" column="I" dataType="TEXT"   fieldName="qcStatusDate"     templateRow="11" templateColumn="I"/>
+				<DataCell row="1" column="J" dataType="TEXT"   fieldName="qcId"             templateRow="11" templateColumn="J"/>
+				<DataCell row="1" column="K" dataType="TEXT"   fieldName="paymentMethod"    templateRow="11" templateColumn="K"/>
+				<DataCell row="1" column="L" dataType="TEXT"   fieldName="premium"          templateRow="11" templateColumn="L"/>
+				<DataCell row="1" column="M" dataType="TEXT"   fieldName="tsrStatus"        templateRow="11" templateColumn="M"/>
+				<DataCell row="1" column="N" dataType="TEXT"   fieldName="qcStatus"         templateRow="11" templateColumn="N"/>
+				<DataCell row="1" column="O" dataType="TEXT"   fieldName="reconfirmReason"  templateRow="11" templateColumn="O"/>
+				<DataCell row="1" column="P" dataType="TEXT"   fieldName="reconfirmRemark"  templateRow="11" templateColumn="P"/>
+				<DataCell row="1" column="Q" dataType="TEXT"   fieldName="currentReason"    templateRow="11" templateColumn="Q"/>
+				<DataCell row="1" column="R" dataType="TEXT"   fieldName="currentRemark"    templateRow="11" templateColumn="R"/>
+			</DataRecord>
+			<!-- Header Column End -->
+			<DataRecord listSourceName="qcList" offsetRow="0" offsetFrom="qcListHeader" endRow="9999" skipWhenNull="TRUE">
+				<DataCell row="1" column="A" dataType="TEXT"   fieldName="campaignName"     templateRow="12" templateColumn="A"/>
+				<DataCell row="1" column="B" dataType="TEXT"   fieldName="listLotName"      templateRow="12" templateColumn="B"/>
+				<DataCell row="1" column="C" dataType="TEXT"   fieldName="xReference"       templateRow="12" templateColumn="C"/>
+				<DataCell row="1" column="D" dataType="TEXT"   fieldName="saleDate"         templateRow="12" templateColumn="D"/>
+				<DataCell row="1" column="E" dataType="TEXT"   fieldName="customerFullName" templateRow="12" templateColumn="E"/>
+				<DataCell row="1" column="F" dataType="TEXT"   fieldName="tsrCode"          templateRow="12" templateColumn="F"/>
+				<DataCell row="1" column="G" dataType="TEXT"   fieldName="tsrFullName"      templateRow="12" templateColumn="G"/>
+				<DataCell row="1" column="H" dataType="TEXT"   fieldName="supFullName"      templateRow="12" templateColumn="H"/>
+				<DataCell row="1" column="I" dataType="TEXT"   fieldName="qcStatusDate"     templateRow="12" templateColumn="I"/>
+				<DataCell row="1" column="J" dataType="TEXT"   fieldName="qcId"             templateRow="12" templateColumn="J"/>
+				<DataCell row="1" column="K" dataType="TEXT"   fieldName="paymentMethod"    templateRow="12" templateColumn="K"/>
+				<DataCell row="1" column="L" dataType="NUMBER" fieldName="premium"          templateRow="12" templateColumn="L" dataFormat="#.##"/>
+				<DataCell row="1" column="M" dataType="TEXT"   fieldName="tsrStatus"        templateRow="12" templateColumn="M"/>
+				<DataCell row="1" column="N" dataType="TEXT"   fieldName="qcStatus"         templateRow="12" templateColumn="N"/>
+				<DataCell row="1" column="O" dataType="TEXT"   fieldName="reconfirmReason"  templateRow="12" templateColumn="O"/>
+				<DataCell row="1" column="P" dataType="TEXT"   fieldName="reconfirmRemark"  templateRow="12" templateColumn="P"/>
+				<DataCell row="1" column="Q" dataType="TEXT"   fieldName="currentReason"    templateRow="12" templateColumn="Q"/>
+				<DataCell row="1" column="R" dataType="TEXT"   fieldName="currentRemark"    templateRow="12" templateColumn="R"/>
+			</DataRecord>
+
+
+
+			<RowHeight row="1" height="600"/>
+			<RowHeight row="2" height="100"/>
+			<RowHeight row="4" height="50"/>
+
+			<ColumnWidth column="A" width="7000"/>
+			<ColumnWidth column="B" width="7000"/>
+			<ColumnWidth column="C" width="5000"/>
+			<ColumnWidth column="D" width="7000"/>
+			<ColumnWidth column="E" width="7000"/>
+			<ColumnWidth column="G" width="7000"/>
+			<ColumnWidth column="H" width="7000"/>
+			<ColumnWidth column="I" width="7000"/>
+			<ColumnWidth column="K" width="5000"/>
+			<ColumnWidth column="M" width="5000"/>
+			<ColumnWidth column="N" width="5000"/>
+			<ColumnWidth column="O" width="15000"/>
+			<ColumnWidth column="P" width="15000"/>
+			<ColumnWidth column="Q" width="15000"/>
+			<ColumnWidth column="R" width="15000"/>
+<!-- 
+			<ColumnWidth column="C" width="7000"/>
+			<ColumnWidth column="D" width="5000"/>
+			<ColumnWidth column="E" width="3000"/>
+			<ColumnWidth column="F" width="8000"/>
+			<ColumnWidth column="G" width="8000"/>
+			<ColumnWidth column="H" width="8000"/>
+			<ColumnWidth column="I" width="8000"/>
+			<ColumnWidth column="J" width="8000"/>
+			<ColumnWidth column="K" width="8000"/>
+			<ColumnWidth column="L" width="8000"/>
+			<ColumnWidth column="M" width="8000"/>
+ -->
+
+		</DataSheet>
+
+	</DataSet>
+</FileFormat>

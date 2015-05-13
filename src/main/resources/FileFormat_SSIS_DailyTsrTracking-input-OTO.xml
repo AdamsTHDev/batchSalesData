@@ -11,6 +11,7 @@
 			</DataRecord>
 
 			<DataRecord listSourceName="dataRecord" beginRow="9" endRow="99999">
+				<BeginRecordCondition column="C" comparator="EQ" checkValue="Days" firstRowAsData="FALSE"/>
 				<DataCell row="1" column="A" dataType="NUMBER" fieldName="No."/>
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="Name" />
 				<DataCell row="1" column="C" dataType="NUMBER" fieldName="Work Days" />
@@ -44,7 +45,7 @@
 				<DataCell row="1" column="AE" dataType="NUMBER" fieldName="Max. Talk Time (Min.)" />
 				<DataCell row="1" column="AF" dataType="NUMBER" fieldName="DMC Talk Time (Hr.)" />
 				<DataCell row="1" column="AG" dataType="NUMBER" fieldName="Total Talk Time (Hr.)" />
-				<EndRecordCondition column="A" comparator="EQ" checkValue="TOTAL" />
+				<EndRecordCondition column="B" comparator="BLANK" />
 			</DataRecord>
 
 		</DataSheet>

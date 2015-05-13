@@ -30,7 +30,8 @@ public class DailyPerformanceTrackingReport extends AbstractImportSalesJob {
 			throws Exception
 	{
 		String campaignCode = args[0];
-		String outputFileName = args[1] + "/DailyProductionReport_" + new SimpleDateFormat("yyyyMMdd_HHmmssSSS", Locale.US).format(new Date()) + ".xls";
+		//yyyyMMdd_HHmmssSSS
+		String outputFileName = args[1] + "/Daily_Performance_Tracking_" + new SimpleDateFormat("yyyyMMdd", Locale.US).format(new Date()) + ".xls";
 		
 		new File(args[1]).mkdirs();
 		
@@ -43,7 +44,7 @@ public class DailyPerformanceTrackingReport extends AbstractImportSalesJob {
 		batch.generateReport(campaignCode, outputFileName);
 	}
 
-	private void generateReport(String campaignCode, String outputFileName)
+	public void generateReport(String campaignCode, String outputFileName)
 			throws Exception
 	{
 		log.debug(outputFileName);
@@ -66,7 +67,7 @@ public class DailyPerformanceTrackingReport extends AbstractImportSalesJob {
 		OutputStream output = null;
 		try
 		{
-			fileFormat = URLClassLoader.getSystemResourceAsStream("FileFormat_Partner_DailyPerformanceTrackingByLot-output.xml");
+			fileFormat = URLClassLoader.getSystemResourceAsStream("fileformat/report/partner/FileFormat_Partner_DailyPerformanceTrackingByLot-output.xml");
 			output = new FileOutputStream(outputFileName);
 			new ExcelFormat(fileFormat).writeExcel(output, fileDataHolder);
 		}

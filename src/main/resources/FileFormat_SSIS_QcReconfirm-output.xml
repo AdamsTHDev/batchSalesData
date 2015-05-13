@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FileFormat fileName="QC Reconfirm.xls" fileType="EXCEL" locale="en-US">
 	<DataSet description="QC Reconfirm">
+
 		<DataSheet sheetIndex="0">
 			<DataCell row="1" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Campaign"/>
 			<DataCell row="1" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="ListLot"/>
@@ -22,7 +23,7 @@
 			<DataCell row="1" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="CurrentRemark"/>
 			<DataCell row="1" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="PrintDate"/>
 			
-			<DataCell row="2" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="Campaign"/>
+			<DataCell row="2" column="A" dataType="TEXT" fieldName="fieldA" defaultValue="DUMMY"/>
 			<DataCell row="2" column="B" dataType="TEXT" fieldName="fieldB" defaultValue="ListLot"/>
 			<DataCell row="2" column="C" dataType="TEXT" fieldName="fieldC" defaultValue="DUMMY"/>
 			<DataCell row="2" column="D" dataType="TEXT" fieldName="fieldD" defaultValue="12345678"/>
@@ -42,11 +43,11 @@
 			<DataCell row="2" column="R" dataType="TEXT" fieldName="fieldR" defaultValue="CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark CurrentRemark"/>
 			<DataCell row="2" column="S" dataType="TEXT" fieldName="fieldS" defaultValue="20150101"/>
 			
-			<DataRecord listSourceName="qcList" beginRow="3" endRow="99999">
+			<DataRecord listSourceName="qcList" beginRow="3" endRow="99999" skipWhenNull="TRUE">
 				<BeginRecordCondition column="E" comparator="EQ" checkValue="X Ref" />
 				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
 				<DataCell row="1" column="B" dataType="TEXT" fieldName="listLotName" />
-				<DataCell row="1" column="C" dataType="TEXT" fieldName="xRefference" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="xReference" />
 				<DataCell row="1" column="D" dataType="TEXT" fieldName="saleDate" />
 				<DataCell row="1" column="E" dataType="TEXT" fieldName="customerFullName" />
 				<DataCell row="1" column="F" dataType="TEXT" fieldName="tsrCode" />
@@ -66,5 +67,24 @@
 				<EndRecordCondition column="A" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>
+
+		<DataSheet sheetName="Summary">
+			<DataCell row="1" column="A" dataType="TEXT" defaultValue="Campaign"/>
+			<DataCell row="1" column="B" dataType="TEXT" defaultValue="Print Date"/>
+			<DataCell row="1" column="C" dataType="TEXT" defaultValue="No."/>
+			<DataCell row="1" column="D" dataType="TEXT" defaultValue="QC Status"/>
+			<DataCell row="1" column="E" dataType="TEXT" defaultValue="Total"/>
+			<DataCell row="1" column="F" dataType="TEXT" defaultValue="File Path"/>
+			
+			<DataRecord listSourceName="summaryList" beginRow="2" endRow="99">
+				<DataCell row="1" column="A" dataType="TEXT" fieldName="campaignName" />
+				<DataCell row="1" column="B" dataType="TEXT" fieldName="printDate" />
+				<DataCell row="1" column="C" dataType="TEXT" fieldName="itemNo" />
+				<DataCell row="1" column="D" dataType="TEXT" fieldName="qcStatus" />
+				<DataCell row="1" column="E" dataType="NUMBER" fieldName="qcStatusCount" />
+				<DataCell row="1" column="F" dataType="TEXT" fieldName="filePath" />
+			</DataRecord>
+		</DataSheet>
+
 	</DataSet>
 </FileFormat>
