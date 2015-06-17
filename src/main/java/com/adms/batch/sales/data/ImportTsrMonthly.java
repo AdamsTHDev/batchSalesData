@@ -3,6 +3,7 @@ package com.adms.batch.sales.data;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URLClassLoader;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.adms.batch.sales.domain.TsrStatus;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
+import com.adms.utils.PropertyResource;
 
 public class ImportTsrMonthly extends AbstractImportSalesJob {
 
@@ -115,6 +117,9 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 		}
 	}
 
+	public static final String CONFIG_FILE_LOCATION = "config/importSales.properties";
+	public static final String LOG_FILE_NAME = "log.tsrUpdate.file.name";
+
 	public static void main(String[] args)
 			throws Exception
 	{
@@ -124,6 +129,10 @@ public class ImportTsrMonthly extends AbstractImportSalesJob {
 		System.out.println("main");
 		ImportTsrMonthly batch = new ImportTsrMonthly();
 		batch.setLogLevel(Logger.DEBUG);
+		batch.setProcessDate(new Date());
+		String logFileName = PropertyResource.getInstance(CONFIG_FILE_LOCATION).getValue(LOG_FILE_NAME).replace("logTime", "" + new SimpleDateFormat("yyyyMMdd_hhmmssSSS").format(new Date()));
+		batch.setLogFileName(logFileName);
+
 		batch.importFile(fileFormatFileName, dataFileLocation);
 	}
 

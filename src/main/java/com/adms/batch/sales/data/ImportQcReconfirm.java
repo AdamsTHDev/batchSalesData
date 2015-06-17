@@ -21,6 +21,7 @@ import com.adms.batch.sales.support.SalesDataHelper;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
+import com.adms.utils.PropertyResource;
 
 public class ImportQcReconfirm extends AbstractImportSalesJob {
 
@@ -64,7 +65,7 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 	private void importQc(List<DataHolder> qcDataHolderList)
 			throws Exception
 	{
-		log.info("importQc");
+		log.info("importQc: " + qcDataHolderList.size() + " records found.");
 		for (DataHolder qcDataHolder : qcDataHolderList)
 		{
 			log.debug("import QC: " + qcDataHolder.printValues());
@@ -266,6 +267,9 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 		}
 	}
 
+	public static final String CONFIG_FILE_LOCATION = "config/importSales.properties";
+	public static final String LOG_FILE_NAME = "log.qcRecords.file.name";
+
 	public static void main(String[] args)
 			throws Exception
 	{
@@ -278,12 +282,14 @@ public class ImportQcReconfirm extends AbstractImportSalesJob {
 		{
 			public boolean accept(File dir, String name)
 			{
-				return !name.contains("~$") && ((name.toLowerCase().contains("reconfirm") || (name.toUpperCase().contains("_QCRECO_") && name.toUpperCase().contains("_CTD_ALL"))) && (name.toLowerCase().endsWith(".xls") || name.toLowerCase().endsWith(".xlsx")));
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && ((name.toLowerCase().contains("reconfirm") || (name.toUpperCase().contains("_QCRECO_") && name.toUpperCase().contains("_CTD_ALL"))) && (name.toLowerCase().endsWith(".xls") || name.toLowerCase().endsWith(".xlsx")));
 			}
 		});
 
 		ImportQcReconfirm batch = new ImportQcReconfirm();
 		batch.setLogLevel(Logger.INFO);
+		batch.setProcessDate(new Date());
+		batch.setLogFileName(PropertyResource.getInstance(CONFIG_FILE_LOCATION).getValue(LOG_FILE_NAME));
 
 		String fileFormatLocation = null;
 		

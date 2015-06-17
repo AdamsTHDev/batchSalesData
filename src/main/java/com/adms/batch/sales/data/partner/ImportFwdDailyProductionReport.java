@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.net.URLClassLoader;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import com.adms.batch.sales.support.FileWalker;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
 import com.adms.utils.Logger;
+import com.adms.utils.PropertyResource;
 
 public class ImportFwdDailyProductionReport  extends AbstractImportSalesJob {
 
@@ -154,6 +156,9 @@ public class ImportFwdDailyProductionReport  extends AbstractImportSalesJob {
 		}
 	}
 
+	public static final String CONFIG_FILE_LOCATION = "config/importSales.properties";
+	public static final String LOG_FILE_NAME = "log.fwdProduction.file.name";
+
 	public static void main(String[] args)
 			throws Exception
 	{
@@ -172,6 +177,8 @@ public class ImportFwdDailyProductionReport  extends AbstractImportSalesJob {
 		ImportFwdDailyProductionReport batch = new ImportFwdDailyProductionReport();
 		batch.setLogLevel(Logger.INFO);
 		batch.setProcessDate(new Date());
+		String logFileName = PropertyResource.getInstance(CONFIG_FILE_LOCATION).getValue(LOG_FILE_NAME).replace("logTime", "" + new SimpleDateFormat("yyyyMMdd_hhmmssSSS").format(new Date()));
+		batch.setLogFileName(logFileName);
 
 		for (String filename : fw.getFileList())
 		{

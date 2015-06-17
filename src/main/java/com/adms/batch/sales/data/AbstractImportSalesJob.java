@@ -1,5 +1,6 @@
 package com.adms.batch.sales.data;
 
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,6 +38,7 @@ import com.adms.batch.sales.service.QcReconfirmService;
 import com.adms.batch.sales.service.ReconfirmStatusService;
 import com.adms.batch.sales.service.SalesProcessService;
 import com.adms.batch.sales.service.SalesService;
+import com.adms.batch.sales.service.TsrHierarchyService;
 import com.adms.batch.sales.service.TsrPositionService;
 import com.adms.batch.sales.service.TsrService;
 import com.adms.batch.sales.service.TsrStatusService;
@@ -46,8 +48,9 @@ import com.adms.batch.sales.service.UwStatusService;
 import com.adms.batch.sales.service.VSalesCommService;
 import com.adms.utils.Logger;
 
-public class AbstractImportSalesJob {
+public abstract class AbstractImportSalesJob {
 
+	public static final String APPLICATION_CONTEXT_PATH = "config/application-context-import-salesdb.xml";
 	private ApplicationContext applicationContext;
 	private Date processDate;
 	public static final String BATCH_ID = "BATCH_ID";
@@ -61,6 +64,11 @@ public class AbstractImportSalesJob {
 	protected void setLogLevel(int logLevel)
 	{
 		this.log.setLogLevel(logLevel);
+	}
+
+	protected void setLogFileName(String logFileName) throws FileNotFoundException
+	{
+		this.log.setLogFileName(logFileName);
 	}
 
 	public Date getProcessDate()
@@ -77,7 +85,7 @@ public class AbstractImportSalesJob {
 	{
 		if (this.applicationContext == null)
 		{
-			this.applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
+			this.applicationContext = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_PATH);
 		}
 
 		return this.applicationContext.getBean(beanId);
@@ -91,6 +99,11 @@ public class AbstractImportSalesJob {
 	protected TsrPositionService getTsrPositionService()
 	{
 		return (TsrPositionService) getBean("tsrPositionService");
+	}
+
+	protected TsrHierarchyService getTsrHierarchyService()
+	{
+		return (TsrHierarchyService) getBean("tsrHierarchyService");
 	}
 
 	protected TsrStatusService getTsrStatusService()

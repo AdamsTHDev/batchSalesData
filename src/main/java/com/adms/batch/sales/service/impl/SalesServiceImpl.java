@@ -140,6 +140,12 @@ public class SalesServiceImpl implements SalesService {
 		return this.salesDao.findByNamedQuery("findSalesRecordForxRefChanged", xReference, customerFullName, tsrCode, saleDate);
 	}
 
+	public List<Sales> findSalesRecordByCampaignAndSaleDate(String campaignCode, Date saleDate)
+			throws Exception
+	{
+		return this.salesDao.findByNamedQuery("findSalesRecordByCampaignAndSaleDate", campaignCode, saleDate);
+	}
+
 	public List<Sales> findSalesRecordBySaleMonth(String saleMonth)
 			throws Exception
 	{

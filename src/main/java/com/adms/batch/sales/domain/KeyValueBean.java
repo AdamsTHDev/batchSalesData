@@ -24,15 +24,16 @@ import com.adms.common.domain.BaseDomain;
 			+ " where [Campaign] = ?"
 			+ " group by [Campaign]"
 			+ "", resultClass = KeyValueBean.class),
-	@NamedNativeQuery(name = "findCampaignCodeByCampaignYearAndListSourceAndInsurer", query = ""
-			+ "SELECT [CAMPAIGN_CODE] as [KEY], [CAMPAIGN_CODE] as [VALUE]"
-			+ "  FROM [SALES].[dbo].[CAMPAIGN]"
-			+ " WHERE 1 = 1"
-			+ "   AND CAMPAIGN_YEAR = ?"
-			+ "   AND [LIST_SOURCE] like ?"
-			+ "   AND [INSURER] like ?"
-			+ " ORDER BY [CAMPAIGN_CODE]"
-			+ "", resultClass = KeyValueBean.class),})
+	@NamedNativeQuery(name = "findCampaignCodeByCampaignYearAndInsurerAndListSource", query = ""
+			+ "exec [dbo].[REPORT_CONTROL_DAILY_PERFORMANCE_TRACKING] ?, ?, ?"
+			+ "", resultClass = KeyValueBean.class),
+	@NamedNativeQuery(name = "findDailyFloorAppByCampaignCodeAndDate", query = ""
+			+ "exec [dbo].[DAILY_FLOOR_APP] ?, ?"
+			+ "", resultClass = KeyValueBean.class),
+	@NamedNativeQuery(name = "findDailyFloorTarpByCampaignCodeAndDate", query = ""
+			+ "exec [dbo].[DAILY_FLOOR_TARP] ?, ?"
+			+ "", resultClass = KeyValueBean.class),
+})
 public class KeyValueBean extends BaseDomain {
 
 	private static final long serialVersionUID = 407548182288908839L;

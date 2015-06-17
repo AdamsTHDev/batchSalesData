@@ -44,12 +44,12 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
 		if (paymentMethodList.size() == 0)
 		{
-			throw new Exception("not found any record for PaymentMethod[" + description + "]");
+			throw new Exception("not found record for PaymentMethod [" + description + "]");
 		}
 
 		if (paymentMethodList.size() > 1)
 		{
-			throw new Exception("more that 1 record found for PaymentMethod[" + description + "]");
+			throw new Exception("more than 1 record found for PaymentMethod [" + description + "]");
 		}
 
 		return paymentMethodList.get(0);

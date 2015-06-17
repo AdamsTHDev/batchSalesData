@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<basefont face="Tahoma, sans-serif">
+		<style type="text/css">
+			table {
+				border-collapse: collapse;
+				border: 1px solid black;
+				font-size:10.0pt;font-family: Tahoma, sans-serif;
+			}
+			table td{
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body style="font-size:10.0pt; font-family: Tahoma, sans-serif; font-color: #000000;">
+		<p>Dear all,</p>
+		<br/>
+		<p>Please kindly see the attached for <b><u>UOB MSIG Daily Performance Report as of  ${mailContent}</u></b></p>
+		<br/
+		<table>
+			<tr bgcolor="yellow">
+				<td width="150" align="center"><b>Floor sales</b></td>
+				<td width="150" align="center"><b>APP</b></td>
+				<td width="150" align="center"><b>TARP</b></td>
+			</tr>
+			
+			#foreach($dailyProduction in $productionTable)
+			#if ($dailyProduction.productionDate != 'MTD')
+			<tr>
+				<td align="center">$dailyProduction.productionDate</td>
+				<td align="center">$dailyProduction.floorApp</td>
+				<td align="center">$dailyProduction.floorTarp</td>
+			</tr>
+			#else
+			<tr bgcolor="#6699FF">
+				<td align="center"><b>$dailyProduction.productionDate</b></td>
+				<td align="center"><b>$dailyProduction.floorApp</b></td>
+				<td align="center"><b>$dailyProduction.floorTarp</b></td>
+			</tr>
+			#end
+			#end
+			
+		</table>
+		<br/>
+		<br/>
+		<p>This is an automatically generated email, please do not reply. Thank you.</p>
+	</body>
+</html>

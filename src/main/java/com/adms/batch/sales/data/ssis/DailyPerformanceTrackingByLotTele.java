@@ -13,10 +13,11 @@ public class DailyPerformanceTrackingByLotTele extends AbstractImportSalesJob {
 	{
 //		new DailyPerformanceTrackingByLotTele().test("D:/Work/Report/DailyReport/201501");
 //		new DailyPerformanceTrackingByLotTele().test("D:/Work/Report/DailyReport/201502");
+//		new DailyPerformanceTrackingByLotTele().test("D:/Work/Report/DailyReport/201502/TELE/MTIKBANK");
 //		new DailyPerformanceTrackingByLotTele().test("D:/Work/Report/DailyReport/201503");
 //		new DailyPerformanceTrackingByLotTele().test("D:/Work/Report/DailyReport/201504");
 //		new DailyPerformanceTrackingByLotTele().test("D:/Work/Report/DailyReport/201505");
-//		new DailyPerformanceTrackingByLotTele().test(args[0]);
+		new DailyPerformanceTrackingByLotTele().test(args[0]);
 	}
 
 	public void test(String sInputPath)
@@ -27,7 +28,7 @@ public class DailyPerformanceTrackingByLotTele extends AbstractImportSalesJob {
 		{
 			public boolean accept(File dir, String name)
 			{
-				return dir.getAbsolutePath().contains("TELE") && ((name.contains("_DAILYP_") && name.contains("_MTD_")) ||name.contains("Daily_Performance_Tracking_ByLot.xls") || name.contains("Daily_Performance_Tracking.xls") || name.contains("DailyPerformanceTrackingReport.xlsx") || (name.contains("DailyPerformanceTrackingReport_") && name.contains(".xlsx")));
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && dir.getAbsolutePath().contains("TELE") && ((name.contains("_DAILYP_") && name.contains("_MTD_")) || name.contains("Daily_Performance_Tracking_ByLot.xls") || name.contains("Daily_Performance_Tracking.xls") || name.contains("Daily_Performance_Tracking_ByLot_fix") || name.contains("DailyPerformanceTrackingReport.xlsx") || (name.contains("DailyPerformanceTrackingReport_") && name.contains(".xlsx")));
 			}
 		});
 
@@ -54,7 +55,7 @@ public class DailyPerformanceTrackingByLotTele extends AbstractImportSalesJob {
 			log.info(fileName + " --> " + outputFileNameSsis);
 
 			String inputFileFormat = "fileformat/report/ssis/FileFormat_SSIS_DailyPerformanceTrackingByLot-input-TELE.xml";
-			if (fileName.contains("_DAILYP_") && fileName.contains("201501"))
+			if (fileName.contains("_DAILYP_") && (fileName.contains("201501") || fileName.contains("201502")))
 			{
 				inputFileFormat = "fileformat/report/ssis/FileFormat_SSIS_DailyPerformanceTrackingByLot-input-TELE-AUTO-201501.xml";
 			}

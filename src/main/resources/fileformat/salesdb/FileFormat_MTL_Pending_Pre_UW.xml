@@ -59,8 +59,8 @@
 				<DataCell row="1" column="K" dataType="TEXT" fieldName="cancelFlag" />
 				<DataCell row="1" column="L" dataType="TEXT" fieldName="uwStatus" />
 				<DataCell row="1" column="M" dataType="TEXT" fieldName="remark" />
-				<DataCell row="1" column="N" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwSubmitDate" />
-				<DataCell row="1" column="O" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwResultDate" />
+				<DataCell row="1" column="O" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwSubmitDate" />
+				<DataCell row="1" column="P" dataType="DATE" dataFormat="dd/MM/yyyy" fieldName="uwResultDate" />
 				<EndRecordCondition column="C" comparator="BLANK" />
 			</DataRecord>
 		</DataSheet>

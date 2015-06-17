@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
@@ -9,6 +10,8 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
                            http://www.springframework.org/schema/aop 
                            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
@@ -17,11 +20,15 @@
 	<context:spring-configured />
 	<aop:aspectj-autoproxy />
 
+	<bean id="hijackBo" class="com.adms.batch.sales.service.aop.TimeStampIntercept">
+		<!-- configure properties of aspect here as normal -->
+	</bean>
+
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="kampon8@gmail.com" />
-		<property name="password" value="xyP0orishk" />
+		<property name="username" value="adams.th.dev@gmail.com" />
+		<property name="password" value="Ad@ms.TH.Dev" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
@@ -34,9 +41,9 @@
 	<bean id="templateMailMessage" class="org.springframework.mail.SimpleMailMessage">
 		<!-- <property name="from" value="sender@gmail.com" /> <property name="to" 
 			value="receiver@gmail.com" /> -->
-		<property name="from" value="kampon8@gmail.com" />
-		<property name="to" value="kampon8@gmail.com" />
-		<property name="subject" value="Hello" />
+		<property name="from" value="kampon.panchanawaporn@adms-asia.com" />
+		<property name="to" value="Kampon.Panchanawaporn@adms-asia.com, Apiradee.Wibo@tele-intel.com, Chotika.Pha@tele-intel.com, Kantana.Kerd@tele-intel.com, Supakorn.Kom@tele-intel.com" />
+		<property name="subject" value="TEST: KBank-MTI_Daily Performance Report as of " />
 		<property name="text">
 			<value>
         <![CDATA[
@@ -56,7 +63,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:jtds:sqlserver://10.0.1.6/SALES;integrated security=false" />
+			value="jdbc:jtds:sqlserver://10.66.0.12/SALES;integrated security=false" />
 		<property name="username" value="sa01" />
 		<property name="password" value="Aegon03" />
 	</bean>
@@ -84,5 +91,14 @@
 			</props>
 		</property>
 	</bean>
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
 
 </beans>

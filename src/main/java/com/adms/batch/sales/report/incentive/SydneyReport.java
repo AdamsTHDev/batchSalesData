@@ -1015,7 +1015,7 @@ public class SydneyReport extends AbstractImportSalesJob {
 	{
 		SydneyReport batch = new SydneyReport();
 		batch.setLogLevel(Logger.INFO);
-		batch.totalMonth = 10;
+		batch.totalMonth = 12;
 		batch.generateReport(new FileOutputStream("d:/testSydneyOutput.xlsx"));
 	}
 

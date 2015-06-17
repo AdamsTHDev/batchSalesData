@@ -2,15 +2,14 @@ package com.adms.batch.sales.data;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.net.URLClassLoader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-//import java.util.Locale;
-
-
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,11 +21,14 @@ import com.adms.batch.sales.domain.ReconfirmStatus;
 import com.adms.batch.sales.domain.Sales;
 import com.adms.batch.sales.domain.SalesProcess;
 import com.adms.batch.sales.domain.Tsr;
+import com.adms.batch.sales.domain.TsrHierarchy;
 import com.adms.batch.sales.support.FileWalker;
 import com.adms.batch.sales.support.SalesDataHelper;
 import com.adms.imex.excelformat.DataHolder;
 import com.adms.imex.excelformat.ExcelFormat;
+import com.adms.utils.DateUtil;
 import com.adms.utils.Logger;
+import com.adms.utils.PropertyResource;
 import com.adms.utils.StringUtil;
 
 public class ImportSalesReportByRecords extends AbstractImportSalesJob {
@@ -72,6 +74,64 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		}
 	}
 
+	protected void addTsrHierarchy(Sales sales)
+			throws Exception
+	{
+		Tsr tsr = sales.getTsr();
+		Tsr upline = sales.getSupervisor();
+		Date salesDate = sales.getSaleDate();
+
+		TsrHierarchy tsrHierarchy = getTsrHierarchyService().findTsrHierarchyByTsrAndDate(tsr.getTsrCode(), salesDate);
+		TsrHierarchy changedTsrHierarchy = null;
+
+		boolean newTsrHierarchy = false;
+		boolean newUpline = false;
+		if (tsrHierarchy == null)
+		{
+			tsrHierarchy = new TsrHierarchy();
+			tsrHierarchy.setTsr(tsr);
+			tsrHierarchy.setUpline(upline);
+			tsrHierarchy.setEffectiveDate(salesDate);
+			tsrHierarchy.setEndDate(null);
+			newTsrHierarchy = true;
+		}
+		else
+		{
+			if (tsrHierarchy.getUpline().getTsrCode().equals(upline.getTsrCode())) {
+				log.debug("remained hierarchy: " + tsrHierarchy);
+			}
+			else
+			{
+				log.warn("hierarchy changed [hierarchyDate: " + salesDate + ", originalUpline: " + tsrHierarchy.getUpline().getTsrCode() + ", newUpline: " + upline.getTsrCode());
+				Calendar c = Calendar.getInstance(Locale.US);
+				c.setTime(salesDate);
+				DateUtil.addDay(c, -1);
+				tsrHierarchy.setEndDate(c.getTime());
+
+				changedTsrHierarchy = new TsrHierarchy();
+				changedTsrHierarchy.setTsr(tsr);
+				changedTsrHierarchy.setUpline(upline);
+				changedTsrHierarchy.setEffectiveDate(salesDate);
+				changedTsrHierarchy.setEndDate(null);
+				newUpline = true;
+			}
+		}
+
+		if (newTsrHierarchy)
+		{
+			getTsrHierarchyService().addTsrHierarchy(tsrHierarchy, BATCH_ID);
+		}
+		else if (newUpline)
+		{
+			getTsrHierarchyService().updateTsrHierarchy(tsrHierarchy, BATCH_ID);
+			getTsrHierarchyService().addTsrHierarchy(changedTsrHierarchy, BATCH_ID);
+		}
+		else
+		{
+			// do nothing
+		}
+	}
+
 	protected Sales extractSalesRecord(DataHolder salesDataHolder, Sales sales)
 			throws Exception
 	{
@@ -98,21 +158,22 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		}
 		if (tsr == null)
 		{
-//			String tsrName = salesDataHolder.get("tsrName").getStringValue();
-//			tsr = getTsrService().findTsrByFullName(tsrName, (Date) salesDataHolder.get("saleDate").getValue());
-			log.error("TSR not found [TSR Code: " + tsrCode + "]");
-			throw new Exception("Error!!! TSR not found [TSR Code: " + tsrCode + "]");
-		}
-		
-		/*if (tsr == null)
-		{
+			// add new
+			log.warn("TSR not found, insert new record [TSR Code: " + tsrCode + "]");
 			tsr = new Tsr();
 			tsr.setTsrCode(tsrCode);
-			tsr.setTsrPosition(getTsrPositionService().findTsrPositionByPositionCode("DMTSR"));
-			tsr.setTsrStatus(getTsrStatusService().findTsrStatusByStatusCode("AD"));
+			tsr.setTsrPosition(getTsrPositionService().findTsrPositionByPositionCode("TSR"));
+			tsr.setTsrStatus(getTsrStatusService().findTsrStatusByStatusCode("A"));
 			tsr.setRemark("" + sales.getxReference());
 			tsr = getTsrService().addTsr(tsr, BATCH_ID);
-		}*/
+			
+			// break program
+			/*
+			log.error("TSR not found [TSR Code: " + tsrCode + "]");
+			throw new Exception("Error!!! TSR not found [TSR Code: " + tsrCode + "]");
+			*/
+		}
+
 		sales.setTsr(tsr);
 
 		String supCode = salesDataHolder.get("supCode").getStringValue();
@@ -203,18 +264,19 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 				}
 
 				addSalesProcess(sales);
+//				addTsrHierarchy(sales);
 			}
 			catch (Exception e)
 			{
 				System.err.println("error on: " + salesDataHolder.printValues());
 				System.err.println("error on: " + sales);
-				e.printStackTrace();
+				throw e;
 			}
 		}
 	}
 
 	protected void importFile(String fileFormatFileName, String dataFileLocation)
-			throws FileNotFoundException
+			throws Exception
 	{
 		log.info("importFile: " + dataFileLocation);
 		InputStream format = null;
@@ -231,13 +293,9 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 
 			importSalesRecord(salesDataHolderList);
 		}
-		catch (FileNotFoundException e)
-		{
-			throw e;
-		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			throw e;
 		}
 		finally
 		{
@@ -258,6 +316,9 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		}
 	}
 
+	public static final String CONFIG_FILE_LOCATION = "config/importSales.properties";
+	public static final String LOG_FILE_NAME = "log.salesRecords.file.name";
+
 	public static void main(String[] args)
 			throws Exception
 	{
@@ -269,13 +330,16 @@ public class ImportSalesReportByRecords extends AbstractImportSalesJob {
 		{
 			public boolean accept(File dir, String name)
 			{
-				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && /*dir.getAbsolutePath().contains("MTI-KBank") &&*/ (name.contains("_SALESR_") || name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx"));
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && (name.contains("_SALESR_") || name.contains("Sales_Report_By_Records") || (name.contains("SalesReportByRecords_") && name.contains(".xlsx")) || name.contains("SalesReportByRecords.xlsx"));
 			}
 		});
 
 		ImportSalesReportByRecords batch = new ImportSalesReportByRecords();
 		batch.setLogLevel(Logger.INFO);
 		batch.setProcessDate(new Date());
+		String logFileName = PropertyResource.getInstance(CONFIG_FILE_LOCATION).getValue(LOG_FILE_NAME).replace("logTime", "" + new SimpleDateFormat("yyyyMMdd_hhmmssSSS").format(new Date()));
+		batch.setLogFileName(logFileName);
+		
 		for (String filename : fw.getFileList())
 		{
 			if (filename.contains("MSIGUOB"))

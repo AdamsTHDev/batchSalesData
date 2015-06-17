@@ -29,7 +29,7 @@
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
 
 		<property name="url"
-			value="jdbc:jtds:sqlserver://10.0.1.6/LMS;integrated security=false" />
+			value="jdbc:jtds:sqlserver://10.66.0.12/LMS;integrated security=false" />
 		<property name="username" value="sa01" />
 		<property name="password" value="Aegon03" />
 

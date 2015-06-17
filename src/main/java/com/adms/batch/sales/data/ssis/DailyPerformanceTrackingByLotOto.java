@@ -16,7 +16,7 @@ public class DailyPerformanceTrackingByLotOto extends AbstractImportSalesJob {
 //		new DailyPerformanceTrackingByLotOto().test("D:/Work/Report/DailyReport/201503");
 //		new DailyPerformanceTrackingByLotOto().test("D:/Work/Report/DailyReport/201504");
 //		new DailyPerformanceTrackingByLotOto().test("D:/Work/Report/DailyReport/201505");
-//		new DailyPerformanceTrackingByLotOto().test(args[0]);
+		new DailyPerformanceTrackingByLotOto().test(args[0]);
 	}
 
 	public void test(String sInputPath)
@@ -28,7 +28,7 @@ public class DailyPerformanceTrackingByLotOto extends AbstractImportSalesJob {
 			
 			public boolean accept(File dir, String name)
 			{
-				return dir.getAbsolutePath().contains("OTO") && (name.contains("Daily_Performance_Tracking_ByLot.xls") || name.contains("Daily_Performance_Tracking.xls") || name.contains("DailyPerformanceTrackingReport.xlsx") || (name.contains("DailyPerformanceTrackingReport_") && name.contains(".xlsx")));
+				return !name.contains("~$") && !dir.getAbsolutePath().toLowerCase().contains("archive") && dir.getAbsolutePath().contains("OTO") && (name.contains("Daily_Performance_Tracking_ByLot.xls") || name.contains("Daily_Performance_Tracking.xls") || name.contains("DailyPerformanceTrackingReport.xlsx") || (name.contains("DailyPerformanceTrackingReport_") && name.contains(".xlsx")));
 			}
 		});
 

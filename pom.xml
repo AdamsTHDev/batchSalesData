@@ -79,7 +79,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.7.1</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -88,11 +88,13 @@
 						</goals>
 						<configuration>
 							<transformers>
-								<!-- <transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainclass>com.codevalid.App</mainclass>
-								</transformer> -->
-		
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class></Main-Class>
+										<Class-Path></Class-Path>
+									</manifestEntries>
+								</transformer>
+
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.handlers</resource>
@@ -101,7 +103,7 @@
 									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.schemas</resource>
 								</transformer>
-		
+
 							</transformers>
 						</configuration>
 					</execution>

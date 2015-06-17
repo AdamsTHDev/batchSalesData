@@ -1,8 +1,11 @@
 <html>
-	<body>
+	<head>
+		<basefont face="Tahoma, sans-serif">
+	</head>
+	<body style="font-size:10.0pt;font-family: Tahoma, sans-serif">
 		<p>Dear all,</p>
 		<br/>
-		<p style="text-indent: 2em;">Please kindly see the attached for <b><u>KBank-MTI Daily Performance Report as of ${mailContent}</u></b></p>
+		<p>Please kindly see the attached for <b><u>KBank-MTI Daily Performance Report as of ${mailContent}</u></b></p>
 		<br/>
 		<br/>
 		<p>This is an automatically generated email, please do not reply. Thank you.</p>
