@@ -1,0 +1,7 @@
+﻿
+call 0D99_parameter_setup.bat
+call 0D21_daily_performance_tracking_create_ssis_files.bat
+call 0D22_daily_performance_tracking_import_db.bat
+call 0D23_daily_performance_tracking_archive_ssis_files.bat
+call 0D24_daily_performance_tracking_send_email_mtikbank.bat
+call 0D25_daily_performance_tracking_send_email_msiguob.bat
